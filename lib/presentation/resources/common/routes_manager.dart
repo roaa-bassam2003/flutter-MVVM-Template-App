@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/presentation/forgot_password/forgot_password_view.dart';
-import 'package:flutter_advanced_course/presentation/login/login_view.dart';
-import 'package:flutter_advanced_course/presentation/main/main_view.dart';
-import 'package:flutter_advanced_course/presentation/onboarding/onboarding_view.dart';
-import 'package:flutter_advanced_course/presentation/register/register_view.dart';
-import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
-import 'package:flutter_advanced_course/presentation/splash/splash_view.dart';
-import 'package:flutter_advanced_course/presentation/store_details/store_details_view.dart';
+import 'package:flutter_advanced_course/presentation/common/forgot_password/forgot_password_view.dart';
+import 'package:flutter_advanced_course/presentation/common/login/login_view.dart';
+import 'package:flutter_advanced_course/presentation/common/onboarding/view/onboarding_view.dart';
+import 'package:flutter_advanced_course/presentation/common/register/register_view.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
+import 'package:flutter_advanced_course/presentation/common/splash/splash_view.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/main/main_view.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/main/main_view.dart';
 
 class Routes {
   static const String splashRoute = "/";
@@ -14,13 +14,20 @@ class Routes {
   static const String registerRoute = "/register";
   static const String forgotPasswordRoute = "/forgotPassword";
   static const String onBoardingRoute = "/onBoarding";
-  static const String mainRoute = "/main";
-  static const String storeDetailsRoute = "/storeDetails";
+}
+
+class ProviderRoutes {
+  static const String mainRoute = "/ProviderMainView";
+}
+
+class SeekerRoutes {
+  static const String mainRoute = "/SeekerMainView";
 }
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
+      // common
       case Routes.splashRoute:
         return MaterialPageRoute(
           builder: (_) => const SplashView(),
@@ -41,14 +48,20 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const ForgotPasswordView(),
         );
-      case Routes.mainRoute:
+        
+      // seeker
+      case SeekerRoutes.mainRoute:
         return MaterialPageRoute(
-          builder: (_) => const MainView(),
+          builder: (_) => const SeekerMainView(),
         );
-      case Routes.storeDetailsRoute:
+
+      // provider
+      case ProviderRoutes.mainRoute:
         return MaterialPageRoute(
-          builder: (_) => const StoreDetailsView(),
+          builder: (_) => const ProviderMainView(),
         );
+
+      // default
       default:
         return unDefinedRoute();
     }

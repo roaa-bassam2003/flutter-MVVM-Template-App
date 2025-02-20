@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
-import 'package:flutter_advanced_course/presentation/resources/font_manager.dart';
-import 'package:flutter_advanced_course/presentation/resources/styles_manager.dart';
-import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/font_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/styles_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
 
 ThemeData getApplicationTheme() {
   return ThemeData(
@@ -56,17 +56,24 @@ ThemeData getApplicationTheme() {
 
     // text theme
     textTheme: TextTheme(
-      displayLarge: getLightStyle(
-        color: ColorManager.white,
-        fontSize: FontSize.s22,
+      // onboarding title, all app headings
+      displayLarge: getSemiBoldStyle(
+        color: ColorManager.primary,
+        fontSize: FontSize.s20,
+      ),
+      // onboarding sub title
+      headlineMedium: getRegularStyle(
+        color: ColorManager.lightGrey,
+        fontSize: FontSize.s18,
       ),
       headlineLarge: getSemiBoldStyle(
         color: ColorManager.darkGrey,
         fontSize: FontSize.s16,
       ),
+      // skip word
       titleMedium: getMediumStyle(
-        color: ColorManager.lightGrey,
-        fontSize: FontSize.s14,
+        color: ColorManager.primary,
+        fontSize: FontSize.s18,
       ),
       bodyLarge: getRegularStyle(
         color: ColorManager.grey1,
