@@ -14,7 +14,6 @@ class ColorManager {
   static Color white = const Color(0xffFFFFFF);
   static Color error = const Color(0xffe61f34); // red color
 
-
   // roaa app
   // static Color primary = const Color(0xffA259FF);
   // static Color darkBlue = const Color(0xff042030);

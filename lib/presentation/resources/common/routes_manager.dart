@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/presentation/common/forgot_password/forgot_password_view.dart';
-import 'package:flutter_advanced_course/presentation/common/login/login_view.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/forgot_password/forgot_password_view.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/login/login_view.dart';
 import 'package:flutter_advanced_course/presentation/common/onboarding/view/onboarding_view.dart';
-import 'package:flutter_advanced_course/presentation/common/register/register_view.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/register/register_view.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/common/splash/splash_view.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/main/main_view.dart';
@@ -48,7 +48,7 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const ForgotPasswordView(),
         );
-        
+
       // seeker
       case SeekerRoutes.mainRoute:
         return MaterialPageRoute(
