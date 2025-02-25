@@ -70,7 +70,7 @@ class LoginView extends StatelessWidget {
                 backgroundColor: ColorManager.primary,
               ),
               // space
-              const SizedBox(height: 10),
+              const SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/core/widgets/custom_app_bar.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/assets_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/constants_manager.dart';
@@ -36,10 +37,7 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.white,
-      appBar: AppBar(
-        backgroundColor: ColorManager.white,
-        elevation: AppSize.s0,
-      ),
+      appBar: customAppBar(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

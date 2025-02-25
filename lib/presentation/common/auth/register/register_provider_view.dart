@@ -14,6 +14,7 @@ class RegisterProviderView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: customAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -132,9 +133,12 @@ class RegisterProviderView extends StatelessWidget {
               const SizedBox(height: 18),
               // button Register
               CustomButton(
-                  onPressed: () {},
-                  text: 'Register',
-                  backgroundColor: ColorManager.primary),
+                onPressed: () {},
+                text: 'Register',
+                backgroundColor: ColorManager.primary,
+              ),
+              //space
+              const SizedBox(height: 5),
               //Already have an account? Login
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
