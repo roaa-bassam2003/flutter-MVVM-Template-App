@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/core/widgets/custom_app_bar.dart';
-import 'package:flutter_advanced_course/core/widgets/custom_button.dart';
-import 'package:flutter_advanced_course/core/widgets/custom_text_form_field.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/assets_manager.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
 
-class ForgotPasswordView extends StatelessWidget {
-  const ForgotPasswordView({super.key});
+class RegisterUserView extends StatelessWidget {
+  const RegisterUserView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: customAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -27,19 +23,6 @@ class ForgotPasswordView extends StatelessWidget {
                 width: 200,
                 height: 200,
               ),
-            ),
-            //Username
-            const CustomTextFormField(
-              hintText: 'Enter Email Address',
-              textInputType: TextInputType.emailAddress,
-            ),
-            // space
-            const SizedBox(height: 20),
-            //Login
-            CustomButton(
-              onPressed: () {},
-              text: 'Send',
-              backgroundColor: ColorManager.primary,
             ),
           ],
         ),

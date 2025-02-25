@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/core/widgets/custom_app_bar.dart';
 import 'package:flutter_advanced_course/core/widgets/custom_button.dart';
-import 'package:flutter_advanced_course/core/widgets/custom_text_form_field.dart';
+import 'package:flutter_advanced_course/core/widgets/custom_drop_down_button.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/assets_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
 
-class ForgotPasswordView extends StatelessWidget {
-  const ForgotPasswordView({super.key});
+class ServiceTypeView extends StatelessWidget {
+  const ServiceTypeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,17 +28,15 @@ class ForgotPasswordView extends StatelessWidget {
                 height: 200,
               ),
             ),
-            //Username
-            const CustomTextFormField(
-              hintText: 'Enter Email Address',
-              textInputType: TextInputType.emailAddress,
-            ),
+            const Text('What kind of service do you provide?'),
+            const SizedBox(height: 50),
+            const CustomDropdownButton(),
             // space
-            const SizedBox(height: 20),
+            const SizedBox(height: 18),
             //Login
             CustomButton(
               onPressed: () {},
-              text: 'Send',
+              text: 'Continue',
               backgroundColor: ColorManager.primary,
             ),
           ],

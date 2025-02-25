@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/forgot_password/forgot_password_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/login/login_view.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/register/register_provider_view.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/service_type/service_type_view.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/user_type/user_type_view.dart';
 import 'package:flutter_advanced_course/presentation/common/onboarding/view/onboarding_view.dart';
-import 'package:flutter_advanced_course/presentation/common/auth/register/register_view.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/register/register_user_view.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/common/splash/splash_view.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/main/main_view.dart';
@@ -11,9 +14,12 @@ import 'package:flutter_advanced_course/presentation/service_seeker/main/main_vi
 class Routes {
   static const String splashRoute = "/";
   static const String loginRoute = "/login";
-  static const String registerRoute = "/register";
+  static const String registerUserRoute = "/registerUser";
+  static const String registerProviderRoute = "/registerProvider";
   static const String forgotPasswordRoute = "/forgotPassword";
   static const String onBoardingRoute = "/onBoarding";
+  static const String userTypeRoute = "/userType";
+  static const String serviceTypeRoute = "/serviceType";
 }
 
 class ProviderRoutes {
@@ -36,9 +42,13 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const LoginView(),
         );
-      case Routes.registerRoute:
+      case Routes.registerUserRoute:
         return MaterialPageRoute(
-          builder: (_) => const RegisterView(),
+          builder: (_) => const RegisterUserView(),
+        );
+      case Routes.registerProviderRoute:
+        return MaterialPageRoute(
+          builder: (_) => const RegisterProviderView(),
         );
       case Routes.onBoardingRoute:
         return MaterialPageRoute(
@@ -47,6 +57,14 @@ class RouteGenerator {
       case Routes.forgotPasswordRoute:
         return MaterialPageRoute(
           builder: (_) => const ForgotPasswordView(),
+        );
+      case Routes.userTypeRoute:
+        return MaterialPageRoute(
+          builder: (_) => const UserTypeView(),
+        );
+      case Routes.serviceTypeRoute:
+        return MaterialPageRoute(
+          builder: (_) => const ServiceTypeView(),
         );
 
       // seeker

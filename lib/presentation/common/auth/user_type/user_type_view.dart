@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/core/widgets/custom_app_bar.dart';
 import 'package:flutter_advanced_course/core/widgets/custom_button.dart';
-import 'package:flutter_advanced_course/core/widgets/custom_text_form_field.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/assets_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
 
-class ForgotPasswordView extends StatelessWidget {
-  const ForgotPasswordView({super.key});
+class UserTypeView extends StatelessWidget {
+  const UserTypeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,18 +28,24 @@ class ForgotPasswordView extends StatelessWidget {
                 height: 200,
               ),
             ),
-            //Username
-            const CustomTextFormField(
-              hintText: 'Enter Email Address',
-              textInputType: TextInputType.emailAddress,
+            const Text('Are you a service provider?'),
+            const SizedBox(height: 50),
+            CustomButton(
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.serviceTypeRoute);
+              },
+              text: 'Yes',
+              backgroundColor: ColorManager.primary,
             ),
             // space
-            const SizedBox(height: 20),
+            const SizedBox(height: 18),
             //Login
             CustomButton(
-              onPressed: () {},
-              text: 'Send',
-              backgroundColor: ColorManager.primary,
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.registerUserRoute);
+              },
+              text: 'No',
+              backgroundColor: ColorManager.darkBlue,
             ),
           ],
         ),
