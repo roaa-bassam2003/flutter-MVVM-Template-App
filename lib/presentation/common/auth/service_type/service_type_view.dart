@@ -4,6 +4,7 @@ import 'package:flutter_advanced_course/core/widgets/custom_button.dart';
 import 'package:flutter_advanced_course/core/widgets/custom_drop_down_button.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/assets_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
 
 class ServiceTypeView extends StatelessWidget {
@@ -35,7 +36,9 @@ class ServiceTypeView extends StatelessWidget {
             const SizedBox(height: 18),
             //Login
             CustomButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.registerProviderRoute);
+              },
               text: 'Continue',
               backgroundColor: ColorManager.primary,
             ),

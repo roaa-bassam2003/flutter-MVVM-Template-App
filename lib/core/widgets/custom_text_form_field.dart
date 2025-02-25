@@ -4,14 +4,17 @@ import 'package:flutter_advanced_course/presentation/resources/common/values_man
 import '../../presentation/resources/common/color_manager.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField(
-      {super.key,
-      required this.hintText,
-      required this.textInputType,
-      this.suffixIcon});
+  const CustomTextFormField({
+    super.key,
+    required this.hintText,
+    required this.textInputType,
+    this.suffixIcon,
+    this.constraints,
+  });
   final String hintText;
   final TextInputType textInputType;
   final Widget? suffixIcon;
+  final BoxConstraints? constraints;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -20,10 +23,7 @@ class CustomTextFormField extends StatelessWidget {
         suffixIcon: suffixIcon,
         hintText: hintText,
         contentPadding: const EdgeInsets.only(left: 20.0), // مسافة من اليسار
-        // constraints: const BoxConstraints(
-        //   minHeight: 30, // الحد الأدنى للارتفاع
-        //   maxHeight: 40, // الحد الأقصى للارتفاع
-        // ),
+        constraints: constraints,
         enabledBorder: buildBorder(),
         border: buildBorder(),
         focusedBorder: buildBorder(),

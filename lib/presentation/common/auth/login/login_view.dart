@@ -33,7 +33,7 @@ class LoginView extends StatelessWidget {
               ),
               //Username
               const CustomTextFormField(
-                hintText: 'Username',
+                hintText: 'Username or Email',
                 textInputType: TextInputType.text,
               ),
               // space
