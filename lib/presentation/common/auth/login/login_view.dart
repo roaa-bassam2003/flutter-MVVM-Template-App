@@ -4,16 +4,12 @@ import 'package:flutter_advanced_course/core/widgets/custom_text_button.dart';
 import 'package:flutter_advanced_course/core/widgets/custom_text_form_field.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/assets_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
 
-class LoginView extends StatefulWidget {
+class LoginView extends StatelessWidget {
   const LoginView({super.key});
 
-  @override
-  State<LoginView> createState() => _LoginViewState();
-}
-
-class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +21,7 @@ class _LoginViewState extends State<LoginView> {
           child: Column(
             children: [
               //Space
-              const SizedBox(
-                height: 70,
-              ),
+              const SizedBox(height: 70),
               //Logo
               Center(
                 child: Image.asset(
@@ -42,9 +36,7 @@ class _LoginViewState extends State<LoginView> {
                 textInputType: TextInputType.text,
               ),
               // space
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               //Username
               const CustomTextFormField(
                 hintText: 'Password',
@@ -54,24 +46,22 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
               // space
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               // Forget Password
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   CustomTextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.forgotPasswordRoute);
+                    },
                     text: 'Forget Password?',
                     textColor: ColorManager.darkGrey,
                   )
                 ],
               ),
               // space
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               //Login
               CustomButton(
                 onPressed: () {},
@@ -79,9 +69,7 @@ class _LoginViewState extends State<LoginView> {
                 backgroundColor: ColorManager.primary,
               ),
               // space
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
