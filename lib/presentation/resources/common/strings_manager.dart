@@ -15,4 +15,49 @@ class AppStrings {
   static const onBoardingSubTitle4 =
       "Rest easy knowing your little ones are in safe, caring hands";
   static const skip = "skip";
+  static const String usernameOrEmail = "Username Or Email";
+  static const String password = "Password";
+  static const String login = "Login";
+  static const String signUp = " Sign Up";
+  static const String forgotPassword = "Forgot Password?";
+  static const String signUpPrompt = "Have an account?";
+  static const String send = "Send";
+
+  static const String serviceProviderQuestion = "Are you a service provider?";
+  static const String yes = "Yes";
+  static const String no = "No";
+
+  static const String serviceTypeQuestion =
+      "What kind of service do you provide?";
+  static const String selectService = "Select";
+  static const String continueButton = "Continue";
+
+  static const String email = "Email";
+  static const String enter = "Enter";
+
+  static const String confirmationMessage =
+      """We Will Confirm the Register after
+                     48 hours""";
+
+  // General
+  static const String name = "Name";
+  static const String mobileNumber = "Mobile Number";
+
+  // Profile & ID
+  static const String profilePicture = "Profile Picture";
+  static const String frontIdPicture = "Front ID Picture";
+  static const String backIdPicture = "Back ID Picture";
+  static const String certification = "Certification";
+
+  // Address
+  static const String governorate = "Governorate";
+  static const String city = "City";
+  static const String currentAddress = "Current Address";
+
+  // Pricing
+  static const String pricePerHour = "Price Per Hour";
+
+  // Registration
+  static const String register = "Register";
+  static const String alreadyHaveAccount = "Already have an account? ";
 }

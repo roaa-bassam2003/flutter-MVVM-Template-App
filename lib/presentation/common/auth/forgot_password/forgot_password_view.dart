@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/core/widgets/custom_app_bar.dart';
-import 'package:flutter_advanced_course/core/widgets/custom_button.dart';
-import 'package:flutter_advanced_course/core/widgets/custom_text_form_field.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
+import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
+import 'package:flutter_advanced_course/presentation/widgets/custom_button.dart';
+import 'package:flutter_advanced_course/presentation/widgets/custom_text_form_field.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/assets_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
@@ -30,7 +31,7 @@ class ForgotPasswordView extends StatelessWidget {
             ),
             //Username
             const CustomTextFormField(
-              hintText: 'Enter Email Address',
+              hintText: AppStrings.usernameOrEmail,
               textInputType: TextInputType.emailAddress,
             ),
             // space
@@ -38,7 +39,7 @@ class ForgotPasswordView extends StatelessWidget {
             //Login
             CustomButton(
               onPressed: () {},
-              text: 'Send',
+              text: AppStrings.send,
               backgroundColor: ColorManager.primary,
             ),
           ],

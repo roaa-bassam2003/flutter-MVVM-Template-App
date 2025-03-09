@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/core/widgets/custom_button.dart';
-import 'package:flutter_advanced_course/core/widgets/custom_text_button.dart';
-import 'package:flutter_advanced_course/core/widgets/custom_text_form_field.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
+import 'package:flutter_advanced_course/presentation/widgets/custom_button.dart';
+import 'package:flutter_advanced_course/presentation/widgets/custom_text_button.dart';
+import 'package:flutter_advanced_course/presentation/widgets/custom_text_form_field.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/assets_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/routes_manager.dart';
@@ -33,14 +34,14 @@ class LoginView extends StatelessWidget {
               ),
               //Username
               const CustomTextFormField(
-                hintText: 'Username or Email',
+                hintText: AppStrings.usernameOrEmail,
                 textInputType: TextInputType.text,
               ),
               // space
               const SizedBox(height: 10),
               //Username
               const CustomTextFormField(
-                hintText: 'Password',
+                hintText: AppStrings.password,
                 textInputType: TextInputType.visiblePassword,
                 suffixIcon: Icon(
                   Icons.remove_red_eye,
@@ -56,7 +57,7 @@ class LoginView extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(context, Routes.forgotPasswordRoute);
                     },
-                    text: 'Forget Password?',
+                    text: AppStrings.forgotPassword,
                     textColor: ColorManager.darkGrey,
                   )
                 ],
@@ -66,7 +67,7 @@ class LoginView extends StatelessWidget {
               //Login
               CustomButton(
                 onPressed: () {},
-                text: 'Login',
+                text: AppStrings.login,
                 backgroundColor: ColorManager.primary,
               ),
               // space
@@ -74,12 +75,12 @@ class LoginView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Have an account? '),
+                  const Text(AppStrings.signUpPrompt),
                   CustomTextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, Routes.userTypeRoute);
                     },
-                    text: 'Sign Up',
+                    text: AppStrings.signUp,
                     textColor: ColorManager.primary,
                   )
                 ],

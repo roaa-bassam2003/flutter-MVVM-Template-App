@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/core/widgets/custom_app_bar.dart';
-import 'package:flutter_advanced_course/core/widgets/custom_button.dart';
-import 'package:flutter_advanced_course/core/widgets/custom_drop_down_button.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
+import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
+import 'package:flutter_advanced_course/presentation/widgets/custom_button.dart';
+import 'package:flutter_advanced_course/presentation/widgets/custom_drop_down_button.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/assets_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/routes_manager.dart';
@@ -29,9 +30,22 @@ class ServiceTypeView extends StatelessWidget {
                 height: 200,
               ),
             ),
-            const Text('What kind of service do you provide?'),
+            const Text(AppStrings.serviceTypeQuestion),
             const SizedBox(height: 50),
-            const CustomDropdownButton(),
+            CustomDropdownButton(
+              fontWeight: false,
+              backgroundColor: ColorManager.white,
+              textColor: ColorManager.primary,
+              iconColor: ColorManager.primary,
+              borderColor: ColorManager.primary,
+              hint: AppStrings.selectService,
+              items: const [
+                'Pet Care',
+                'Nurse',
+                'Elderly Care',
+                'Babysitter',
+              ],
+            ),
             // space
             const SizedBox(height: 18),
             //Login
@@ -39,7 +53,7 @@ class ServiceTypeView extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, Routes.registerProviderRoute);
               },
-              text: 'Continue',
+              text: AppStrings.continueButton,
               backgroundColor: ColorManager.primary,
             ),
           ],

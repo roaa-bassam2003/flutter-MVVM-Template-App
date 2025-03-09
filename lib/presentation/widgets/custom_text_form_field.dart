@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
 
-import '../../presentation/resources/common/color_manager.dart';
+import '../resources/common/color_manager.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -35,6 +35,7 @@ class CustomTextFormField extends StatelessWidget {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(AppPadding.p8),
       borderSide: BorderSide(
+        width: 1.5,
         color: ColorManager.lightGrey,
       ),
     );

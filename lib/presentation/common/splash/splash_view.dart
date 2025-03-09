@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/core/widgets/custom_app_bar.dart';
+import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/assets_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/constants_manager.dart';

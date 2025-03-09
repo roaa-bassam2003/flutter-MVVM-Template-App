@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/forgot_password/forgot_password_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/login/login_view.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/pending_approval/pending_approval_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/register/register_provider_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/service_type/service_type_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/user_type/user_type_view.dart';
@@ -20,6 +21,7 @@ class Routes {
   static const String onBoardingRoute = "/onBoarding";
   static const String userTypeRoute = "/userType";
   static const String serviceTypeRoute = "/serviceType";
+  static const String pendingApproval = "/pendingApproval";
 }
 
 class ProviderRoutes {
@@ -65,6 +67,10 @@ class RouteGenerator {
       case Routes.serviceTypeRoute:
         return MaterialPageRoute(
           builder: (_) => const ServiceTypeView(),
+        );
+      case Routes.pendingApproval:
+        return MaterialPageRoute(
+          builder: (_) => const PendingApprovalView(),
         );
 
       // seeker
