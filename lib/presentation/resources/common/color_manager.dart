@@ -14,6 +14,7 @@ class ColorManager {
   static Color white = const Color(0xffFFFFFF);
   static Color error = const Color(0xffe61f34); // red color
   static Color darkBlue = const Color(0xff042030);
+  static Color cardColor = const Color(0xff8856E1);
   // roaa app
   // static Color primary = const Color(0xffA259FF);
   // static Color darkBlue = const Color(0xff042030);

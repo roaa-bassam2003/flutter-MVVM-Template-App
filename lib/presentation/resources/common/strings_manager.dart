@@ -14,6 +14,26 @@ class AppStrings {
       "Ensure your loved ones receive the care and attention they deserve";
   static const onBoardingSubTitle4 =
       "Rest easy knowing your little ones are in safe, caring hands";
+// نصوص صفحة الـ Home
+  static const appBarHomeTitle = "The magic parents";
+  static const homeMainTitle = "How can we take care of you";
+
+  static const homeTitle1 = "Pet Care";
+  static const homeSubTitle1 = """Reliable and Loving 
+  Care for Your Pets""";
+
+  static const homeTitle2 = "Nurse";
+  static const homeSubTitle2 = """Professional Nursing 
+  Care You Can Trust""";
+
+  static const homeTitle3 = "Elderly Care";
+  static const homeSubTitle3 = """Dedicated Care for a Comfortable 
+                and Dignified Life""";
+
+  static const homeTitle4 = "Babysitter";
+  static const homeSubTitle4 = """Safe and Loving Care
+       for Your Child""";
+
   static const skip = "skip";
   static const String usernameOrEmail = "Username Or Email";
   static const String password = "Password";

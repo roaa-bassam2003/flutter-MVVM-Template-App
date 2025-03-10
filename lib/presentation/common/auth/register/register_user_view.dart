@@ -116,7 +116,7 @@ class RegisterUserView extends StatelessWidget {
               // button Register
               CustomButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, Routes.pendingApproval);
+                  Navigator.pushNamed(context, Routes.pendingApprovalRoute);
                 },
                 text: AppStrings.register,
                 backgroundColor: ColorManager.primary,

@@ -66,7 +66,9 @@ class LoginView extends StatelessWidget {
               const SizedBox(height: 10),
               //Login
               CustomButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.homeRoute);
+                },
                 text: AppStrings.login,
                 backgroundColor: ColorManager.primary,
               ),

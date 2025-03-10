@@ -1,0 +1,88 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/presentation/home/widgets/home_service_card.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/assets_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
+
+class HomeViewBody extends StatelessWidget {
+  const HomeViewBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppPadding.p20,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          //Space
+          const SizedBox(
+            height: 30,
+          ),
+          //AppBar
+          homeAppBar(),
+
+          //Pet Care Card
+          HomeServiceCard(
+            onTap: () {},
+            title: AppStrings.homeTitle1,
+            subtitle: AppStrings.homeSubTitle1,
+            backgroundImage: ImageAssets.petCareImage,
+          ),
+
+          //Nurse Card
+          HomeServiceCard(
+            onTap: () {},
+            title: AppStrings.homeTitle2,
+            subtitle: AppStrings.homeSubTitle2,
+            backgroundImage: ImageAssets.nurseImage,
+          ),
+          //Elderly Care Card
+          HomeServiceCard(
+            onTap: () {},
+            title: AppStrings.homeTitle3,
+            subtitle: AppStrings.homeSubTitle3,
+            backgroundImage: ImageAssets.elderlyCareImage,
+          ),
+          //Babysitter Card
+          HomeServiceCard(
+            onTap: () {},
+            title: AppStrings.homeTitle4,
+            subtitle: AppStrings.homeSubTitle4,
+            backgroundImage: ImageAssets.babysitterImage,
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Center homeAppBar() {
+    return Center(
+        child: Column(
+      children: [
+        const Text(
+          AppStrings.appBarHomeTitle,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(height: 5),
+        //homeMainTitle
+        Text(
+          AppStrings.homeMainTitle,
+          style: TextStyle(
+            color: ColorManager.primary,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    ));
+  }
+}
