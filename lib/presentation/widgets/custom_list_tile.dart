@@ -16,6 +16,7 @@ class CustomListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 0,
       children: [
         ListTile(
           leading: Icon(icon, color: Colors.black, size: 24),
@@ -30,9 +31,9 @@ class CustomListTile extends StatelessWidget {
         const Divider(
           color: Colors.grey,
           height: 0,
-          endIndent: 15,
+          endIndent: 20,
           indent: 10,
-          thickness: 1.2,
+          thickness: 1,
         )
       ],
     );

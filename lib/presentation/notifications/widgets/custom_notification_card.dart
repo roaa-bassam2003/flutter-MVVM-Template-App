@@ -16,13 +16,13 @@ class CustomNotificationCard extends StatelessWidget {
         // print("Tapped on notification: ${notification.title}");
       },
       child: Card(
-        elevation: 4,
+        elevation: 1,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12), // زوايا دائرية
-          side: BorderSide(
-            color: ColorManager.primary,
-            width: 2,
-          ),
+          // side: BorderSide(
+          //   // color: ColorManager.primary,
+          //   width: 2,
+          // ),
         ),
         shadowColor: ColorManager.white,
         child: Padding(

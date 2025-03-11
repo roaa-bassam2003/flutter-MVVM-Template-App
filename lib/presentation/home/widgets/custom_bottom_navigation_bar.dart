@@ -83,13 +83,14 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             color: isSelected
                 ? ColorManager.primary
                 : Colors.black, // لون بنفسجي عند التحديد
-            size: 25.0,
+            size: 23.0,
           ),
           const SizedBox(height: 4.0),
           Text(
             label,
             style: TextStyle(
               fontSize: 10.0,
+              fontWeight: FontWeight.bold,
               color: isSelected ? ColorManager.primary : Colors.black,
             ),
           ),
