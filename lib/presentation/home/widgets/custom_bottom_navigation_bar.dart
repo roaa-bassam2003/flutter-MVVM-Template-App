@@ -53,14 +53,14 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             label: 'Notifications',
           ),
           _buildNavItem(
-            icon: Iconsax.setting4,
+            icon: Iconsax.user,
             index: 2,
-            label: 'Settings',
+            label: 'Profile',
           ),
           _buildNavItem(
-            icon: Iconsax.user,
+            icon: Iconsax.setting4,
             index: 3,
-            label: 'Profile',
+            label: 'Settings',
           ),
         ],
       ),

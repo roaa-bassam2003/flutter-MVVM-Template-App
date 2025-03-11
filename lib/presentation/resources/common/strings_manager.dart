@@ -80,4 +80,8 @@ class AppStrings {
   // Registration
   static const String register = "Register";
   static const String alreadyHaveAccount = "Already have an account? ";
+
+  static const appBarNotificationsTitle = "Notifications";
+  static const appBarSettingsTitle = "Settings";
+  static const appBarMyProfileTitle = "My Profile";
 }

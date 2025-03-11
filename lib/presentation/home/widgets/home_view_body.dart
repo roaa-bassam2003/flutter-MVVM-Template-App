@@ -12,52 +12,50 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: AppPadding.p20,
+        horizontal: AppPadding.p16,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          //Space
-          const SizedBox(
-            height: 30,
-          ),
-          //AppBar
-          homeAppBar(),
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            //AppBar
+            homeAppBar(),
 
-          //Pet Care Card
-          HomeServiceCard(
-            onTap: () {},
-            title: AppStrings.homeTitle1,
-            subtitle: AppStrings.homeSubTitle1,
-            backgroundImage: ImageAssets.petCareImage,
-          ),
+            //Pet Care Card
+            HomeServiceCard(
+              onTap: () {},
+              title: AppStrings.homeTitle1,
+              subtitle: AppStrings.homeSubTitle1,
+              backgroundImage: ImageAssets.petCareImage,
+            ),
 
-          //Nurse Card
-          HomeServiceCard(
-            onTap: () {},
-            title: AppStrings.homeTitle2,
-            subtitle: AppStrings.homeSubTitle2,
-            backgroundImage: ImageAssets.nurseImage,
-          ),
-          //Elderly Care Card
-          HomeServiceCard(
-            onTap: () {},
-            title: AppStrings.homeTitle3,
-            subtitle: AppStrings.homeSubTitle3,
-            backgroundImage: ImageAssets.elderlyCareImage,
-          ),
-          //Babysitter Card
-          HomeServiceCard(
-            onTap: () {},
-            title: AppStrings.homeTitle4,
-            subtitle: AppStrings.homeSubTitle4,
-            backgroundImage: ImageAssets.babysitterImage,
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-        ],
+            //Nurse Card
+            HomeServiceCard(
+              onTap: () {},
+              title: AppStrings.homeTitle2,
+              subtitle: AppStrings.homeSubTitle2,
+              backgroundImage: ImageAssets.nurseImage,
+            ),
+            //Elderly Care Card
+            HomeServiceCard(
+              onTap: () {},
+              title: AppStrings.homeTitle3,
+              subtitle: AppStrings.homeSubTitle3,
+              backgroundImage: ImageAssets.elderlyCareImage,
+            ),
+            //Babysitter Card
+            HomeServiceCard(
+              onTap: () {},
+              title: AppStrings.homeTitle4,
+              subtitle: AppStrings.homeSubTitle4,
+              backgroundImage: ImageAssets.babysitterImage,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -69,6 +67,7 @@ class HomeViewBody extends StatelessWidget {
         const Text(
           AppStrings.appBarHomeTitle,
           style: TextStyle(
+            fontSize: 16,
             fontWeight: FontWeight.w500,
           ),
         ),

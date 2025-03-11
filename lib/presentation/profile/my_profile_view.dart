@@ -1,0 +1,96 @@
+// lib/presentation/pages/my_profile_page.dart
+import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
+import 'package:flutter_advanced_course/presentation/widgets/custom_list_tile.dart';
+import 'package:iconsax/iconsax.dart';
+
+class MyProfileView extends StatelessWidget {
+  const MyProfileView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppPadding.p8,
+            ),
+            child: Column(
+              children: [
+                const Center(
+                  child: Text(
+                    AppStrings.appBarMyProfileTitle,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                // Profile Picture
+                const CircleAvatar(
+                  radius: 60,
+                  backgroundImage: AssetImage('assets/images/person.jpg'),
+                ),
+                const SizedBox(height: 10),
+                // User Name
+                const Text(
+                  'Jack Wilson',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+                // User Handle
+                Text(
+                  '@se_2025',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey[600],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                // List of Profile Options
+                ListView(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: const [
+                    CustomListTile(
+                      title: 'My info',
+                      icon: Iconsax.user,
+                      // onTap: () => _handleProfileTap('My info', context),
+                    ),
+                    CustomListTile(
+                      title: 'Requested Bookings',
+                      icon: Iconsax.message,
+                      // onTap: () => _handleProfileTap('Requested Bookings', context),
+                    ),
+                    CustomListTile(
+                      title: 'Current Booking',
+                      icon: Iconsax.message_tick,
+                      // onTap: () => _handleProfileTap('Current Booking', context),
+                    ),
+                    CustomListTile(
+                      title: 'Cancelled Bookings',
+                      icon: Iconsax.calendar_remove,
+                      // onTap: () => _handleProfileTap('Cancelled Bookings', context),
+                    ),
+                    CustomListTile(
+                      title: 'Completed Bookings',
+                      icon: Iconsax.calendar_tick,
+                      // onTap: () => _handleProfileTap('Completed Bookings', context),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/presentation/home/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter_advanced_course/presentation/home/widgets/home_view_body.dart';
 import 'package:flutter_advanced_course/presentation/notifications/notifications_view.dart';
-import 'package:flutter_advanced_course/presentation/profile/profile_view.dart';
+import 'package:flutter_advanced_course/presentation/profile/my_profile_view.dart';
 import 'package:flutter_advanced_course/presentation/settings/settings_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -18,9 +18,9 @@ class _HomeViewState extends State<HomeView> {
   // قائمة الصفحات
   final List<Widget> _pages = [
     const HomeViewBody(), // Index 0
-    const NotificationsView(), // Index 1
-    const SettingsView(), // Index 2
-    const ProfileView() // Index 3
+    NotificationsView(), // Index 1
+    const MyProfileView(), // Index 2
+    const SettingsView(), // Index 3
   ];
 
   void _onItemTapped(int index) {
