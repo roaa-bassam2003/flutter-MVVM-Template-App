@@ -15,7 +15,6 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   int _currentIndex = 0;
 
-  // قائمة الصفحات
   final List<Widget> _pages = [
     const HomeViewBody(), // Index 0
     NotificationsView(), // Index 1
