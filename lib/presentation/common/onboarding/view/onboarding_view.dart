@@ -201,12 +201,21 @@ class OnboardingViewPage extends StatelessWidget {
         const SizedBox(
           height: AppSize.s60,
         ),
+        // SizedBox(
+        //   width: AppSize.s300,
+        //   height: AppSize.s300,
+        //   child: SvgPicture.asset(
+        //     _sliderObject.image,
+        //     alignment: Alignment.center,
+        //   ),
+        // ),
         SizedBox(
           width: AppSize.s300,
           height: AppSize.s300,
-          child: SvgPicture.asset(
-            _sliderObject.image,
-            alignment: Alignment.center,
+          child: Image(
+            image: AssetImage(
+              _sliderObject.image,
+            ),
           ),
         ),
       ],

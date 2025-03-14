@@ -7,11 +7,10 @@ import 'package:flutter_advanced_course/presentation/common/auth/service_type/se
 import 'package:flutter_advanced_course/presentation/common/auth/user_type/user_type_view.dart';
 import 'package:flutter_advanced_course/presentation/common/onboarding/view/onboarding_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/register/register_user_view.dart';
-import 'package:flutter_advanced_course/presentation/home/home_view.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/home/home_view.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/common/splash/splash_view.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/main/main_view.dart';
-import 'package:flutter_advanced_course/presentation/service_seeker/main/main_view.dart';
 
 class Routes {
   static const String splashRoute = "/";
@@ -82,7 +81,7 @@ class RouteGenerator {
       // seeker
       case SeekerRoutes.mainRoute:
         return MaterialPageRoute(
-          builder: (_) => const SeekerMainView(),
+          builder: (_) => const HomeView(),
         );
 
       // provider

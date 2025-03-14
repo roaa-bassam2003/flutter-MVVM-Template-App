@@ -16,7 +16,7 @@ class CustomListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 0,
+      // spacing: 0,
       children: [
         ListTile(
           leading: Icon(icon, color: Colors.black, size: 24),

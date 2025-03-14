@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/presentation/home/widgets/custom_bottom_navigation_bar.dart';
-import 'package:flutter_advanced_course/presentation/home/widgets/home_view_body.dart';
-import 'package:flutter_advanced_course/presentation/notifications/notifications_view.dart';
-import 'package:flutter_advanced_course/presentation/profile/my_profile_view.dart';
-import 'package:flutter_advanced_course/presentation/settings/settings_view.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/home/widgets/custom_bottom_navigation_bar.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/home/widgets/home_view_body.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/notifications/notifications_view.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/profile/my_profile_view.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/settings/settings_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

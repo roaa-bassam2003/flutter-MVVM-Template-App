@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/presentation/home/widgets/home_service_card.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/home/widgets/home_service_card.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/assets_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
