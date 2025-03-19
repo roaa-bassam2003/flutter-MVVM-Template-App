@@ -38,6 +38,14 @@ dependencies:
   flutter_svg: ^2.0.17
   flutter_svg_provider: ^1.0.7
   iconsax: ^0.0.8
+  retrofit: ^4.4.2
+  analyzer: ^6.7.0
+  dio: ^5.8.0+1
+  retrofit_generator: ^9.1.5
+  dartz: ^0.10.1
+  internet_connection_checker: ^3.0.1
+  pretty_dio_logger: ^1.4.0
+  shared_preferences: ^2.5.2
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +57,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
+  json_serializable: ^6.9.0
+  build_runner: ^2.4.13
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

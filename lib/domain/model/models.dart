@@ -1,3 +1,4 @@
+// ------------------Common----------------------
 // onboarding models
 class SliderObject {
   String title;
@@ -53,3 +54,56 @@ class NotificationModel {
     );
   }
 }
+
+// ------------------Client----------------------
+// login models
+class Client {
+  String id;
+  String name;
+  String userName;
+  
+  Client(
+    this.id,
+    this.name,
+    this.userName,
+  );
+}
+
+class Address {
+  String country;
+  String government;
+  String city;
+  String currentAddress;
+  
+  Address(
+    this.country,
+    this.government,
+    this.city,
+    this.currentAddress,
+  );
+}
+
+class Information {
+  Address? address;
+  String email;
+  String phone;
+  String photo;
+  
+  Information(
+    this.address,
+    this.email,
+    this.phone,
+    this.photo,
+  );
+}
+
+class Authentication {
+  Client? user;
+  Information? information;
+  
+  Authentication(
+    this.user,
+    this.information,
+  );
+}
+// ------------------Service Provider------------
