@@ -8,7 +8,8 @@ plugins {
 android {
     namespace = "com.example.flutter_advanced_course"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    // ndkVersion = flutter.ndkVersion
+    ndkVersion "25.1.8937393"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11  // تحديث إلى Java 11 للتوافق مع AGP الحديث
