@@ -8,10 +8,15 @@ import 'package:flutter_advanced_course/presentation/common/auth/user_type/user_
 import 'package:flutter_advanced_course/presentation/common/onboarding/view/onboarding_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/register/register_user_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/address_details/address_details_view.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/book_hours_provider/book_hours_provider_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/home/home_view.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/common/splash/splash_view.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/main/main_view.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/provider_profile/provider_profile_view.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/rate_provider/rate_provider_view.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/report_provider/report_provider_view.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/search/search_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/service_providers/service_providers_view.dart';
 
 class Routes {
@@ -27,6 +32,12 @@ class Routes {
   static const String homeRoute = "/home";
   static const String addressDetailsRoute = "/addressDetails";
   static const String serviceProvidersRoute = "/serviceProviders";
+  static const String searchRoute = "/search";
+
+  static const String providerProfileRoute = "/providerProfile";
+  static const String rateProviderRoute = "/rateProvider";
+  static const String reportProviderRoute = "/reportProvider";
+  static const String bookHoursProviderRoute = "/bookHoursProvider";
 }
 
 class ProviderRoutes {
@@ -92,6 +103,33 @@ class RouteGenerator {
         return MaterialPageRoute(
           settings: settings,
           builder: (_) => const ServiceProvidersView(),
+        );
+
+      case Routes.searchRoute:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const SearchView(),
+        );
+
+      case Routes.providerProfileRoute:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const ProviderProfileView(),
+        );
+      case Routes.rateProviderRoute:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const RateProviderView(),
+        );
+      case Routes.reportProviderRoute:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const ReportProviderView(),
+        );
+      case Routes.bookHoursProviderRoute:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const BookHoursProviderView(),
         );
 
       // seeker

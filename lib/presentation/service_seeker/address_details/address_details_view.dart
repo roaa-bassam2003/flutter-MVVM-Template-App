@@ -22,6 +22,34 @@ class AddressDetailsView extends StatelessWidget {
         ),
       );
     }
+    // قايمة المحافظات
+    final List<String> governorates = [
+      'Cairo',
+      'Alexandria',
+      'Giza',
+      'Luxor',
+      'Aswan',
+    ];
+
+    // قايمة المدن (وهمية دلوقتي، المفروض تتغير ديناميكيًا بناءً على المحافظة)
+    final List<String> cities = [
+      'Nasr City',
+      'Maadi',
+      'Heliopolis',
+      'Zamalek',
+      'Downtown',
+    ];
+
+    // قايمة الأيام
+    final List<String> days = [
+      'Saturday',
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+    ];
     return Scaffold(
         appBar: customAppBar(title: 'Address'),
         body: Padding(
@@ -44,7 +72,7 @@ class AddressDetailsView extends StatelessWidget {
                 backgroundColor: ColorManager.white,
                 borderColor: ColorManager.lightGrey,
                 hint: AppStrings.governorate,
-                items: const [],
+                items: governorates,
               ),
               const SizedBox(height: 10),
               CustomDropdownButton(
@@ -52,7 +80,7 @@ class AddressDetailsView extends StatelessWidget {
                 backgroundColor: ColorManager.white,
                 borderColor: ColorManager.lightGrey,
                 hint: AppStrings.city,
-                items: const [],
+                items: cities,
               ),
               const SizedBox(height: 10),
               CustomDropdownButton(
@@ -60,7 +88,7 @@ class AddressDetailsView extends StatelessWidget {
                 backgroundColor: ColorManager.white,
                 borderColor: ColorManager.lightGrey,
                 hint: AppStrings.day,
-                items: const [],
+                items: days,
               ),
               const SizedBox(height: 10),
               const CustomTextFormField(

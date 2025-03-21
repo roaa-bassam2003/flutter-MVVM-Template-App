@@ -30,7 +30,12 @@ class ServiceTypeView extends StatelessWidget {
                 height: 200,
               ),
             ),
-            const Text(AppStrings.serviceTypeQuestion),
+            const Text(
+              AppStrings.serviceTypeQuestion,
+              style: TextStyle(
+                fontSize: 14,
+              ),
+            ),
             const SizedBox(height: 50),
             CustomDropdownButton(
               fontWeight: false,

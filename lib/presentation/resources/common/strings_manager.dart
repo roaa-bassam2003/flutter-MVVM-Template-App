@@ -89,15 +89,26 @@ class AppStrings {
   static const appBarMyProfileTitle = "My Profile";
   static const appBarAddressDetailsTitle = "Address";
   static const appBarSearchTitle = "Search";
+  static const appBarReportTitle = "Report";
+
   static const addressDetailsLabel = """Which city are you looking 
         for the service in""";
+  static const String reportServiceProviderLabel =
+      "Report about this service provider";
 
   static const getElderlyCare = "Get Elderly Care";
   static const getNurse = "Get Nurse";
   static const getBetCare = "Get Bet Care";
   static const getBabySitter = "Get Baby Sitter";
-
-  static const low = "LOW";
-  static const high = "High";
   static const price = "Price";
+  static const rate = "Rate";
+  static const low = "Low";
+  static const high = "High";
+  static const book = "Book";
+  static const problem = "Problem";
+  static const submit = "Submit";
+  static const bookHours = "Book Hours";
+  static const String next = "Next";
+
+  static const String rateYourExperience = '   Rate your experience...';
 }

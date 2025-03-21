@@ -1,0 +1,2 @@
+D:/My_Project/flutter-MVVM-Template-App/android/app/.cxx/Debug/44405l36/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/My_Project/flutter-MVVM-Template-App/android/app/.cxx/Debug/44405l36/armeabi-v7a/CMakeFiles/rebuild_cache.dir

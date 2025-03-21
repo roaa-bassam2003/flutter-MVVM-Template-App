@@ -1,52 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/domain/model/models.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
 
 class ProviderCard extends StatelessWidget {
-  final String name;
-  final String imagePath;
-  final double rating;
-  final double price;
+  final Provider provider; // استقبال الـ Provider object
+  final VoidCallback? onTap; // الـ onTap للتنقل
 
   const ProviderCard({
     super.key,
-    required this.name,
-    required this.imagePath,
-    required this.rating,
-    required this.price,
+    required this.provider,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Card(
-          color: Colors.transparent, // يجعل الخلفية شفافة
-          elevation: 0, // يزيل الظل
-          child: ListTile(
-            leading: CircleAvatar(
-              backgroundImage: AssetImage(imagePath),
-              radius: 20,
-              child: imagePath.isEmpty
-                  ? const Icon(Icons.person, color: Colors.grey)
-                  : null,
-            ),
-            title: Text(
-              name,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: Colors.black87,
+        GestureDetector(
+          onTap: onTap,
+          child: Card(
+            color: Colors.transparent, // يجعل الخلفية شفافة
+            elevation: 0, // يزيل الظل
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundImage: AssetImage(provider.imagePath),
+                radius: 20,
+                child: provider.imagePath.isEmpty
+                    ? const Icon(Icons.person, color: Colors.grey)
+                    : null,
               ),
-            ),
-            subtitle: Row(
-              children: _buildRatingStars(rating),
-            ),
-            trailing: Text(
-              '${price.toInt()} LE/hr',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                color: ColorManager.primary,
+              title: Text(
+                provider.name,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
+                ),
+              ),
+              subtitle: Row(
+                children: _buildRatingStars(provider.rating),
+              ),
+              trailing: Text(
+                '${provider.price.toInt()} LE/hr',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  color: ColorManager.primary,
+                ),
               ),
             ),
           ),

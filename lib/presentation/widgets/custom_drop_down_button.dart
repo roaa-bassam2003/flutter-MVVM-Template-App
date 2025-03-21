@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
+import 'package:iconsax/iconsax.dart';
 
 class CustomDropdownButton extends StatefulWidget {
   final List<String> items;
@@ -61,7 +62,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
                       widget.fontWeight ? FontWeight.normal : FontWeight.bold,
                 ),
               ),
-              Icon(Icons.arrow_drop_down, color: widget.iconColor),
+              Icon(Iconsax.arrow_bottom, color: widget.iconColor),
             ],
           ),
           icon: const SizedBox(),
