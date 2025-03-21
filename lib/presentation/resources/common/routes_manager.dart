@@ -7,10 +7,12 @@ import 'package:flutter_advanced_course/presentation/common/auth/service_type/se
 import 'package:flutter_advanced_course/presentation/common/auth/user_type/user_type_view.dart';
 import 'package:flutter_advanced_course/presentation/common/onboarding/view/onboarding_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/register/register_user_view.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/address_details/address_details_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/home/home_view.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/common/splash/splash_view.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/main/main_view.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/service_providers/service_providers_view.dart';
 
 class Routes {
   static const String splashRoute = "/";
@@ -23,6 +25,8 @@ class Routes {
   static const String serviceTypeRoute = "/serviceType";
   static const String pendingApprovalRoute = "/pendingApproval";
   static const String homeRoute = "/home";
+  static const String addressDetailsRoute = "/addressDetails";
+  static const String serviceProvidersRoute = "/serviceProviders";
 }
 
 class ProviderRoutes {
@@ -76,6 +80,18 @@ class RouteGenerator {
       case Routes.homeRoute:
         return MaterialPageRoute(
           builder: (_) => const HomeView(),
+        );
+
+      case Routes.addressDetailsRoute:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const AddressDetailsView(),
+        );
+
+      case Routes.serviceProvidersRoute:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const ServiceProvidersView(),
         );
 
       // seeker

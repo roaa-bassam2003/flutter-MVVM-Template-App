@@ -72,6 +72,9 @@ class AppStrings {
   // Address
   static const String governorate = "Governorate";
   static const String city = "City";
+  static const String day = "Day";
+  static const String address = "Address";
+
   static const String currentAddress = "Current Address";
 
   // Pricing
@@ -84,4 +87,17 @@ class AppStrings {
   static const appBarNotificationsTitle = "Notifications";
   static const appBarSettingsTitle = "Settings";
   static const appBarMyProfileTitle = "My Profile";
+  static const appBarAddressDetailsTitle = "Address";
+  static const appBarSearchTitle = "Search";
+  static const addressDetailsLabel = """Which city are you looking 
+        for the service in""";
+
+  static const getElderlyCare = "Get Elderly Care";
+  static const getNurse = "Get Nurse";
+  static const getBetCare = "Get Bet Care";
+  static const getBabySitter = "Get Baby Sitter";
+
+  static const low = "LOW";
+  static const high = "High";
+  static const price = "Price";
 }

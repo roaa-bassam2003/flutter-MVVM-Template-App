@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/presentation/resources/common/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/home/widgets/home_service_card.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/assets_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
@@ -24,7 +25,13 @@ class HomeViewBody extends StatelessWidget {
 
             //Pet Care Card
             HomeServiceCard(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  Routes.addressDetailsRoute,
+                  arguments: 'Pet Care',
+                );
+              },
               title: AppStrings.homeTitle1,
               subtitle: AppStrings.homeSubTitle1,
               backgroundImage: ImageAssets.petCareImage,
@@ -32,21 +39,39 @@ class HomeViewBody extends StatelessWidget {
 
             //Nurse Card
             HomeServiceCard(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  Routes.addressDetailsRoute,
+                  arguments: 'Nurse',
+                );
+              },
               title: AppStrings.homeTitle2,
               subtitle: AppStrings.homeSubTitle2,
               backgroundImage: ImageAssets.nurseImage,
             ),
             //Elderly Care Card
             HomeServiceCard(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  Routes.addressDetailsRoute,
+                  arguments: 'Elderly Care',
+                );
+              },
               title: AppStrings.homeTitle3,
               subtitle: AppStrings.homeSubTitle3,
               backgroundImage: ImageAssets.elderlyCareImage,
             ),
             //Babysitter Card
             HomeServiceCard(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  Routes.addressDetailsRoute,
+                  arguments: 'Babysitter',
+                );
+              },
               title: AppStrings.homeTitle4,
               subtitle: AppStrings.homeSubTitle4,
               backgroundImage: ImageAssets.babysitterImage,

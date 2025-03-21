@@ -61,7 +61,7 @@ class Client {
   String id;
   String name;
   String userName;
-  
+
   Client(
     this.id,
     this.name,
@@ -74,7 +74,7 @@ class Address {
   String government;
   String city;
   String currentAddress;
-  
+
   Address(
     this.country,
     this.government,
@@ -88,7 +88,7 @@ class Information {
   String email;
   String phone;
   String photo;
-  
+
   Information(
     this.address,
     this.email,
@@ -100,10 +100,36 @@ class Information {
 class Authentication {
   Client? user;
   Information? information;
-  
+
   Authentication(
     this.user,
     this.information,
   );
 }
 // ------------------Service Provider------------
+
+class Service {
+  final String name;
+  final String imagePath;
+  final List<Provider> providers;
+
+  Service({
+    required this.name,
+    required this.imagePath,
+    required this.providers,
+  });
+}
+
+class Provider {
+  final String name;
+  final double rating;
+  final double price;
+  final String imagePath;
+
+  Provider({
+    required this.name,
+    required this.rating,
+    required this.price,
+    required this.imagePath,
+  });
+}
