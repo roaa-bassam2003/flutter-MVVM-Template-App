@@ -27,7 +27,7 @@ class RateProviderView extends StatelessWidget {
             // الصورة
             Center(
               child: CircleAvatar(
-                radius: 50,
+                radius: 70,
                 backgroundImage: AssetImage(provider.imagePath),
                 backgroundColor: Colors.grey.shade200,
               ),

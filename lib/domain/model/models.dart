@@ -128,9 +128,12 @@ class Provider {
   final String imagePath;
   final String role;
   final String location;
+  final String? certification;
   final List<String> availableDays;
-
+  final Map<String, List<String>> availableHours;
   Provider({
+    this.certification,
+    required this.availableHours,
     required this.providerId,
     required this.role,
     required this.location,

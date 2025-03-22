@@ -13,6 +13,7 @@ import 'package:flutter_advanced_course/presentation/service_seeker/home/home_vi
 import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/common/splash/splash_view.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/main/main_view.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/payment/payment_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/provider_profile/provider_profile_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/rate_provider/rate_provider_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/report_provider/report_provider_view.dart';
@@ -33,11 +34,11 @@ class Routes {
   static const String addressDetailsRoute = "/addressDetails";
   static const String serviceProvidersRoute = "/serviceProviders";
   static const String searchRoute = "/search";
-
   static const String providerProfileRoute = "/providerProfile";
   static const String rateProviderRoute = "/rateProvider";
   static const String reportProviderRoute = "/reportProvider";
   static const String bookHoursProviderRoute = "/bookHoursProvider";
+  static const String paymentRoute = "/payment";
 }
 
 class ProviderRoutes {
@@ -131,7 +132,11 @@ class RouteGenerator {
           settings: settings,
           builder: (_) => const BookHoursProviderView(),
         );
-
+      case Routes.paymentRoute:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const PaymentView(),
+        );
       // seeker
       case SeekerRoutes.mainRoute:
         return MaterialPageRoute(

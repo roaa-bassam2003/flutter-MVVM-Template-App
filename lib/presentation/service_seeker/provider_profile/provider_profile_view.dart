@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/data/dummy_data/dummy_data.dart';
 import 'package:flutter_advanced_course/domain/model/models.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/common/routes_manager.dart';
@@ -15,10 +16,6 @@ class ProviderProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = ModalRoute.of(context)!.settings.arguments as Provider;
-
-    // List of all days of the week
-    const List<String> allDays = ["S", "M", "T", "W", "T", "F", "S"];
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: customAppBar(
@@ -42,7 +39,7 @@ class ProviderProfileView extends StatelessWidget {
             // الصورة
             Center(
               child: CircleAvatar(
-                radius: 50,
+                radius: 70,
                 backgroundImage: AssetImage(provider.imagePath),
                 backgroundColor: Colors.grey.shade200,
               ),
@@ -110,7 +107,7 @@ class ProviderProfileView extends StatelessWidget {
             // الأيام المتاحة
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: allDays.map((day) {
+              children: weekDays.map((day) {
                 // Check if the day is in the provider's available days
                 bool isAvailable = provider.availableDays.contains(day);
                 return Padding(
@@ -129,7 +126,7 @@ class ProviderProfileView extends StatelessWidget {
                       backgroundColor:
                           isAvailable ? Colors.white : ColorManager.primary,
                       child: Text(
-                        day,
+                        day[0],
                         style: TextStyle(
                           color:
                               isAvailable ? ColorManager.primary : Colors.white,

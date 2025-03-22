@@ -109,6 +109,12 @@ class AppStrings {
   static const submit = "Submit";
   static const bookHours = "Book Hours";
   static const String next = "Next";
-
+  static const String pay = "Pay";
+  static const String payment = 'Payment';
+  static const String availableHours = "Available Hours";
+  static const String bookingSuccess =
+      'Booking submitted successfully! Please wait for the provider\'s response.';
+  static const String selectTimeSlot = 'Please select at least one time slot!';
   static const String rateYourExperience = '   Rate your experience...';
+  static const String paymentMethod = ' Payment Method';
 }
