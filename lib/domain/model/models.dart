@@ -121,12 +121,23 @@ class Service {
 }
 
 class Provider {
+  final String providerId;
   final String name;
   final double rating;
   final double price;
   final String imagePath;
-
+  final String role;
+  final String location;
+  final String? certification;
+  final List<String> availableDays;
+  final Map<String, List<String>> availableHours;
   Provider({
+    this.certification,
+    required this.availableHours,
+    required this.providerId,
+    required this.role,
+    required this.location,
+    required this.availableDays,
     required this.name,
     required this.rating,
     required this.price,

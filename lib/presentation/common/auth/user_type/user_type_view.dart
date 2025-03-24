@@ -29,7 +29,12 @@ class UserTypeView extends StatelessWidget {
                 height: 200,
               ),
             ),
-            const Text(AppStrings.serviceProviderQuestion),
+            const Text(
+              AppStrings.serviceProviderQuestion,
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
             const SizedBox(height: 50),
             CustomButton(
               onPressed: () {

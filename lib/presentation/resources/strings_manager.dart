@@ -89,18 +89,18 @@ class AppStrings {
   static const appBarMyProfileTitle = "My Profile";
   static const appBarAddressDetailsTitle = "Address";
   static const appBarSearchTitle = "Search";
+  static const appBarReportTitle = "Report";
+
   static const addressDetailsLabel = """Which city are you looking 
         for the service in""";
+  static const String reportServiceProviderLabel =
+      "Report about this service provider";
 
   static const getElderlyCare = "Get Elderly Care";
   static const getNurse = "Get Nurse";
   static const getBetCare = "Get Bet Care";
   static const getBabySitter = "Get Baby Sitter";
-
-  static const low = "LOW";
-  static const high = "High";
   static const price = "Price";
-
   // main pages
   static const home = "Home";
   static const shedual = "Shedual";
@@ -112,4 +112,23 @@ class AppStrings {
   static const cancelled = "Cancel";
   static const completed = "Done";
   static const requests = "Request";
+
+
+
+  static const rate = "Rate";
+  static const low = "Low";
+  static const high = "High";
+  static const book = "Book";
+  static const problem = "Problem";
+  static const submit = "Submit";
+  static const bookHours = "Book Hours";
+  static const String next = "Next";
+  static const String pay = "Pay";
+  static const String payment = 'Payment';
+  static const String availableHours = "Available Hours";
+  static const String bookingSuccess =
+      'Booking submitted successfully! Please wait for the provider\'s response.';
+  static const String selectTimeSlot = 'Please select at least one time slot!';
+  static const String rateYourExperience = '   Rate your experience...';
+  static const String paymentMethod = ' Payment Method';
 }

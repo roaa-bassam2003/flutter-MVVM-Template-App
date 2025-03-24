@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/data/dummy_data/dummy_data.dart';
+import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/service_providers/widgets/provider_card.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
+import 'package:flutter_advanced_course/presentation/widgets/custom_drop_down_button.dart';
 
 class ServiceProvidersView extends StatelessWidget {
   const ServiceProvidersView({super.key});
@@ -18,22 +22,53 @@ class ServiceProvidersView extends StatelessWidget {
         ),
       );
     }
-
     final selectedService =
         services.firstWhere((service) => service.name == serviceName);
-
+    final List<String> cities = [
+      'Low',
+      'High',
+    ];
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: customAppBar(
         title: 'Get $serviceName',
         isIcon: true,
+        iconButton: IconButton(
+          icon: const Icon(Icons.search),
+          onPressed: () => Navigator.pushNamed(context, Routes.searchRoute),
+        ),
       ),
-      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: AppPadding.p8,
         ),
         child: Column(
           children: [
+            const SizedBox(height: 5),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: CustomDropdownButton(
+                    textColor: ColorManager.grey,
+                    backgroundColor: ColorManager.white,
+                    borderColor: ColorManager.lightGrey,
+                    hint: AppStrings.price,
+                    items: cities,
+                  ),
+                ),
+                const SizedBox(width: 5),
+                Expanded(
+                  child: CustomDropdownButton(
+                    textColor: ColorManager.grey,
+                    backgroundColor: ColorManager.white,
+                    borderColor: ColorManager.lightGrey,
+                    hint: AppStrings.rate,
+                    items: cities,
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -56,17 +91,19 @@ class ServiceProvidersView extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 10),
+            const Divider(
+              color: Colors.grey,
+            ),
             Expanded(
               child: ListView.builder(
                 itemCount: selectedService.providers.length,
                 itemBuilder: (context, index) {
                   final provider = selectedService.providers[index];
                   return ProviderCard(
-                    name: provider.name,
-                    imagePath: provider.imagePath,
-                    rating: provider.rating,
-                    price: provider.price,
+                    onTap: () => Navigator.pushNamed(
+                        context, Routes.providerProfileRoute,
+                        arguments: provider),
+                    provider: provider,
                   );
                 },
               ),
