@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 class HomeServiceCard extends StatelessWidget {

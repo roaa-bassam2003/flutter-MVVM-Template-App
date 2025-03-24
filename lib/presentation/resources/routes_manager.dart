@@ -7,12 +7,15 @@ import 'package:flutter_advanced_course/presentation/common/auth/service_type/se
 import 'package:flutter_advanced_course/presentation/common/auth/user_type/user_type_view.dart';
 import 'package:flutter_advanced_course/presentation/common/onboarding/view/onboarding_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/register/register_user_view.dart';
+import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/main/main_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/address_details/address_details_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/home/home_view.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/common/splash/splash_view.dart';
-import 'package:flutter_advanced_course/presentation/service_provider/main/main_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/service_providers/service_providers_view.dart';
+
+import '../service_provider/day_specification/day_specification.dart';
+
 
 class Routes {
   static const String splashRoute = "/";
@@ -31,10 +34,11 @@ class Routes {
 
 class ProviderRoutes {
   static const String mainRoute = "/ProviderMainView";
+  static const String daySpecification = "/daySpecification";
 }
 
 class SeekerRoutes {
-  static const String mainRoute = "/SeekerMainView";
+  static const String mainRoute = "/HomeView";
 }
 
 class RouteGenerator {
@@ -103,7 +107,12 @@ class RouteGenerator {
       // provider
       case ProviderRoutes.mainRoute:
         return MaterialPageRoute(
-          builder: (_) => const ProviderMainView(),
+          builder: (_) => const MainView(),
+        );
+
+        case ProviderRoutes.daySpecification:
+        return MaterialPageRoute(
+          builder: (_) => const DaySpecification(selectedDay: '',),
         );
 
       // default

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/domain/model/models.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 
 import 'widgets/custom_notification_card.dart';
 

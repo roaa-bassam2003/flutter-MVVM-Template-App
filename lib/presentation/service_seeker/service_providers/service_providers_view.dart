@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/data/dummy_data/dummy_data.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/service_providers/widgets/provider_card.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
 

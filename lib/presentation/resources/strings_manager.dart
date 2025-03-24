@@ -100,4 +100,16 @@ class AppStrings {
   static const low = "LOW";
   static const high = "High";
   static const price = "Price";
+
+  // main pages
+  static const home = "Home";
+  static const shedual = "Shedual";
+  static const setting = "Setting";
+  static const person = "Person";
+
+  // tabs
+  static const bookings = "Booking";
+  static const cancelled = "Cancel";
+  static const completed = "Done";
+  static const requests = "Request";
 }

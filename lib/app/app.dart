@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/routes_manager.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/theme_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/theme_manager.dart';
+
 
 class MyApp extends StatelessWidget {
   // Private named constructor for singleton

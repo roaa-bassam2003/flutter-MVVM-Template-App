@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/font_manager.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/styles_manager.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/font_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/styles_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 
 ThemeData getApplicationTheme() {
   return ThemeData(
     // main colors
     primaryColor: ColorManager.primary,
     primaryColorLight: ColorManager.lightPrimary,
-    primaryColorDark: ColorManager.darkPrimary,
+    primaryColorDark: ColorManager.darkBlue,
     disabledColor: ColorManager.grey1,
     splashColor: ColorManager.lightPrimary, // ripple effect color
 
@@ -23,9 +23,9 @@ ThemeData getApplicationTheme() {
     // app bar theme
     appBarTheme: AppBarTheme(
       centerTitle: true,
-      color: ColorManager.primary,
-      elevation: AppSize.s4,
-      shadowColor: ColorManager.lightPrimary,
+      color: ColorManager.white,
+      elevation: 0,
+      // shadowColor: ColorManager.lightPrimary,
       titleTextStyle: getRegularStyle(
         fontSize: FontSize.s16,
         color: ColorManager.white,
@@ -59,12 +59,12 @@ ThemeData getApplicationTheme() {
       // onboarding title, all app headings
       displayLarge: getSemiBoldStyle(
         color: ColorManager.primary,
-        fontSize: FontSize.s20,
+        fontSize: FontSize.s18,
       ),
       // onboarding sub title
       headlineMedium: getRegularStyle(
         color: ColorManager.lightGrey,
-        fontSize: FontSize.s18,
+        fontSize: FontSize.s16,
       ),
       headlineLarge: getSemiBoldStyle(
         color: ColorManager.darkGrey,
@@ -73,10 +73,16 @@ ThemeData getApplicationTheme() {
       // skip word
       titleMedium: getMediumStyle(
         color: ColorManager.primary,
-        fontSize: FontSize.s18,
+        fontSize: FontSize.s16,
+      ),
+      // app bar header
+      titleSmall: getSemiBoldStyle(
+        color: ColorManager.darkGrey,
+        fontSize: FontSize.s14,
       ),
       bodyLarge: getRegularStyle(
-        color: ColorManager.grey1,
+        color: ColorManager.white,
+        fontSize: FontSize.s16,
       ),
       bodySmall: getRegularStyle(
         color: ColorManager.grey,

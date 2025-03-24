@@ -1,7 +1,7 @@
 // Example in Flutter-like syntax
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/domain/model/models.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
 import 'package:iconsax/iconsax.dart';
 
 class CustomNotificationCard extends StatelessWidget {

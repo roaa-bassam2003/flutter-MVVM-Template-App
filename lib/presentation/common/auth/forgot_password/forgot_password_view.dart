@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_button.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_text_form_field.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/assets_manager.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/color_manager.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/assets_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
+
+import '../../../resources/routes_manager.dart';
 
 class ForgotPasswordView extends StatelessWidget {
   const ForgotPasswordView({super.key});
@@ -38,7 +40,9 @@ class ForgotPasswordView extends StatelessWidget {
             const SizedBox(height: 20),
             //Login
             CustomButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed(ProviderRoutes.mainRoute);
+              },
               text: AppStrings.send,
               backgroundColor: ColorManager.primary,
             ),

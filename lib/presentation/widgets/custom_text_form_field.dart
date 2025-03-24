@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
-
-import '../resources/common/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 
 AppBar customAppBar({String title = '', bool isIcon = false}) {
   return AppBar(

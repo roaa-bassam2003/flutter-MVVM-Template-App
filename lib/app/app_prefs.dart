@@ -1,4 +1,4 @@
-import 'package:flutter_advanced_course/presentation/resources/common/language_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/language_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String prefskeyLang = "prefskeyLang";

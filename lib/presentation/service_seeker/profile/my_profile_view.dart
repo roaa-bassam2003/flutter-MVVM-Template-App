@@ -1,7 +1,7 @@
 // lib/presentation/pages/my_profile_page.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/strings_manager.dart';
-import 'package:flutter_advanced_course/presentation/resources/common/values_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_list_tile.dart';
 import 'package:iconsax/iconsax.dart';
 
