@@ -1,5 +1,6 @@
 // lib/presentation/pages/my_profile_page.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_list_tile.dart';
@@ -58,31 +59,36 @@ class MyProfileView extends StatelessWidget {
                 ListView(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  children: const [
+                  children: [
                     CustomListTile(
                       title: 'My info',
                       icon: Iconsax.user,
-                      // onTap: () => _handleProfileTap('My info', context),
+                      onTap: () =>
+                          Navigator.pushNamed(context, Routes.myInfoRoute),
                     ),
                     CustomListTile(
                       title: 'Requested Bookings',
                       icon: Iconsax.message,
-                      // onTap: () => _handleProfileTap('Requested Bookings', context),
+                      onTap: () => Navigator.pushNamed(
+                          context, Routes.requestedBookingsRoute),
                     ),
                     CustomListTile(
                       title: 'Current Booking',
                       icon: Iconsax.message_tick,
-                      // onTap: () => _handleProfileTap('Current Booking', context),
+                      onTap: () => Navigator.pushNamed(
+                          context, Routes.currentBookingsRoute),
                     ),
                     CustomListTile(
                       title: 'Cancelled Bookings',
                       icon: Iconsax.calendar_remove,
-                      // onTap: () => _handleProfileTap('Cancelled Bookings', context),
+                      onTap: () => Navigator.pushNamed(
+                          context, Routes.cancelledBookingsRoute),
                     ),
                     CustomListTile(
                       title: 'Completed Bookings',
                       icon: Iconsax.calendar_tick,
-                      // onTap: () => _handleProfileTap('Completed Bookings', context),
+                      onTap: () => Navigator.pushNamed(
+                          context, Routes.completedBookingsRoute),
                     ),
                   ],
                 ),

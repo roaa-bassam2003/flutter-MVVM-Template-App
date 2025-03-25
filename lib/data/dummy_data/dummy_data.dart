@@ -10,7 +10,7 @@ List<Service> services = [
         providerId: '@sp_2025',
         rating: 5.0,
         price: 50,
-        role: 'Nurse',
+        role: 'Pet Care',
         availableDays: [
           'Sunday',
           'Tuesday',
@@ -29,7 +29,7 @@ List<Service> services = [
         providerId: '@sp_2025',
         rating: 5.0,
         price: 50,
-        role: 'Nurse',
+        role: 'Pet Care',
         availableDays: [
           'Sunday',
           'Monday',
@@ -50,7 +50,7 @@ List<Service> services = [
         providerId: '@sp_2025',
         rating: 5.0,
         price: 50,
-        role: 'Nurse',
+        role: 'Pet Care',
         availableDays: [
           'Sunday',
           'Monday',
@@ -69,7 +69,7 @@ List<Service> services = [
         providerId: '@sp_2025',
         rating: 5.0,
         price: 50,
-        role: 'Nurse',
+        role: 'Pet Care',
         availableDays: [
           'Sunday',
           'Monday',
@@ -96,7 +96,7 @@ List<Service> services = [
         providerId: '@sp_2025',
         rating: 5.0,
         price: 50,
-        role: 'Nurse',
+        role: 'Pet Care',
         availableDays: [
           'Wednesday',
           'Thursday',
@@ -117,7 +117,7 @@ List<Service> services = [
         providerId: '@sp_2025',
         rating: 5.0,
         price: 50,
-        role: 'Nurse',
+        role: 'Pet Care',
         availableDays: [
           'Wednesday',
           'Thursday',
@@ -209,7 +209,7 @@ List<Service> services = [
         providerId: '@sp_2025',
         rating: 5.0,
         price: 50,
-        role: 'Nurse',
+        role: 'Elderly Care',
         availableDays: [
           'Sunday',
           'Monday',
@@ -230,7 +230,7 @@ List<Service> services = [
         providerId: '@sp_2025',
         rating: 5.0,
         price: 50,
-        role: 'Nurse',
+        role: 'Elderly Care',
         availableDays: [
           'Sunday',
           'Monday',
@@ -249,7 +249,7 @@ List<Service> services = [
         providerId: '@sp_2025',
         rating: 5.0,
         price: 50,
-        role: 'Nurse',
+        role: 'Elderly Care',
         availableDays: [
           'Sunday',
           'Monday',
@@ -274,7 +274,7 @@ List<Service> services = [
         providerId: '@sp_2025',
         rating: 5.0,
         price: 50,
-        role: 'Nurse',
+        role: 'Babysitter',
         availableDays: [
           'Sunday',
           'Monday',
@@ -293,7 +293,7 @@ List<Service> services = [
         providerId: '@sp_2025',
         rating: 5.0,
         price: 50,
-        role: 'Nurse',
+        role: 'Babysitter',
         availableDays: [
           'Sunday',
           'Monday',
@@ -310,7 +310,7 @@ List<Service> services = [
         providerId: '@sp_2025',
         rating: 5.0,
         price: 50,
-        role: 'Nurse',
+        role: 'Babysitter',
         availableDays: [
           'Sunday',
           'Monday',

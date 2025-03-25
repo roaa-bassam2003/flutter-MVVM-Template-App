@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_list_tile.dart';
@@ -9,17 +10,17 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: AppPadding.p8,
           ),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Center(
+                const Center(
                   child: Text(
                     AppStrings.appBarSettingsTitle,
                     style: TextStyle(
@@ -28,43 +29,45 @@ class SettingsView extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 CustomListTile(
                   title: 'Edit my profile',
                   icon: Iconsax.edit,
-                  // onTap: () => _handleSettingTap('Edit my profile', context),
+                  onTap: () =>
+                      Navigator.pushNamed(context, Routes.editProfileRoute),
                 ),
                 CustomListTile(
                   title: 'Change password',
                   icon: Iconsax.lock,
-                  // onTap: () => _handleSettingTap('Change password', context),
+                  onTap: () =>
+                      Navigator.pushNamed(context, Routes.changePasswordRoute),
                 ),
-                CustomListTile(
+                const CustomListTile(
                   title: 'Support',
                   icon: Iconsax.message,
-                  // onTap: () => _handleSettingTap('Support', context),
                 ),
-                CustomListTile(
+                const CustomListTile(
                   title: 'Share the app',
                   icon: Iconsax.share,
-                  // onTap: () => _handleSettingTap('Share the app', context),
                 ),
                 CustomListTile(
                   title: 'Delete my account',
                   icon: Iconsax.trash,
-                  // onTap: () => _handleSettingTap('Delete my account', context),
+                  onTap: () =>
+                      Navigator.pushNamed(context, Routes.deleteAccountRoute),
                 ),
                 CustomListTile(
                   title: 'About Magic Parents',
                   icon: Iconsax.info_circle,
-                  // onTap: () => _handleSettingTap('About Magic Parents', context),
+                  onTap: () => Navigator.pushNamed(
+                      context, Routes.aboutMagicParentsRoute),
                 ),
                 CustomListTile(
                   title: 'Logout',
                   icon: Iconsax.logout,
-                  // onTap: () => _handleSettingTap('Logout', context),
+                  onTap: () => Navigator.pushNamed(context, Routes.logoutRoute),
                 ),
               ],
             ),

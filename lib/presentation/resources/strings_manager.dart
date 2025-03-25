@@ -90,6 +90,16 @@ class AppStrings {
   static const appBarAddressDetailsTitle = "Address";
   static const appBarSearchTitle = "Search";
   static const appBarReportTitle = "Report";
+  static const appBarMyInfoTitle = "My Info";
+  static const appBarRequestedBookingsTitle = "Requested Bookings";
+  static const appBarCurrentBookingsTitle = "Current Bookings";
+  static const appBarCancelledBookingsTitle = "Cancelled Bookings";
+  static const appBarCompletedBookingsTitle = "Completed Bookings";
+  static const appBarLogoutTitle = "Logout";
+  static const appBarDeleteAccountTitle = "Delete My Account";
+  static const appBarEditProfileTitle = "Edit My Profile";
+  static const appBarChangePasswordTitle = "Change Password";
+  static const appBarAboutAppTitle = "About Magic Parents";
 
   static const addressDetailsLabel = """Which city are you looking 
         for the service in""";
@@ -112,9 +122,7 @@ class AppStrings {
   static const cancelled = "Cancel";
   static const completed = "Done";
   static const requests = "Request";
-
-
-
+  static const edit = "Edit";
   static const rate = "Rate";
   static const low = "Low";
   static const high = "High";
@@ -131,4 +139,29 @@ class AppStrings {
   static const String selectTimeSlot = 'Please select at least one time slot!';
   static const String rateYourExperience = '   Rate your experience...';
   static const String paymentMethod = ' Payment Method';
+
+  static const String changePassword = "Change Password";
+  static const String oldPassword = "Old Password";
+  static const String currentPassword = "Current Password";
+  static const String change = "Change";
+
+  static const String aboutUs = "About us";
+  static const String aboutUsDescription =
+      "Welcome to Magic Parents! We connect you with trusted professionals "
+      "for essential care services, including nursing, babysitting, pet care, "
+      "and elderly care.\n\n"
+      "Our goal is to make finding reliable caregivers easy and stress-free.\n\n"
+      "Whether you need help at home or for a loved one, we're here to provide safe, "
+      "high-quality services tailored to your needs.\n\n"
+      "Your comfort and peace of mind are our priority!";
+
+  static const areYouSure = "Are you sure?";
+
+  static const deleteConfirmationMessage = """We Will Confirm the Delete after 
+              48 hours via email""";
+
+//Dummy Data
+  static const currentAddressValue = "Egypt, North Sini, Arish, See Street";
+  static const phoneNumberValue = "+20 1094 910 277";
+  static const emailValue = "jackwilson12@gmail.com";
 }

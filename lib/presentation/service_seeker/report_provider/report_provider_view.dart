@@ -27,7 +27,7 @@ class ReportProviderView extends StatelessWidget {
             const SizedBox(height: AppSize.s16),
             // Title
             Text(
-              'Report about this service provider',
+              AppStrings.reportServiceProviderLabel,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,

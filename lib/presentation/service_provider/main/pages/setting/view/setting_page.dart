@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../../widgets/custom_list_tile.dart';
@@ -26,37 +27,39 @@ class _SettingPageState extends State<SettingPage> {
             CustomListTile(
               title: 'Edit my profile',
               icon: Iconsax.edit,
-              onTap: () {},
+              onTap: () =>
+                  Navigator.pushNamed(context, Routes.editProfileRoute),
             ),
             CustomListTile(
               title: 'Change password',
               icon: Iconsax.lock,
-              onTap: () {},
+              onTap: () =>
+                  Navigator.pushNamed(context, Routes.changePasswordRoute),
             ),
-            CustomListTile(
+            const CustomListTile(
               title: 'Support',
               icon: Iconsax.message,
-              onTap: () {},
             ),
-            CustomListTile(
+            const CustomListTile(
               title: 'Share the app',
               icon: Iconsax.share,
-              onTap: () {},
             ),
             CustomListTile(
               title: 'Delete my account',
               icon: Iconsax.trash,
-              onTap: () {},
+              onTap: () =>
+                  Navigator.pushNamed(context, Routes.deleteAccountRoute),
             ),
             CustomListTile(
               title: 'About Magic Parents',
               icon: Iconsax.info_circle,
-              onTap: () {},
+              onTap: () =>
+                  Navigator.pushNamed(context, Routes.aboutMagicParentsRoute),
             ),
             CustomListTile(
               title: 'Logout',
               icon: Iconsax.logout,
-              onTap: () {},
+              onTap: () => Navigator.pushNamed(context, Routes.logoutRoute),
             ),
             CustomListTile(
               title: 'Payment - Credit',
