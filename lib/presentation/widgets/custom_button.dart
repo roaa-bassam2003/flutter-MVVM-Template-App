@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
+// import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Color backgroundColor;
   const CustomButton(
       {super.key,
@@ -18,12 +18,12 @@ class CustomButton extends StatelessWidget {
       height: 50, // ارتفاع الزر
       child: ElevatedButton(
         onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor, // اللون البنفسجي
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppPadding.p8), // حواف دائرية
-          ),
-        ),
+        // style: ElevatedButton.styleFrom(
+        //   backgroundColor: backgroundColor,
+        //   shape: RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.circular(AppPadding.p8),
+        //   ),
+        // ),
         child: Text(
           text,
           style: const TextStyle(

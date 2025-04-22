@@ -37,6 +37,8 @@ class AppStrings {
   static const skip = "skip";
   static const String usernameOrEmail = "Username Or Email";
   static const String password = "Password";
+  static const String usernameError = "Please enter your username or email";
+  static const String passwordError = "Please enter password";
   static const String login = "Login";
   static const String signUp = " Sign Up";
   static const String forgotPassword = "Forgot Password?";

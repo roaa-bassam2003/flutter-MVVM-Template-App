@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/presentation/common/about_app/about_app_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/change_password/change_password_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/forgot_password/forgot_password_view.dart';
-import 'package:flutter_advanced_course/presentation/common/auth/login/login_view.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/login/view/login_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/pending_approval/pending_approval_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/register/register_provider_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/service_type/service_type_view.dart';
