@@ -5,13 +5,11 @@ import 'package:flutter_advanced_course/presentation/base/base_view_model.dart';
 import 'package:flutter_advanced_course/presentation/resources/assets_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 
-class OnboardingViewModel
-    implements
-        BaseViewModel,
-        OnboardingViewModelInputs,
-        OnboardingViewModelOutputs {
+class OnboardingViewModel extends BaseViewModel
+    implements OnboardingViewModelInputs, OnboardingViewModelOutputs {
   // stream controllers outputs
-  final StreamController _streamController = StreamController<SliderViewObject>();
+  final StreamController _streamController =
+      StreamController<SliderViewObject>();
   late final List<SliderObject> _list;
   int _currentIndex = 0;
 

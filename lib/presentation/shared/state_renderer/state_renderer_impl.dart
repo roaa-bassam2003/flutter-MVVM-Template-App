@@ -1,0 +1,133 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/app/constants.dart';
+import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
+import 'package:flutter_advanced_course/presentation/shared/state_renderer/state_renderer.dart';
+
+abstract class FlowState {
+  StateRendererType getStateRendererType();
+  String getMessage();
+}
+
+// loading State (pop up, full screen)
+class LoadingState extends FlowState {
+  StateRendererType stateRendererType;
+  String? message;
+
+  LoadingState({
+    required this.stateRendererType,
+    String message = AppStrings.loading,
+  });
+
+  @override
+  String getMessage() => message ?? AppStrings.loading;
+
+  @override
+  StateRendererType getStateRendererType() => stateRendererType;
+}
+
+// Error State (pop up, full screen)
+class ErrorState extends FlowState {
+  StateRendererType stateRendererType;
+  String message;
+
+  ErrorState(
+    this.stateRendererType,
+    this.message,
+  );
+
+  @override
+  String getMessage() => message;
+
+  @override
+  StateRendererType getStateRendererType() => stateRendererType;
+}
+
+// Content State
+class ContentState extends FlowState {
+  ContentState();
+
+  @override
+  String getMessage() => Constants.empty;
+
+  @override
+  StateRendererType getStateRendererType() => StateRendererType.contentState;
+}
+
+// Empty State (full screen)
+class EmptyState extends FlowState {
+  String message;
+  EmptyState(this.message);
+
+  @override
+  String getMessage() => message;
+
+  @override
+  StateRendererType getStateRendererType() =>
+      StateRendererType.fullScreenEmptyState;
+}
+
+extension FlowStateExtension on FlowState {
+  Widget getScreenWidget(
+    BuildContext context,
+    Widget contentScreenWidget,
+    Function retryActionFunction,
+  ) {
+    switch (runtimeType) {
+      case LoadingState:
+        if (getStateRendererType() == StateRendererType.popUpLoadingState) {
+          // إظهار Pop-up للتحميل
+          _showPopUp(context, getStateRendererType(), getMessage());
+          return contentScreenWidget;
+        } else {
+          return StateRenderer(
+            message: getMessage(),
+            stateRendererType: getStateRendererType(),
+            retryActionFunction: retryActionFunction,
+          );
+        }
+      case ErrorState:
+        // إغلاق أي Pop-up موجود قبل إظهار الخطأ
+        Navigator.of(context).popUntil((route) => route.isFirst);
+        if (getStateRendererType() == StateRendererType.popUpErrorState) {
+          // إظهار Pop-up للخطأ
+          _showPopUp(context, getStateRendererType(), getMessage());
+          return contentScreenWidget;
+        } else {
+          return StateRenderer(
+            message: getMessage(),
+            stateRendererType: getStateRendererType(),
+            retryActionFunction: retryActionFunction,
+          );
+        }
+      case ContentState:
+        // إغلاق أي Pop-up موجود
+        Navigator.of(context).popUntil((route) => route.isFirst);
+        return contentScreenWidget;
+      case EmptyState:
+        return StateRenderer(
+          message: getMessage(),
+          stateRendererType: getStateRendererType(),
+          retryActionFunction: () {},
+        );
+      default:
+        Navigator.of(context).popUntil((route) => route.isFirst);
+        return contentScreenWidget;
+    }
+  }
+
+  void _showPopUp(BuildContext context, StateRendererType stateRendererType,
+      String message) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showDialog(
+        context: context,
+        barrierDismissible:
+            false, // منع إغلاق الـ Pop-up بالضغط خارج الـ Dialog
+        builder: (BuildContext context) => StateRenderer(
+          stateRendererType: stateRendererType,
+          message: message,
+          retryActionFunction: () {},
+        ),
+      );
+    });
+  }
+}

@@ -1,11 +1,14 @@
 import 'dart:async';
+// import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
 
-// import 'package:flutter_advanced_course/domain/usecase/login_use_case.dart';
+import 'package:flutter_advanced_course/domain/usecase/login_use_case.dart';
 import 'package:flutter_advanced_course/presentation/base/base_view_model.dart';
 import 'package:flutter_advanced_course/presentation/shared/freezed_data_classes.dart';
+import 'package:flutter_advanced_course/presentation/shared/state_renderer/state_renderer.dart';
+import 'package:flutter_advanced_course/presentation/shared/state_renderer/state_renderer_impl.dart';
 
-class LoginViewModel
-    implements BaseViewModel, LoginViewModelInputs, LoginViewModelOutputs {
+class LoginViewModel extends BaseViewModel
+    implements LoginViewModelInputs, LoginViewModelOutputs {
   final StreamController _userNameStreamController =
       StreamController<String>.broadcast();
   final StreamController _passwordStreamController =
@@ -14,13 +17,13 @@ class LoginViewModel
       StreamController<void>.broadcast();
 
   var loginObject = LoginObject("", "");
-  // final LoginUseCase _loginUseCase;
-  // LoginViewModel(this._loginUseCase);
-  LoginViewModel();
+  final LoginUseCase _loginUseCase;
+  LoginViewModel(this._loginUseCase);
 
   // inputs
   @override
   void dispose() {
+    super.dispose();
     _userNameStreamController.close();
     _passwordStreamController.close();
     _areAllInputsValidStreamController.close();
@@ -28,7 +31,8 @@ class LoginViewModel
 
   @override
   void start() {
-    // TODO: implement start
+    // view model should tell view please show content state
+    inputState.add(ContentState());
   }
 
   @override
@@ -54,17 +58,49 @@ class LoginViewModel
     inputAreAllInputsValid.add(null);
   }
 
+  // @override
+  // login() async {
+  //   inputState.add(LoadingState(
+  //     stateRendererType: StateRendererType.popUpLoadingState,
+  //   ));
+  //   (await _loginUseCase.execute(
+  //           LoginUseCaseInput(loginObject.userName, loginObject.password)))
+  //       .fold(
+  //           (failure) => {
+  //                 // left -> failure
+  //                 inputState.add(ErrorState(
+  //                   StateRendererType.popUpErrorState,
+  //                   failure.message,
+  //                 )),
+  //               },
+  //           (data) => {
+  //                 // right -> data (success)
+  //                 // content to ensure dismiss dialog
+  //                 inputState.add(ContentState()),
+  //                 // navigate to main screen
+  //               });
+  // }
+
   @override
   login() async {
-    // (await _loginUseCase.execute(
-    //         LoginUseCaseInput(loginObject.userName, loginObject.password)))
-    //     .fold(
-    //         (failure) => {
-    //               // left -> failure
-    //             },
-    //         (data) => {
-    //               // right -> data (success)
-    //             });
+    print("Sending LoadingState");
+    inputState.add(LoadingState(
+      stateRendererType: StateRendererType.popUpLoadingState,
+    ));
+    (await _loginUseCase.execute(
+            LoginUseCaseInput(loginObject.userName, loginObject.password)))
+        .fold(
+            (failure) => {
+                  print("Sending ErrorState: ${failure.message}"),
+                  inputState.add(ErrorState(
+                    StateRendererType.popUpErrorState,
+                    failure.message,
+                  )),
+                },
+            (data) => {
+                  print("Sending ContentState"),
+                  inputState.add(ContentState()),
+                });
   }
 
   // outputs

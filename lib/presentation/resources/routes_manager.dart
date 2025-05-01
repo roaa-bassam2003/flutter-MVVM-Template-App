@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/app/di.dart';
 import 'package:flutter_advanced_course/presentation/common/about_app/about_app_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/change_password/change_password_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/forgot_password/forgot_password_view.dart';
@@ -85,6 +86,7 @@ class RouteGenerator {
           builder: (_) => const SplashView(),
         );
       case Routes.loginRoute:
+        initLoginModule();
         return MaterialPageRoute(
           builder: (_) => const LoginView(),
         );

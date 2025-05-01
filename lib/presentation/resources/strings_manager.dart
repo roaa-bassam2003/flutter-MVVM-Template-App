@@ -166,4 +166,9 @@ class AppStrings {
   static const currentAddressValue = "Egypt, North Sini, Arish, See Street";
   static const phoneNumberValue = "+20 1094 910 277";
   static const emailValue = "jackwilson12@gmail.com";
+
+  // state renderer
+  static const loading = 'Loading...';
+  static const retryAgain = 'Retry again';
+  static const ok = 'Ok';
 }

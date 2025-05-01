@@ -7,14 +7,15 @@ import 'package:flutter_advanced_course/presentation/service_provider/main/pages
 import 'pages/home/view/home_page.dart';
 
 class MainView extends StatefulWidget {
-  const MainView({Key? key}) : super(key: key);
+  const MainView({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MainViewState createState() => _MainViewState();
 }
 
 class _MainViewState extends State<MainView> {
-  List<Widget> pages = [
+  List<Widget> pages = const [
     HomePage(),
     ShedualPage(),
     SettingPage(),
