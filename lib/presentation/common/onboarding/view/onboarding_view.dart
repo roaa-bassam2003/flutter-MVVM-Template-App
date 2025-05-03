@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_advanced_course/app/app_prefs.dart';
+import 'package:flutter_advanced_course/app/di.dart';
 import 'package:flutter_advanced_course/domain/model/models.dart';
 import 'package:flutter_advanced_course/presentation/common/onboarding/view_model/onboarding_view_model.dart';
 import 'package:flutter_advanced_course/presentation/resources/assets_manager.dart';
@@ -20,8 +22,10 @@ class OnBoardingView extends StatefulWidget {
 class _OnBoardingViewState extends State<OnBoardingView> {
   final PageController _pageController = PageController();
   final OnboardingViewModel _viewModel = OnboardingViewModel();
+  final AppPrefs _appPrefs = instance<AppPrefs>();
 
   _bind() {
+    _appPrefs.setOnBoardingScreenViewed();
     _viewModel.start();
   }
 
@@ -70,6 +74,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           color: ColorManager.white,
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Align(
                 alignment: Alignment.centerRight,
@@ -95,6 +100,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   Widget _getBottomSheetWidget(SliderViewObject sliderViewObject) {
     return Container(
+      width: double.infinity,
       color: ColorManager.primary,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

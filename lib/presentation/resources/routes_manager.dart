@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/app/di.dart';
 import 'package:flutter_advanced_course/presentation/common/about_app/about_app_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/change_password/change_password_view.dart';
-import 'package:flutter_advanced_course/presentation/common/auth/forgot_password/forgot_password_view.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/forgot_password/view/forgot_password_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/login/view/login_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/pending_approval/pending_approval_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/register/register_provider_view.dart';
@@ -103,6 +103,7 @@ class RouteGenerator {
           builder: (_) => const OnBoardingView(),
         );
       case Routes.forgotPasswordRoute:
+        initForgotPasswordModule();
         return MaterialPageRoute(
           builder: (_) => const ForgotPasswordView(),
         );
@@ -197,7 +198,7 @@ class RouteGenerator {
       case Routes.logoutRoute:
         return MaterialPageRoute(
           settings: settings,
-          builder: (_) => const LogoutView(),
+          builder: (_) => LogoutView(),
         );
       case Routes.deleteAccountRoute:
         return MaterialPageRoute(

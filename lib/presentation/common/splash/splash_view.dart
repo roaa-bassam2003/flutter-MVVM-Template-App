@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/app/app_prefs.dart';
+import 'package:flutter_advanced_course/app/di.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
 import 'package:flutter_advanced_course/presentation/resources/assets_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
@@ -18,13 +20,29 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
   Timer? _timer;
+  final AppPrefs _appPrefs = instance<AppPrefs>();
 
   _startDelay() {
     _timer = Timer(const Duration(seconds: AppConstants.splashDelay), _goNext);
   }
 
-  _goNext() {
-    Navigator.pushReplacementNamed(context, Routes.onBoardingRoute);
+  _goNext() async {
+    _appPrefs.isUserLoggedIn().then((isUserLoggedIn) {
+      if (isUserLoggedIn) {
+        // navigate to main screen
+        Navigator.pushReplacementNamed(context, ProviderRoutes.mainRoute);
+      } else {
+        _appPrefs.isOnBoardingScreenViewed().then((isOnBoardingScreenViewed) {
+          if (isOnBoardingScreenViewed) {
+            // navigate to login screen
+            Navigator.pushReplacementNamed(context, Routes.loginRoute);
+          } else {
+            // navigate to on boarding screen
+            Navigator.pushReplacementNamed(context, Routes.onBoardingRoute);
+          }
+        });
+      }
+    });
   }
 
   @override

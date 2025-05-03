@@ -51,6 +51,7 @@ class AddressDetailsView extends StatelessWidget {
       'Friday',
     ];
     return Scaffold(
+        backgroundColor: ColorManager.white,
         appBar: customAppBar(title: 'Address'),
         body: Padding(
           padding: const EdgeInsets.symmetric(

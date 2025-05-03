@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_advanced_course/app/app_prefs.dart';
 import 'package:flutter_advanced_course/app/di.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/login/view_model/login_view_model.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
@@ -23,7 +25,8 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  bool _isPasswordVisible = false;
+  // bool _isPasswordVisible = false;
+  final AppPrefs _appPrefs = instance<AppPrefs>();
 
   _bind() {
     _viewModel.start(); // tell view model: start your job
@@ -31,6 +34,19 @@ class _LoginViewState extends State<LoginView> {
         .addListener(() => _viewModel.setUserName(_userNameController.text));
     _passwordController
         .addListener(() => _viewModel.setPassword(_passwordController.text));
+
+    _viewModel.isUserLoggedInSuccessfullyStreamController.stream
+        .listen((isLoggedIn) {
+      if (isLoggedIn) {
+        // navigate to main screen
+        // save in app Prefs
+        _appPrefs.setIsUserLoggedIn();
+        // Navigator.pushNamed(context, Routes.homeRoute);
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          Navigator.of(context).pushReplacementNamed(ProviderRoutes.mainRoute);
+        });
+      }
+    });
   }
 
   @override
@@ -103,17 +119,18 @@ class _LoginViewState extends State<LoginView> {
                     hintText: AppStrings.password,
                     labelText: AppStrings.password,
                     textInputType: TextInputType.visiblePassword,
-                    obscureText: _isPasswordVisible ? false : true,
-                    suffixIcon: Icon(
-                      _isPasswordVisible
-                          ? Icons.visibility
-                          : Icons.visibility_off,
-                    ),
-                    onSuffixIconPressed: () {
-                      setState(() {
-                        _isPasswordVisible = !_isPasswordVisible;
-                      });
-                    },
+                    // obscureText: _isPasswordVisible ? false : true,
+                    // suffixIcon: Icon(
+                    //   _isPasswordVisible
+                    //       ? Icons.visibility
+                    //       : Icons.visibility_off,
+                    // ),
+                    // onSuffixIconPressed: () {
+                    //   setState(() {
+                    //     _isPasswordVisible = !_isPasswordVisible;
+                    //     // _viewModel.onPasswordVisibilityToggled(); // Reset state
+                    //   });
+                    // },
                     controller: _passwordController,
                     errorText: (snapshot.data ?? true)
                         ? null

@@ -86,10 +86,10 @@ extension FlowStateExtension on FlowState {
           );
         }
       case ErrorState:
-        // إغلاق أي Pop-up موجود قبل إظهار الخطأ
-        Navigator.of(context).popUntil((route) => route.isFirst);
+        // Dismiss any existing popup safely
+        _dismissDialog(context);
         if (getStateRendererType() == StateRendererType.popUpErrorState) {
-          // إظهار Pop-up للخطأ
+          // Show error popup
           _showPopUp(context, getStateRendererType(), getMessage());
           return contentScreenWidget;
         } else {
@@ -100,10 +100,10 @@ extension FlowStateExtension on FlowState {
           );
         }
       case ContentState:
-        // إغلاق أي Pop-up موجود
-        Navigator.of(context).popUntil((route) => route.isFirst);
+        _dismissDialog(context); // Dismiss any existing popup
         return contentScreenWidget;
       case EmptyState:
+        _dismissDialog(context);
         return StateRenderer(
           message: getMessage(),
           stateRendererType: getStateRendererType(),
@@ -129,5 +129,12 @@ extension FlowStateExtension on FlowState {
         ),
       );
     });
+  }
+
+  void _dismissDialog(BuildContext context) {
+    // Dismiss the topmost dialog if present
+    if (Navigator.of(context).canPop()) {
+      Navigator.of(context).pop();
+    }
   }
 }

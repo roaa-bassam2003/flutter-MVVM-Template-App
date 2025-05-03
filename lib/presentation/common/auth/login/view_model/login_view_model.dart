@@ -16,6 +16,9 @@ class LoginViewModel extends BaseViewModel
   final StreamController _areAllInputsValidStreamController =
       StreamController<void>.broadcast();
 
+  final StreamController isUserLoggedInSuccessfullyStreamController =
+      StreamController<bool>();
+
   var loginObject = LoginObject("", "");
   final LoginUseCase _loginUseCase;
   LoginViewModel(this._loginUseCase);
@@ -27,6 +30,7 @@ class LoginViewModel extends BaseViewModel
     _userNameStreamController.close();
     _passwordStreamController.close();
     _areAllInputsValidStreamController.close();
+    isUserLoggedInSuccessfullyStreamController.close();
   }
 
   @override
@@ -49,6 +53,7 @@ class LoginViewModel extends BaseViewModel
     inputPassword.add(password);
     loginObject = loginObject.copyWith(password: password);
     inputAreAllInputsValid.add(null);
+    // _resetStateToContent(); // Reset state when password changes
   }
 
   @override
@@ -58,49 +63,23 @@ class LoginViewModel extends BaseViewModel
     inputAreAllInputsValid.add(null);
   }
 
-  // @override
-  // login() async {
-  //   inputState.add(LoadingState(
-  //     stateRendererType: StateRendererType.popUpLoadingState,
-  //   ));
-  //   (await _loginUseCase.execute(
-  //           LoginUseCaseInput(loginObject.userName, loginObject.password)))
-  //       .fold(
-  //           (failure) => {
-  //                 // left -> failure
-  //                 inputState.add(ErrorState(
-  //                   StateRendererType.popUpErrorState,
-  //                   failure.message,
-  //                 )),
-  //               },
-  //           (data) => {
-  //                 // right -> data (success)
-  //                 // content to ensure dismiss dialog
-  //                 inputState.add(ContentState()),
-  //                 // navigate to main screen
-  //               });
-  // }
-
   @override
   login() async {
-    print("Sending LoadingState");
     inputState.add(LoadingState(
       stateRendererType: StateRendererType.popUpLoadingState,
     ));
     (await _loginUseCase.execute(
             LoginUseCaseInput(loginObject.userName, loginObject.password)))
-        .fold(
-            (failure) => {
-                  print("Sending ErrorState: ${failure.message}"),
-                  inputState.add(ErrorState(
-                    StateRendererType.popUpErrorState,
-                    failure.message,
-                  )),
-                },
-            (data) => {
-                  print("Sending ContentState"),
-                  inputState.add(ContentState()),
-                });
+        .fold((failure) {
+      inputState.add(ErrorState(
+        StateRendererType.popUpErrorState,
+        failure.message,
+      ));
+    }, (data) {
+      inputState.add(ContentState());
+      // navigate to main screen
+      isUserLoggedInSuccessfullyStreamController.add(true);
+    });
   }
 
   // outputs
@@ -123,13 +102,28 @@ class LoginViewModel extends BaseViewModel
   }
 
   bool _isUserNameValid(String userName) {
-    return userName.isNotEmpty;
+    // Regex for email validation
+    String emailRegex = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
+    RegExp regExp = RegExp(emailRegex);
+    return regExp.hasMatch(userName) && userName.isNotEmpty;
+    // return userName.isNotEmpty;
+    // return userName.isNotEmpty;
   }
 
   bool _areAllInputsValid() {
     return _isPasswordValid(loginObject.password) &&
         _isUserNameValid(loginObject.userName);
   }
+
+  // New method to reset the state to ContentState
+  // void _resetStateToContent() {
+  //   inputState.add(ContentState());
+  // }
+
+  // Method to call when toggling password visibility
+  // void onPasswordVisibilityToggled() {
+  //   _resetStateToContent();
+  // }
 }
 
 abstract class LoginViewModelInputs {

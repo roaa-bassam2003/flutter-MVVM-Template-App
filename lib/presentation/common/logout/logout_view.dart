@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/app/app_prefs.dart';
+import 'package:flutter_advanced_course/app/di.dart';
 import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_button.dart';
 
 class LogoutView extends StatelessWidget {
-  const LogoutView({super.key});
+  final AppPrefs _appPrefs = instance<AppPrefs>();
+
+  LogoutView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +38,12 @@ class LogoutView extends StatelessWidget {
             const SizedBox(height: 30),
             CustomButton(
               text: AppStrings.appBarLogoutTitle,
-              onPressed: () {},
+              onPressed: () {
+                // save in app Prefs
+                _appPrefs.logout();
+                // log out
+                Navigator.pushReplacementNamed(context, Routes.loginRoute);
+              },
               backgroundColor: ColorManager.primary,
             )
           ],

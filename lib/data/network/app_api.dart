@@ -15,4 +15,10 @@ abstract class AppServiceClient {
     @Field("email") String email,
     @Field("password") String password,
   );
+
+  // http methods as interface for forget password
+  @POST("/Account/forget-password")
+  Future<ForgotPasswordResponse> forgotPassword(
+    @Field("email") String email,
+  );
 }

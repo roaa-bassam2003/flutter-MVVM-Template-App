@@ -45,3 +45,10 @@ extension AuthenticationResponseMapper on AuthenticationResponse? {
     );
   }
 }
+
+// forget password
+extension ForgotPasswordResponseMapper on ForgotPasswordResponse? {
+  String toDomain() {
+    return this?.message?.orEmpty() ?? Constants.empty;
+  }
+}

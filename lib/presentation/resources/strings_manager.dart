@@ -35,9 +35,10 @@ class AppStrings {
        for Your Child""";
 
   static const skip = "skip";
-  static const String usernameOrEmail = "Username Or Email";
+  static const String usernameOrEmail = "Email";
   static const String password = "Password";
-  static const String usernameError = "Please enter your username or email";
+  static const String usernameError =
+      "Please enter your email or correct email";
   static const String passwordError = "Please enter password";
   static const String login = "Login";
   static const String signUp = " Sign Up";
@@ -171,4 +172,9 @@ class AppStrings {
   static const loading = 'Loading...';
   static const retryAgain = 'Retry again';
   static const ok = 'Ok';
+  static const success = 'success';
+
+  // forgot password
+  // static const String emailHint = 'email_hint';
+  // static const String invalidEmail = "email_error";
 }
