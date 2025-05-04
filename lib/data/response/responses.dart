@@ -104,20 +104,11 @@ class AuthenticationResponse extends BaseResponse {
 
 // forget password
 @JsonSerializable()
-class ForgotPasswordResponse {
-  @JsonKey(name: "status")
-  bool? status;
-  @JsonKey(name: "data")
-  String? data;
-  @JsonKey(name: "message")
-  String? message;
-  @JsonKey(name: "errors")
-  String? errors;
+class ForgotPasswordResponse extends BaseResponse {
+  @JsonKey(name: "support")
+  String? support;
   ForgotPasswordResponse(
-    this.status,
-    this.data,
-    this.message,
-    this.errors,
+    this.support,
   );
 
   // from json

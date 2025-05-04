@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_advanced_course/app/di.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/forgot_password/view_model/forgot_password_view_model.dart';
-import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/shared/state_renderer/state_renderer_impl.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
@@ -30,19 +28,6 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
     _viewModel.start();
     _emailTextEditingController.addListener(
         () => _viewModel.setEmail(_emailTextEditingController.text));
-
-    _viewModel.isUserLoggedInSuccessfullyStreamController.stream
-        .listen((isLoggedIn) {
-      if (isLoggedIn) {
-        // navigate to main screen
-        // save in app Prefs
-        // _appPrefs.setIsUserLoggedIn();
-        // Navigator.pushNamed(context, Routes.homeRoute);
-        SchedulerBinding.instance.addPostFrameCallback((_) {
-          Navigator.of(context).pushReplacementNamed(ProviderRoutes.mainRoute);
-        });
-      }
-    });
   }
 
   @override
@@ -94,8 +79,9 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                     textInputType: TextInputType.emailAddress,
                     labelText: AppStrings.usernameOrEmail,
                     controller: _emailTextEditingController,
-                    errorText:
-                        (snapshot.data ?? true) ? null : AppStrings.usernameError,
+                    errorText: (snapshot.data ?? true)
+                        ? null
+                        : AppStrings.usernameError,
                   );
                 }),
             // space

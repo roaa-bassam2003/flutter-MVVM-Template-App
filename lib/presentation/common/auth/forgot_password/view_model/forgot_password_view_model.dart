@@ -12,9 +12,6 @@ class ForgotPasswordViewModel extends BaseViewModel
   final StreamController _isAllInputValidStreamController =
       StreamController<void>.broadcast();
 
-  final StreamController isUserLoggedInSuccessfullyStreamController =
-      StreamController<bool>();
-
   final ForgotPasswordUseCase _forgotPasswordUseCase;
 
   ForgotPasswordViewModel(this._forgotPasswordUseCase);
@@ -33,7 +30,6 @@ class ForgotPasswordViewModel extends BaseViewModel
     super.dispose();
     _emailStreamController.close();
     _isAllInputValidStreamController.close();
-    isUserLoggedInSuccessfullyStreamController.close();
   }
 
   @override
@@ -46,27 +42,11 @@ class ForgotPasswordViewModel extends BaseViewModel
         failure.message,
       ));
     }, (supportMessage) {
-      inputState.add(ContentState());
-      isUserLoggedInSuccessfullyStreamController.add(true);
+      inputState.add(SuccessState(
+        supportMessage,
+      ));
     });
   }
-
-  // @override
-  // forgotPassword() async {
-  //   inputState.add(
-  //       LoadingState(stateRendererType: StateRendererType.popUpLoadingState));
-  //   (await _forgotPasswordUseCase.execute(email)).fold((failure) {
-  //     inputState.add(
-  //         ErrorState(StateRendererType.popUpErrorState, failure.message));
-  //   }, (supportMessage) {
-  //     // content to ensure dismiss dialog
-  //     inputState.add(ContentState());
-  //     // inputState.add(SuccessState(
-  //     //   message: supportMessage,
-  //     //   stateRendererType: StateRendererType.popUpSuccessState,
-  //     // ));
-  //   });
-  // }
 
   @override
   setEmail(String email) {
