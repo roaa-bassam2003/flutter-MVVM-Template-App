@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/domain/model/models.dart';
 import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
@@ -13,14 +12,12 @@ class ReportProviderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = ModalRoute.of(context)!.settings.arguments as Provider;
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: customAppBar(title: AppStrings.appBarReportTitle),
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: AppPadding.p8,
+          horizontal: AppPadding.p20,
         ),
         child: Column(
           children: [
@@ -36,13 +33,13 @@ class ReportProviderView extends StatelessWidget {
             ),
             const SizedBox(height: AppSize.s18),
             // Provider ID (Static Container)
-            CustomStaticField(
-              label: provider.providerId,
+            const CustomStaticField(
+              label: "@ss_2025",
             ),
             const SizedBox(height: AppSize.s16),
             // Role (Static Container)
-            CustomStaticField(
-              label: provider.role,
+            const CustomStaticField(
+              label: "House Keeper",
             ),
             const SizedBox(height: AppSize.s16),
             const CustomTextFormField(

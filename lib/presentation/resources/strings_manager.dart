@@ -147,6 +147,7 @@ class AppStrings {
   static const String oldPassword = "Old Password";
   static const String currentPassword = "Current Password";
   static const String change = "Change";
+  static const String preview = "Preview";
 
   static const String aboutUs = "About us";
   static const String aboutUsDescription =
@@ -174,7 +175,30 @@ class AppStrings {
   static const ok = 'Ok';
   static const success = 'success';
 
-  // forgot password
-  // static const String emailHint = 'email_hint';
-  // static const String invalidEmail = "email_error";
+  static const terms =
+      'As a service provider on our app, you’ll be connected directly with service seekers who need your expertise.\n\nOnce a task is completed, the payment for that task will be transferred to the app’s account.\n\nTo receive your earnings, simply enter your account details through the Settings section of the app.\n\nPlease note that a commission of 15% will be deducted from the task price as a service fee for using the platform.';
+  static const appBarWorkFlowSpecific = "Work Flow";
+  static const hours = "Hours";
+
+  static const myInfo = "My info";
+  static const theWorkFlow = "The work flow";
+  static const saturday = "Saturday";
+  static const sunday = "Sunday";
+  static const monday = "Monday";
+  static const tuesday = "Tuesday";
+  static const wednesday = "Wednesday";
+  static const thursday = "Thursday";
+  static const friday = "Friday";
+
+  static const support = "Support";
+  static const shareTheApp = "Share the app";
+  static const paymentCredit = "Payment - Credit";
+
+  static const notApprove = "Not Approve";  
+  static const approve = "Approve";  
+
+  static const booking = "Bookings";  
+  static const cancellations = "Cancellations";  
+  static const reports = "Reports";  
+  static const bookedTimeSlotsOn = "Booked Time Slots On";  
 }

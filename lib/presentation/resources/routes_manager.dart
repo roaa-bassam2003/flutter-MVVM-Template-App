@@ -15,7 +15,13 @@ import 'package:flutter_advanced_course/presentation/common/onboarding/view/onbo
 import 'package:flutter_advanced_course/presentation/common/auth/register/register_user_view.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/day_specification/day_specification.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/edit_profile/edit_profile_view.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/main/main_view.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/tap_details/bookings_details.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/tap_details/cancelled_details.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/tap_details/completed_details.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/tap_details/request_details.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/work_flow_specification/work_flow_specification.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/address_details/address_details_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/book_hours_provider/book_hours_provider_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/cancelled_bookings/cancelled_bookings_view.dart';
@@ -71,6 +77,12 @@ class Routes {
 class ProviderRoutes {
   static const String mainRoute = "/ProviderMainView";
   static const String daySpecification = "/daySpecification";
+  static const String workFlowSpecification = "/WorkFlowSpecification";
+  static const String pEditProfileView = "/PEditProfileView";
+  static const String bookingsDetails = "/BookingsDetails";
+  static const String requestDetails = "/RequestDetails";
+  static const String cancelledDetails = "/CancelledDetails";
+  static const String completedDetails = "/CompletedDetails";
 }
 
 class SeekerRoutes {
@@ -228,6 +240,33 @@ class RouteGenerator {
         );
 
       // provider
+      case ProviderRoutes.completedDetails:
+        return (MaterialPageRoute(
+          builder: (_) => const CompletedDetails(),
+        ));
+      case ProviderRoutes.cancelledDetails:
+        return (MaterialPageRoute(
+          builder: (_) => const CancelledDetails(),
+        ));
+      case ProviderRoutes.requestDetails:
+        return (MaterialPageRoute(
+          builder: (_) => const RequestDetails(),
+        ));
+      case ProviderRoutes.bookingsDetails:
+        return (MaterialPageRoute(
+          builder: (_) => const BookingsDetails(),
+        ));
+
+      case ProviderRoutes.pEditProfileView:
+        return (MaterialPageRoute(
+          builder: (_) => const PEditProfileView(),
+        ));
+
+      case ProviderRoutes.workFlowSpecification:
+        return MaterialPageRoute(
+          builder: (_) => const WorkFlowSpecification(),
+        );
+
       case ProviderRoutes.mainRoute:
         return MaterialPageRoute(
           builder: (_) => const MainView(),

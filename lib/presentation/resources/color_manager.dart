@@ -6,6 +6,8 @@ class ColorManager {
   static Color darkGrey = const Color(0xff525252);
   static Color grey = const Color(0xff737477);
   static Color lightGrey = const Color(0x8C8789A3);
+  static Color lightGrey2 = const Color(0xFFFAFAFA);
+  static Color myAmber = Colors.amber;
 
   // new colors
   // static Color darkPrimary = const Color(0xffd17d11);
@@ -14,8 +16,10 @@ class ColorManager {
   static Color grey2 = const Color(0xff797979);
   static Color white = const Color(0xffFFFFFF);
   static Color error = const Color(0xffe61f34); // red color
+  static Color lightRed = const Color(0xFFFEF2F2);
   static Color blue = const Color(0xff0A7AFF);
   static Color darkBlue = const Color(0xff042030);
+  static Color lightBlue = const Color(0x66042030);
   static Color cardColor = const Color(0xff8856E1);
   static Color black = const Color(0xff000000);
   // roaa app

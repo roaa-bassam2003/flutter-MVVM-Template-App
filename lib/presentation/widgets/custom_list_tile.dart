@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 import 'package:iconsax/iconsax.dart';
 
 class CustomListTile extends StatelessWidget {
@@ -19,21 +21,21 @@ class CustomListTile extends StatelessWidget {
       // spacing: 0,
       children: [
         ListTile(
-          leading: Icon(icon, color: Colors.black, size: 24),
+          leading: Icon(icon, color: ColorManager.black, size: AppSize.s24),
           title: Text(
             title,
-            style: const TextStyle(fontSize: 15, color: Colors.black87),
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
-          trailing:
-              const Icon(Iconsax.arrow_right_3, color: Colors.black, size: 20),
+          trailing: Icon(Iconsax.arrow_right_3,
+              color: ColorManager.black, size: AppSize.s20),
           onTap: onTap,
         ),
-        const Divider(
-          color: Colors.grey,
-          height: 0,
-          endIndent: 20,
-          indent: 10,
-          thickness: 1,
+        Divider(
+          color: ColorManager.lightGrey,
+          height: AppSize.s0,
+          endIndent: AppSize.s20,
+          indent: AppSize.s10,
+          thickness: AppSize.s1,
         )
       ],
     );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 import '../../../../day_specification/day_specification.dart';
 
@@ -23,19 +25,19 @@ class _ShedualPageState extends State<ShedualPage> {
   String _getDayName(WeekDay day) {
     switch (day) {
       case WeekDay.saturday:
-        return 'Saturday';
+        return AppStrings.saturday;
       case WeekDay.sunday:
-        return 'Sunday';
+        return AppStrings.sunday;
       case WeekDay.monday:
-        return 'Monday';
+        return AppStrings.monday;
       case WeekDay.tuesday:
-        return 'Tuesday';
+        return AppStrings.tuesday;
       case WeekDay.wednesday:
-        return 'Wednesday';
+        return AppStrings.wednesday;
       case WeekDay.thursday:
-        return 'Thursday';
+        return AppStrings.thursday;
       case WeekDay.friday:
-        return 'Friday';
+        return AppStrings.friday;
     }
   }
 
@@ -53,30 +55,34 @@ class _ShedualPageState extends State<ShedualPage> {
     const List<WeekDay> days = WeekDay.values;
 
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: List.generate(
-          days.length,
-          (index) => InkWell(
-            onTap: () => _onDayTapped(days[index]),
-            splashColor: Colors.grey.withOpacity(0.2),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(AppSize.s12),
-                  child: Text(
-                    _getDayName(days[index]),
-                    style: Theme.of(context).textTheme.headlineLarge,
+      child: Padding(
+        padding: const EdgeInsets.all(AppSize.s12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List.generate(
+            days.length,
+            (index) => InkWell(
+              onTap: () => _onDayTapped(days[index]),
+              splashColor: ColorManager.grey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(AppSize.s12),
+                    child: Text(
+                      _getDayName(days[index]),
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                   ),
-                ),
-                const Divider(
-                  color: Colors.grey,
-                  thickness: 0.5,
-                  indent: 16,
-                  endIndent: 16,
-                ),
-              ],
+                  Divider(
+                    color: ColorManager.lightGrey,
+                    height: AppSize.s0,
+                    endIndent: AppSize.s20,
+                    indent: AppSize.s10,
+                    thickness: AppSize.s1,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

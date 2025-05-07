@@ -60,6 +60,7 @@ ThemeData getApplicationTheme() {
       displayLarge: getSemiBoldStyle(
         color: ColorManager.primary,
         fontSize: FontSize.s18,
+        fontWeight: FontWeightManager.semiBold,
       ),
       // onboarding sub title
       headlineMedium: getRegularStyle(
@@ -69,6 +70,7 @@ ThemeData getApplicationTheme() {
       headlineLarge: getSemiBoldStyle(
         color: ColorManager.darkGrey,
         fontSize: FontSize.s16,
+        fontWeight: FontWeightManager.bold,
       ),
       // skip word
       titleMedium: getMediumStyle(
@@ -79,6 +81,7 @@ ThemeData getApplicationTheme() {
       titleSmall: getSemiBoldStyle(
         color: ColorManager.darkGrey,
         fontSize: FontSize.s14,
+        fontWeight: FontWeightManager.semiBold,
       ),
       bodyLarge: getRegularStyle(
         color: ColorManager.white,
@@ -86,6 +89,10 @@ ThemeData getApplicationTheme() {
       ),
       bodySmall: getRegularStyle(
         color: ColorManager.grey,
+      ),
+      bodyMedium: getRegularStyle(
+        color: ColorManager.black,
+        fontSize: FontSize.s16,
       ),
     ),
 

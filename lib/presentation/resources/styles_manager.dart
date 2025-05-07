@@ -57,10 +57,11 @@ TextStyle getBoldStyle({double fontSize = FontSize.s12, required Color color}) {
 // semibold style
 
 TextStyle getSemiBoldStyle(
-    {double fontSize = FontSize.s12, required Color color}) {
+    {double fontSize = FontSize.s12, required Color color, required FontWeight fontWeight}) {
   return _getTextStyle(
     fontSize,
-    FontWeightManager.semiBold,
+    fontWeight,
+    // FontWeightManager.semiBold,
     color,
   );
 }

@@ -15,7 +15,7 @@ class DeleteAccountView extends StatelessWidget {
       appBar: customAppBar(title: AppStrings.appBarDeleteAccountTitle),
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: AppPadding.p8,
+          horizontal: AppPadding.p20,
         ),
         child: Column(
           children: [

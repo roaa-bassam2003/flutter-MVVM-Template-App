@@ -16,17 +16,17 @@ class PaymentView extends StatelessWidget {
       appBar: customAppBar(title: AppStrings.payment),
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: AppPadding.p8,
+          horizontal: AppPadding.p20,
         ),
         child: Column(
           children: [
             const SizedBox(height: 10),
-            const Text(
-              AppStrings.paymentMethod,
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
+            // const Text(
+            //   AppStrings.paymentMethod,
+            //   style: TextStyle(
+            //     fontSize: 16,
+            //   ),
+            // ),
             const SizedBox(height: 10),
             const CustomTextFormField(
               suffixIcon: Icon(Icons.payment),

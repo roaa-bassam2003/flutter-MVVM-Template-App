@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../../widgets/custom_list_tile.dart';
 
 class SettingPage extends StatefulWidget {
@@ -12,6 +15,29 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+  Future<void> _sendEmail() async {
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: 'magic.parents@gmail.com',
+      // You can add subject and body as well
+      // queryParameters: {'subject': 'App Support', 'body': 'Hello,'}
+    );
+
+    if (await canLaunchUrl(emailLaunchUri)) {
+      await launchUrl(emailLaunchUri);
+    } else {
+      // Handle error
+      debugPrint('Could not launch email client');
+    }
+  }
+
+  void _shareApp() {
+    Share.share(
+      'Check out this awesome app: https://yourapp.link',
+      subject: 'Download The Magic Parents App',
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,46 +51,50 @@ class _SettingPageState extends State<SettingPage> {
               height: AppSize.s12,
             ),
             CustomListTile(
-              title: 'Edit my profile',
+              title: AppStrings.appBarEditProfileTitle,
               icon: Iconsax.edit,
               onTap: () =>
-                  Navigator.pushNamed(context, Routes.editProfileRoute),
+                  Navigator.pushNamed(context, ProviderRoutes.pEditProfileView),
             ),
             CustomListTile(
-              title: 'Change password',
+              title: AppStrings.appBarChangePasswordTitle,
               icon: Iconsax.lock,
               onTap: () =>
                   Navigator.pushNamed(context, Routes.changePasswordRoute),
             ),
-            const CustomListTile(
-              title: 'Support',
+            CustomListTile(
+              title: AppStrings.support,
               icon: Iconsax.message,
-            ),
-            const CustomListTile(
-              title: 'Share the app',
-              icon: Iconsax.share,
+              onTap: _sendEmail,
             ),
             CustomListTile(
-              title: 'Delete my account',
+              title: AppStrings.shareTheApp,
+              icon: Iconsax.share,
+              onTap: _shareApp,
+            ),
+            CustomListTile(
+              title: AppStrings.appBarDeleteAccountTitle,
               icon: Iconsax.trash,
               onTap: () =>
                   Navigator.pushNamed(context, Routes.deleteAccountRoute),
             ),
             CustomListTile(
-              title: 'About Magic Parents',
+              title: AppStrings.appBarAboutAppTitle,
               icon: Iconsax.info_circle,
               onTap: () =>
                   Navigator.pushNamed(context, Routes.aboutMagicParentsRoute),
             ),
             CustomListTile(
-              title: 'Logout',
+              title: AppStrings.appBarLogoutTitle,
               icon: Iconsax.logout,
               onTap: () => Navigator.pushNamed(context, Routes.logoutRoute),
             ),
             CustomListTile(
-              title: 'Payment - Credit',
+              title: AppStrings.paymentCredit,
               icon: Iconsax.card,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, Routes.paymentRoute);
+              },
             ),
           ],
         ),

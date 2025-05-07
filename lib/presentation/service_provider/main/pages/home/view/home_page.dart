@@ -6,7 +6,6 @@ import 'package:flutter_advanced_course/presentation/service_provider/tabs/cance
 import 'package:flutter_advanced_course/presentation/service_provider/tabs/completed_tab.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/tabs/requests_tab.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -39,13 +38,13 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
           body: const TabBarView(
-            physics: NeverScrollableScrollPhysics(),
-            children: [
-            BookingsTab(),
-            CancelledTab(),
-            CompletedTab(),
-            RequestsTab(),
-          ])),
+              physics: NeverScrollableScrollPhysics(),
+              children: [
+                BookingsTab(),
+                CancelledTab(),
+                CompletedTab(),
+                RequestsTab(),
+              ])),
     );
   }
 

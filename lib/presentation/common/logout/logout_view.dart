@@ -20,7 +20,7 @@ class LogoutView extends StatelessWidget {
       appBar: customAppBar(title: AppStrings.appBarEditProfileTitle),
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: AppPadding.p8,
+          horizontal: AppPadding.p20,
         ),
         child: Column(
           children: [

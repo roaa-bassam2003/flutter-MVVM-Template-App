@@ -7,8 +7,8 @@ import 'package:flutter_advanced_course/presentation/widgets/custom_button.dart'
 import 'package:flutter_advanced_course/presentation/widgets/custom_drop_down_button.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_text_form_field.dart';
 
-class EditProfileView extends StatelessWidget {
-  const EditProfileView({super.key});
+class PEditProfileView extends StatelessWidget {
+  const PEditProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,15 +58,21 @@ class EditProfileView extends StatelessWidget {
               items: const [],
             ),
             const SizedBox(height: 10),
-
-            const CustomTextFormField(
-                hintText: AppStrings.currentAddress,
-                textInputType: TextInputType.text),
+            //hours
+            CustomDropdownButton(
+              textColor: ColorManager.grey,
+              backgroundColor: ColorManager.white,
+              borderColor: ColorManager.lightGrey,
+              hint: AppStrings.hours,
+              items: const [],
+            ),
+            // btn
             const SizedBox(height: 20),
             CustomButton(
-                text: AppStrings.edit,
-                onPressed: () {},
-                backgroundColor: ColorManager.primary),
+              text: AppStrings.edit,
+              onPressed: () {},
+              backgroundColor: ColorManager.primary,
+            ),
           ],
         ),
       ),
