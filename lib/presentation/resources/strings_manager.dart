@@ -108,6 +108,8 @@ class AppStrings {
         for the service in""";
   static const String reportServiceProviderLabel =
       "Report about this service provider";
+  static const String reportClientLabel =
+      "Report about this client";
 
   static const getElderlyCare = "Get Elderly Care";
   static const getNurse = "Get Nurse";

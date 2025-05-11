@@ -17,6 +17,7 @@ import 'package:flutter_advanced_course/presentation/resources/strings_manager.d
 import 'package:flutter_advanced_course/presentation/service_provider/day_specification/day_specification.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/edit_profile/edit_profile_view.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/main/main_view.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/report/report_client.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/tap_details/bookings_details.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/tap_details/cancelled_details.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/tap_details/completed_details.dart';
@@ -83,6 +84,7 @@ class ProviderRoutes {
   static const String requestDetails = "/RequestDetails";
   static const String cancelledDetails = "/CancelledDetails";
   static const String completedDetails = "/CompletedDetails";
+  static const String reportClient = "/ReportClient";
 }
 
 class SeekerRoutes {
@@ -240,6 +242,10 @@ class RouteGenerator {
         );
 
       // provider
+      case ProviderRoutes.reportClient:
+        return (MaterialPageRoute(
+          builder: (_) => const ReportClient(),
+        ));
       case ProviderRoutes.completedDetails:
         return (MaterialPageRoute(
           builder: (_) => const CompletedDetails(),

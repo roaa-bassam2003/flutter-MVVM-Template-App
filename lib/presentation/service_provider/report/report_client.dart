@@ -7,8 +7,8 @@ import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart
 import 'package:flutter_advanced_course/presentation/widgets/custom_button.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_text_form_field.dart';
 
-class ReportProviderView extends StatelessWidget {
-  const ReportProviderView({super.key});
+class ReportClient extends StatelessWidget {
+  const ReportClient({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ReportProviderView extends StatelessWidget {
             const SizedBox(height: AppSize.s16),
             // Title
             Text(
-              AppStrings.reportServiceProviderLabel,
+              AppStrings.reportClientLabel,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -36,11 +36,6 @@ class ReportProviderView extends StatelessWidget {
             const CustomStaticField(
               label: "@ss_2025",
             ),
-            // const SizedBox(height: AppSize.s16),
-            // Role (Static Container)
-            // const CustomStaticField(
-            //   label: "House Keeper",
-            // ),
             const SizedBox(height: AppSize.s16),
             const CustomTextFormField(
                 hintText: AppStrings.problem,
