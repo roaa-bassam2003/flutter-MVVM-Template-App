@@ -6,6 +6,7 @@ import 'package:flutter_advanced_course/data/response/responses.dart';
 abstract class RemoteDataSource {
   Future<AuthenticationResponse> login(LoginRequest loginRequest);
   Future<ForgotPasswordResponse> forgotPassword(String email);
+  Future<ChangePasswordResponse> changePassword(ChangePasswordRequest changePasswordRequest);
 }
 
 // --------------Common----------------
@@ -23,6 +24,13 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<ForgotPasswordResponse> forgotPassword(String email) async {
     return await _appServiceClient.forgotPassword(email);
+  }
+  
+  @override
+  Future<ChangePasswordResponse> changePassword(ChangePasswordRequest changePasswordRequest) async {
+    return await _appServiceClient.changePassword(
+      changePasswordRequest.passwordOne, changePasswordRequest.passwordTwo
+    );
   }
 }
 // ------------------Client----------------------

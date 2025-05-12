@@ -160,3 +160,154 @@ abstract class _LoginObject implements LoginObject {
   _$$LoginObjectImplCopyWith<_$LoginObjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$ChangePasswordObject {
+  String get passwordOne => throw _privateConstructorUsedError;
+  String get passwordTwo => throw _privateConstructorUsedError;
+
+  /// Create a copy of ChangePasswordObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ChangePasswordObjectCopyWith<ChangePasswordObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ChangePasswordObjectCopyWith<$Res> {
+  factory $ChangePasswordObjectCopyWith(ChangePasswordObject value,
+          $Res Function(ChangePasswordObject) then) =
+      _$ChangePasswordObjectCopyWithImpl<$Res, ChangePasswordObject>;
+  @useResult
+  $Res call({String passwordOne, String passwordTwo});
+}
+
+/// @nodoc
+class _$ChangePasswordObjectCopyWithImpl<$Res,
+        $Val extends ChangePasswordObject>
+    implements $ChangePasswordObjectCopyWith<$Res> {
+  _$ChangePasswordObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ChangePasswordObject
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? passwordOne = null,
+    Object? passwordTwo = null,
+  }) {
+    return _then(_value.copyWith(
+      passwordOne: null == passwordOne
+          ? _value.passwordOne
+          : passwordOne // ignore: cast_nullable_to_non_nullable
+              as String,
+      passwordTwo: null == passwordTwo
+          ? _value.passwordTwo
+          : passwordTwo // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ChangePasswordObjectImplCopyWith<$Res>
+    implements $ChangePasswordObjectCopyWith<$Res> {
+  factory _$$ChangePasswordObjectImplCopyWith(_$ChangePasswordObjectImpl value,
+          $Res Function(_$ChangePasswordObjectImpl) then) =
+      __$$ChangePasswordObjectImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String passwordOne, String passwordTwo});
+}
+
+/// @nodoc
+class __$$ChangePasswordObjectImplCopyWithImpl<$Res>
+    extends _$ChangePasswordObjectCopyWithImpl<$Res, _$ChangePasswordObjectImpl>
+    implements _$$ChangePasswordObjectImplCopyWith<$Res> {
+  __$$ChangePasswordObjectImplCopyWithImpl(_$ChangePasswordObjectImpl _value,
+      $Res Function(_$ChangePasswordObjectImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ChangePasswordObject
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? passwordOne = null,
+    Object? passwordTwo = null,
+  }) {
+    return _then(_$ChangePasswordObjectImpl(
+      null == passwordOne
+          ? _value.passwordOne
+          : passwordOne // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == passwordTwo
+          ? _value.passwordTwo
+          : passwordTwo // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangePasswordObjectImpl implements _ChangePasswordObject {
+  _$ChangePasswordObjectImpl(this.passwordOne, this.passwordTwo);
+
+  @override
+  final String passwordOne;
+  @override
+  final String passwordTwo;
+
+  @override
+  String toString() {
+    return 'ChangePasswordObject(passwordOne: $passwordOne, passwordTwo: $passwordTwo)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangePasswordObjectImpl &&
+            (identical(other.passwordOne, passwordOne) ||
+                other.passwordOne == passwordOne) &&
+            (identical(other.passwordTwo, passwordTwo) ||
+                other.passwordTwo == passwordTwo));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, passwordOne, passwordTwo);
+
+  /// Create a copy of ChangePasswordObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangePasswordObjectImplCopyWith<_$ChangePasswordObjectImpl>
+      get copyWith =>
+          __$$ChangePasswordObjectImplCopyWithImpl<_$ChangePasswordObjectImpl>(
+              this, _$identity);
+}
+
+abstract class _ChangePasswordObject implements ChangePasswordObject {
+  factory _ChangePasswordObject(
+          final String passwordOne, final String passwordTwo) =
+      _$ChangePasswordObjectImpl;
+
+  @override
+  String get passwordOne;
+  @override
+  String get passwordTwo;
+
+  /// Create a copy of ChangePasswordObject
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChangePasswordObjectImplCopyWith<_$ChangePasswordObjectImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

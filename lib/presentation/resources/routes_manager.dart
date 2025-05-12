@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/app/di.dart';
 import 'package:flutter_advanced_course/presentation/common/about_app/about_app_view.dart';
-import 'package:flutter_advanced_course/presentation/common/auth/change_password/change_password_view.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/change_password/view/change_password_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/forgot_password/view/forgot_password_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/login/view/login_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/pending_approval/pending_approval_view.dart';
@@ -220,6 +220,7 @@ class RouteGenerator {
           builder: (_) => const DeleteAccountView(),
         );
       case Routes.changePasswordRoute:
+        initChangePasswordModule();
         return MaterialPageRoute(
           settings: settings,
           builder: (_) => const ChangePasswordView(),

@@ -5,13 +5,18 @@ import 'package:flutter_advanced_course/presentation/resources/values_manager.da
 import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_button.dart';
 
-class DeleteAccountView extends StatelessWidget {
+class DeleteAccountView extends StatefulWidget {
   const DeleteAccountView({super.key});
 
   @override
+  State<DeleteAccountView> createState() => _DeleteAccountViewState();
+}
+
+class _DeleteAccountViewState extends State<DeleteAccountView> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorManager.white,
       appBar: customAppBar(title: AppStrings.appBarDeleteAccountTitle),
       body: Padding(
         padding: const EdgeInsets.symmetric(

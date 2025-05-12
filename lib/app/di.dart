@@ -6,8 +6,10 @@ import 'package:flutter_advanced_course/data/network/dio_factory.dart';
 import 'package:flutter_advanced_course/data/network/network_info.dart';
 import 'package:flutter_advanced_course/data/repository/repository_impl.dart';
 import 'package:flutter_advanced_course/domain/repository/repository.dart';
+import 'package:flutter_advanced_course/domain/usecase/change_password_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/forgot_password_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/login_use_case.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/change_password/view_model/change_password_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/forgot_password/view_model/forgot_password_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/login/view_model/login_view_model.dart';
 import 'package:get_it/get_it.dart';
@@ -58,12 +60,23 @@ initLoginModule() {
 }
 
 
-// forgot password module is a module where we put all DI related to login
+// forgot password module is a module where we put all DI related to forgot password
 initForgotPasswordModule() {
   if (!GetIt.I.isRegistered<ForgotPasswordUseCase>()) {
     // forgot password  use case
     instance.registerFactory<ForgotPasswordUseCase>(() => ForgotPasswordUseCase(instance()));
     // forgot password view model
     instance.registerFactory<ForgotPasswordViewModel>(() => ForgotPasswordViewModel(instance()));
+  }
+}
+
+
+// change password module is a module where we put all DI related to change password
+initChangePasswordModule() {
+  if (!GetIt.I.isRegistered<ChangePasswordUseCase>()) {
+    // change password use case
+    instance.registerFactory<ChangePasswordUseCase>(() => ChangePasswordUseCase(instance()));
+    // change password view model
+    instance.registerFactory<ChangePasswordViewModel>(() => ChangePasswordViewModel(instance()));
   }
 }

@@ -103,3 +103,19 @@ Map<String, dynamic> _$ForgotPasswordResponseToJson(
       'message': instance.message,
       'support': instance.support,
     };
+
+ChangePasswordResponse _$ChangePasswordResponseFromJson(
+        Map<String, dynamic> json) =>
+    ChangePasswordResponse(
+      json['support'] as String?,
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?;
+
+Map<String, dynamic> _$ChangePasswordResponseToJson(
+        ChangePasswordResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'support': instance.support,
+    };

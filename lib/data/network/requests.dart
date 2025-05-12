@@ -10,5 +10,16 @@ class LoginRequest {
     this.password,
   );
 }
+
+// change Password
+class ChangePasswordRequest {
+  String passwordOne;
+  String passwordTwo;
+  
+  ChangePasswordRequest(
+    this.passwordOne,
+    this.passwordTwo,
+  );
+}
 // ------------------Client----------------------
 // ------------------Service Provider------------

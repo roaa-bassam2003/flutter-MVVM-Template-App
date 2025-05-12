@@ -52,3 +52,10 @@ extension ForgotPasswordResponseMapper on ForgotPasswordResponse? {
     return this?.support?.orEmpty() ?? Constants.empty;
   }
 }
+
+// change password
+extension ChangePasswordResponseMapper on ChangePasswordResponse? {
+  String toDomain() {
+    return this?.support?.orEmpty() ?? Constants.empty;
+  }
+}

@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 const String prefskeyLang = "prefskeyLang";
 const String prefskeyOnBoardingScreenView = "prefskeyOnBoardingScreenView";
 const String prefskeyIsUserLoggedIn = "prefskeyIsUserLoggedIn";
+const String prefsKeyLastButtonPressTime = "prefsKeyLastButtonPressTime";
 
 class AppPrefs {
   final SharedPreferences _sharedPreferences;
@@ -45,5 +46,32 @@ class AppPrefs {
 
   Future<void> logout() async {
     _sharedPreferences.remove(prefskeyIsUserLoggedIn);
+  }
+
+// set the last button press time to now
+  Future<void> setLastButtonPressTime() async {
+    final now = DateTime.now().millisecondsSinceEpoch;
+    await _sharedPreferences.setInt(prefsKeyLastButtonPressTime, now);
+  }
+
+// get the last button press time
+  Future<DateTime?> getLastButtonPressTime() async {
+    final millis = _sharedPreferences.getInt(prefsKeyLastButtonPressTime);
+    if (millis != null) {
+      return DateTime.fromMillisecondsSinceEpoch(millis);
+    } else {
+      return null;
+    }
+  }
+
+// check if 48 hours passed
+  Future<bool> canPressButtonAgain() async {
+    final lastTime = await getLastButtonPressTime();
+    if (lastTime == null) return true;
+
+    final now = DateTime.now();
+    final diff = now.difference(lastTime);
+    // return diff >= const Duration(hours: 48);
+    return diff >= const Duration(seconds: 20);
   }
 }

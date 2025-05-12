@@ -21,4 +21,11 @@ abstract class AppServiceClient {
   Future<ForgotPasswordResponse> forgotPassword(
     @Field("email") String email,
   );
+
+  // http methods as interface for change password
+  @POST("/Account/change-password")
+  Future<ChangePasswordResponse> changePassword(
+    @Field("passwordOne") String passwordOne,
+    @Field("passwordTwo") String passwordTwo,
+  );
 }
