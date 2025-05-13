@@ -21,7 +21,12 @@ class CompletedDetails extends StatelessWidget {
         iconButton: IconButton(
           icon: const Icon(Icons.report_outlined),
           onPressed: () {
-            Navigator.pushNamed(context, ProviderRoutes.reportClient);
+            // Navigator.pushNamed(context, ProviderRoutes.reportClient);
+            Navigator.pushNamed(
+              context,
+              ProviderRoutes.reportClient,
+              arguments: "@ss_2025",
+            );
           },
         ),
       ),

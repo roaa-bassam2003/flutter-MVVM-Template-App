@@ -59,3 +59,10 @@ extension ChangePasswordResponseMapper on ChangePasswordResponse? {
     return this?.support?.orEmpty() ?? Constants.empty;
   }
 }
+
+// report
+extension ReportResponseMapper on ReportResponse? {
+  String toDomain() {
+    return this?.support?.orEmpty() ?? Constants.empty;
+  }
+}

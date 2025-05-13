@@ -21,5 +21,16 @@ class ChangePasswordRequest {
     this.passwordTwo,
   );
 }
+
+// report
+class ReportRequest {
+  String userName;
+  String reportMessage;
+  
+  ReportRequest(
+    this.userName,
+    this.reportMessage,
+  );
+}
 // ------------------Client----------------------
 // ------------------Service Provider------------

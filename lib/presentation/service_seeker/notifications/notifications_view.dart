@@ -51,12 +51,15 @@ class NotificationsView extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              const Center(
-                child: Text(
-                  AppStrings.appBarNotificationsTitle,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
+              const Padding(
+                padding: EdgeInsets.all(AppPadding.p8),
+                child: Center(
+                  child: Text(
+                    AppStrings.appBarNotificationsTitle,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),

@@ -24,8 +24,13 @@ class ProviderProfileView extends StatelessWidget {
         iconButton: IconButton(
           icon: const Icon(Icons.report_outlined),
           onPressed: () {
-            Navigator.pushNamed(context, Routes.reportProviderRoute,
-                arguments: provider);
+            // Navigator.pushNamed(context, Routes.reportProviderRoute,
+            //     arguments: provider);
+            Navigator.pushNamed(
+              context,
+              ProviderRoutes.reportClient,
+              arguments: "@sp_2025",
+            );
           },
         ),
       ),

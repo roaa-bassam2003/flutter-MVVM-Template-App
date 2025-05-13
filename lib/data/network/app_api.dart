@@ -28,4 +28,11 @@ abstract class AppServiceClient {
     @Field("passwordOne") String passwordOne,
     @Field("passwordTwo") String passwordTwo,
   );
+
+  // http methods as interface for report
+  @POST("/Account/report")
+  Future<ReportResponse> report(
+    @Field("username") String username,
+    @Field("report_message") String reportMessage,
+  );
 }

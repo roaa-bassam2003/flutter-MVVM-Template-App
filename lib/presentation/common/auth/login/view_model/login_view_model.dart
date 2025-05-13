@@ -23,6 +23,8 @@ class LoginViewModel extends BaseViewModel
   final LoginUseCase _loginUseCase;
   LoginViewModel(this._loginUseCase);
 
+  var userType = "";
+
   // inputs
   @override
   void dispose() {
@@ -78,6 +80,7 @@ class LoginViewModel extends BaseViewModel
     }, (data) {
       inputState.add(ContentState());
       // navigate to main screen
+      userType = data.user!.userName;
       isUserLoggedInSuccessfullyStreamController.add(true);
     });
   }
@@ -115,6 +118,11 @@ class LoginViewModel extends BaseViewModel
         _isUserNameValid(loginObject.userName);
   }
 
+  @override
+  getUserType() {
+    return userType;
+  }
+
   // New method to reset the state to ContentState
   // void _resetStateToContent() {
   //   inputState.add(ContentState());
@@ -134,6 +142,8 @@ abstract class LoginViewModelInputs {
   setPassword(String password);
   // لما المستخدم يضغط على زر "تسجيل الدخول"، الدالة دي هتتنفذ
   login();
+
+  getUserType();
 
   // 2 streams (Sink) : from view to view model (to send inputs to view model in order to validate them)
   // قناة بتبعت اسم المستخدم للـمودل  كل ما المستخدم يكتب حرف

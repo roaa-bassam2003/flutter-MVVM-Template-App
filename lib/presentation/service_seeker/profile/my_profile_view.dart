@@ -21,12 +21,15 @@ class MyProfileView extends StatelessWidget {
             ),
             child: Column(
               children: [
-                const Center(
-                  child: Text(
-                    AppStrings.appBarMyProfileTitle,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
+                const Padding(
+                  padding: EdgeInsets.all(AppPadding.p8),
+                  child: Center(
+                    child: Text(
+                      AppStrings.appBarMyProfileTitle,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),

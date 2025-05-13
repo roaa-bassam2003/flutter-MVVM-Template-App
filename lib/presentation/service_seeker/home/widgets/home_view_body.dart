@@ -89,11 +89,14 @@ class HomeViewBody extends StatelessWidget {
     return Center(
         child: Column(
       children: [
-        const Text(
-          AppStrings.appBarHomeTitle,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
+        const Padding(
+          padding: EdgeInsets.all(AppPadding.p8),
+          child: Text(
+            AppStrings.appBarHomeTitle,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
         const SizedBox(height: 5),

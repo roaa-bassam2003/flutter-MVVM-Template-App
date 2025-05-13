@@ -89,13 +89,6 @@ class _SettingPageState extends State<SettingPage> {
               icon: Iconsax.logout,
               onTap: () => Navigator.pushNamed(context, Routes.logoutRoute),
             ),
-            CustomListTile(
-              title: AppStrings.paymentCredit,
-              icon: Iconsax.card,
-              onTap: () {
-                Navigator.pushNamed(context, Routes.paymentRoute);
-              },
-            ),
           ],
         ),
       ),

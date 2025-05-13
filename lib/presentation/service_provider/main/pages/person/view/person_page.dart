@@ -73,6 +73,13 @@ class _PersonPageState extends State<PersonPage> {
                       onTap: () => Navigator.pushNamed(
                           context, ProviderRoutes.workFlowSpecification),
                     ),
+                    CustomListTile(
+                      title: AppStrings.paymentCredit,
+                      icon: Iconsax.card,
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.paymentRoute);
+                      },
+                    ),
                   ],
                 ),
               ],

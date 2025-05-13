@@ -8,9 +8,11 @@ import 'package:flutter_advanced_course/domain/model/models.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class Repository {
-  Future <Either<Failure, Authentication>> login(LoginRequest loginRequest);
-  Future <Either<Failure, String>> forgotPassword(String email);
-  Future <Either<Failure, String>> changePassword(ChangePasswordRequest changePasswordRequest);
+  Future<Either<Failure, Authentication>> login(LoginRequest loginRequest);
+  Future<Either<Failure, String>> forgotPassword(String email);
+  Future<Either<Failure, String>> changePassword(
+      ChangePasswordRequest changePasswordRequest);
+  Future<Either<Failure, String>> report(ReportRequest reportRequest);
 }
 // ------------------Client----------------------
 // ------------------Service Provider------------

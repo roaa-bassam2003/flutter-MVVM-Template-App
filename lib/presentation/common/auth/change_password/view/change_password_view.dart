@@ -105,7 +105,6 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                       onPressed: (snapshot.data ?? false)
                           ? () {
                               _viewModel.changePassword();
-                              // Navigator.of(context).pushReplacementNamed(ProviderRoutes.mainRoute);
                             }
                           : null,
                       text: AppStrings.change,

@@ -13,26 +13,28 @@ class WorkFlowSpecification extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: customAppBar(title: AppStrings.appBarWorkFlowSpecific),
-      body: Padding(
-        padding: const EdgeInsets.all(AppPadding.p20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(AppPadding.p20),
-              child: Center(
-                child: Image.asset(
-                  ImageAssets.splashLogo,
-                  width: AppSize.s200,
-                  height: AppSize.s200,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(AppPadding.p20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(AppPadding.p20),
+                child: Center(
+                  child: Image.asset(
+                    ImageAssets.splashLogo,
+                    width: AppSize.s200,
+                    height: AppSize.s200,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: AppSize.s5,
-            ),
-            const Text(AppStrings.terms),
-          ],
+              const SizedBox(
+                height: AppSize.s5,
+              ),
+              const Text(AppStrings.terms),
+            ],
+          ),
         ),
       ),
     );

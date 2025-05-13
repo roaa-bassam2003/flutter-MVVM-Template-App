@@ -108,8 +108,7 @@ class AppStrings {
         for the service in""";
   static const String reportServiceProviderLabel =
       "Report about this service provider";
-  static const String reportClientLabel =
-      "Report about this client";
+  static const String reportClientLabel = "Report about this client";
 
   static const getElderlyCare = "Get Elderly Care";
   static const getNurse = "Get Nurse";
@@ -196,11 +195,13 @@ class AppStrings {
   static const shareTheApp = "Share the app";
   static const paymentCredit = "Payment - Credit";
 
-  static const notApprove = "Not Approve";  
-  static const approve = "Approve";  
+  static const notApprove = "Not Approve";
+  static const approve = "Approve";
 
-  static const booking = "Bookings";  
-  static const cancellations = "Cancellations";  
-  static const reports = "Reports";  
-  static const bookedTimeSlotsOn = "Booked Time Slots On";  
+  static const booking = "Bookings";
+  static const cancellations = "Cancellations";
+  static const reports = "Reports";
+  static const report = "Report";
+  static const bookedTimeSlotsOn = "Booked Time Slots On";
+  static const reportMessageError = "Please enter report message";
 }

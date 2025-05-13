@@ -5,6 +5,7 @@ const String prefskeyLang = "prefskeyLang";
 const String prefskeyOnBoardingScreenView = "prefskeyOnBoardingScreenView";
 const String prefskeyIsUserLoggedIn = "prefskeyIsUserLoggedIn";
 const String prefsKeyLastButtonPressTime = "prefsKeyLastButtonPressTime";
+const String prefsKeyUserName = "prefsKeyUserName";
 
 class AppPrefs {
   final SharedPreferences _sharedPreferences;
@@ -48,6 +49,17 @@ class AppPrefs {
     _sharedPreferences.remove(prefskeyIsUserLoggedIn);
   }
 
+// user name
+// set
+  Future<void> setUserName(String userName) async {
+    await _sharedPreferences.setString(prefsKeyUserName, userName);
+  }
+
+// get
+  Future<String?> getUserName() async {
+    return _sharedPreferences.getString(prefsKeyUserName);
+  }
+
 // set the last button press time to now
   Future<void> setLastButtonPressTime() async {
     final now = DateTime.now().millisecondsSinceEpoch;
@@ -71,7 +83,7 @@ class AppPrefs {
 
     final now = DateTime.now();
     final diff = now.difference(lastTime);
-    // return diff >= const Duration(hours: 48);
-    return diff >= const Duration(seconds: 20);
+    return diff >= const Duration(hours: 48);
+    // return diff >= const Duration(seconds: 20);
   }
 }

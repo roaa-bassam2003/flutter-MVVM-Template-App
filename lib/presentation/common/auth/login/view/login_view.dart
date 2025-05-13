@@ -27,6 +27,7 @@ class _LoginViewState extends State<LoginView> {
   final _formKey = GlobalKey<FormState>();
   // bool _isPasswordVisible = false;
   final AppPrefs _appPrefs = instance<AppPrefs>();
+  var userName = "";
 
   _bind() {
     _viewModel.start(); // tell view model: start your job
@@ -38,13 +39,23 @@ class _LoginViewState extends State<LoginView> {
     _viewModel.isUserLoggedInSuccessfullyStreamController.stream
         .listen((isLoggedIn) {
       if (isLoggedIn) {
+        userName = _viewModel.getUserType();
         // navigate to main screen
         // save in app Prefs
         _appPrefs.setIsUserLoggedIn();
-        // Navigator.pushNamed(context, Routes.homeRoute);
-        SchedulerBinding.instance.addPostFrameCallback((_) {
-          Navigator.of(context).pushReplacementNamed(ProviderRoutes.mainRoute);
-        });
+        _appPrefs.setUserName(userName);
+
+        if (userName.contains("@sp")) {
+          // Navigator.pushNamed(context, Routes.homeRoute);
+          SchedulerBinding.instance.addPostFrameCallback((_) {
+            Navigator.of(context)
+                .pushReplacementNamed(ProviderRoutes.mainRoute);
+          });
+        } else if (userName.contains("@ss")) {
+          SchedulerBinding.instance.addPostFrameCallback((_) {
+            Navigator.of(context).pushReplacementNamed(Routes.homeRoute);
+          });
+        }
       }
     });
   }

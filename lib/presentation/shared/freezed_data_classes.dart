@@ -13,3 +13,9 @@ class LoginObject with _$LoginObject {
 class ChangePasswordObject with _$ChangePasswordObject {
   factory ChangePasswordObject(String passwordOne, String passwordTwo) = _ChangePasswordObject;
 }
+
+// report
+@freezed
+class ReportObject with _$ReportObject {
+  factory ReportObject(String userName, String reportMessage) = _ReportObject;
+}

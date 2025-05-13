@@ -311,3 +311,150 @@ abstract class _ChangePasswordObject implements ChangePasswordObject {
   _$$ChangePasswordObjectImplCopyWith<_$ChangePasswordObjectImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$ReportObject {
+  String get userName => throw _privateConstructorUsedError;
+  String get reportMessage => throw _privateConstructorUsedError;
+
+  /// Create a copy of ReportObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ReportObjectCopyWith<ReportObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ReportObjectCopyWith<$Res> {
+  factory $ReportObjectCopyWith(
+          ReportObject value, $Res Function(ReportObject) then) =
+      _$ReportObjectCopyWithImpl<$Res, ReportObject>;
+  @useResult
+  $Res call({String userName, String reportMessage});
+}
+
+/// @nodoc
+class _$ReportObjectCopyWithImpl<$Res, $Val extends ReportObject>
+    implements $ReportObjectCopyWith<$Res> {
+  _$ReportObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ReportObject
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userName = null,
+    Object? reportMessage = null,
+  }) {
+    return _then(_value.copyWith(
+      userName: null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+      reportMessage: null == reportMessage
+          ? _value.reportMessage
+          : reportMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ReportObjectImplCopyWith<$Res>
+    implements $ReportObjectCopyWith<$Res> {
+  factory _$$ReportObjectImplCopyWith(
+          _$ReportObjectImpl value, $Res Function(_$ReportObjectImpl) then) =
+      __$$ReportObjectImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String userName, String reportMessage});
+}
+
+/// @nodoc
+class __$$ReportObjectImplCopyWithImpl<$Res>
+    extends _$ReportObjectCopyWithImpl<$Res, _$ReportObjectImpl>
+    implements _$$ReportObjectImplCopyWith<$Res> {
+  __$$ReportObjectImplCopyWithImpl(
+      _$ReportObjectImpl _value, $Res Function(_$ReportObjectImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ReportObject
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userName = null,
+    Object? reportMessage = null,
+  }) {
+    return _then(_$ReportObjectImpl(
+      null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == reportMessage
+          ? _value.reportMessage
+          : reportMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ReportObjectImpl implements _ReportObject {
+  _$ReportObjectImpl(this.userName, this.reportMessage);
+
+  @override
+  final String userName;
+  @override
+  final String reportMessage;
+
+  @override
+  String toString() {
+    return 'ReportObject(userName: $userName, reportMessage: $reportMessage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ReportObjectImpl &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
+            (identical(other.reportMessage, reportMessage) ||
+                other.reportMessage == reportMessage));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userName, reportMessage);
+
+  /// Create a copy of ReportObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ReportObjectImplCopyWith<_$ReportObjectImpl> get copyWith =>
+      __$$ReportObjectImplCopyWithImpl<_$ReportObjectImpl>(this, _$identity);
+}
+
+abstract class _ReportObject implements ReportObject {
+  factory _ReportObject(final String userName, final String reportMessage) =
+      _$ReportObjectImpl;
+
+  @override
+  String get userName;
+  @override
+  String get reportMessage;
+
+  /// Create a copy of ReportObject
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ReportObjectImplCopyWith<_$ReportObjectImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
