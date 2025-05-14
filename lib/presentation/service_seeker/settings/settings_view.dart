@@ -66,12 +66,12 @@ class _SettingsViewState extends State<SettingsView> {
                 const SizedBox(
                   height: 15,
                 ),
-                CustomListTile(
-                  title: AppStrings.appBarEditProfileTitle,
-                  icon: Iconsax.edit,
-                  onTap: () =>
-                      Navigator.pushNamed(context, Routes.editProfileRoute),
-                ),
+                // CustomListTile(
+                //   title: AppStrings.appBarEditProfileTitle,
+                //   icon: Iconsax.edit,
+                //   onTap: () =>
+                //       Navigator.pushNamed(context, Routes.editProfileRoute),
+                // ),
                 CustomListTile(
                   title: AppStrings.appBarChangePasswordTitle,
                   icon: Iconsax.lock,

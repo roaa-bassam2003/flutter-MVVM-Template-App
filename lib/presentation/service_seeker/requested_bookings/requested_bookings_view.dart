@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
-import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
-import 'package:flutter_advanced_course/presentation/widgets/cancel_booking_confirmation_card.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
+import 'package:flutter_advanced_course/presentation/widgets/custom_card_updated.dart';
 
 class RequestedBookingsView extends StatefulWidget {
   const RequestedBookingsView({super.key});
@@ -17,30 +17,40 @@ class _RequestedBookingsViewState extends State<RequestedBookingsView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: customAppBar(title: AppStrings.appBarRequestedBookingsTitle),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppPadding.p8,
-        ),
-        child: SingleChildScrollView(
-          // physics: const NeverScrollableScrollPhysics(),
-          child: Column(
-            children: List.generate(
-              6,
-              (index) => Column(
-                children: [
-                  const CancelBookingConfirmationCard(),
-                  if (index < 5)
-                    const Divider(
-                      color: Colors.grey,
-                      thickness: 0.5,
-                      indent: 16,
-                      endIndent: 16,
-                    ),
-                ],
-              ),
+      body: SingleChildScrollView(
+        // physics: const NeverScrollableScrollPhysics(),
+        child: Column(
+          children: List.generate(
+            6,
+            (index) => Column(
+              children: [
+                _card(context),
+              ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _card(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, Routes.bookingsDetails);
+      },
+      child: Column(
+        children: [
+          CustomCardUpdated(
+            name: 'Karim Ahmed',
+            location: 'Egypt, North Sini, Arish, See Street',
+            timeSlots: const ['7 am - 8 am', '8 am - 9 am'],
+            day: "Saturday",
+            btnName1: AppStrings.cancelled,
+            onPressed1: () {},
+            // btnName2: AppStrings.completed,
+            // onPressed2: () {},
+          ),
+        ],
       ),
     );
   }

@@ -149,3 +149,45 @@ class ReportResponse extends BaseResponse {
   // to json
   Map<String, dynamic> toJson() => _$ReportResponseToJson(this);
 }
+
+
+// Governments-cities list items
+@JsonSerializable()
+class GovernmentCityResponse {
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "governorate")
+  String? governorate;
+  @JsonKey(name: "cities")
+  List<String>? cities;
+
+  GovernmentCityResponse(
+    this.id,
+     this.governorate,
+     this.cities,
+  );
+
+  factory GovernmentCityResponse.fromJson(Map<String, dynamic> json) =>
+      _$GovernmentCityResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$GovernmentCityResponseToJson(this);
+}
+
+// Governments-cities base
+@JsonSerializable()
+class GovernmentCityBaseResponse extends BaseResponse {
+  @JsonKey(name: "governments_cities")
+  List<GovernmentCityResponse>? governmentsCities;
+
+  GovernmentCityBaseResponse(
+    this.governmentsCities,
+  );
+
+  factory GovernmentCityBaseResponse.fromJson(Map<String, dynamic> json) =>
+      _$GovernmentCityBaseResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$GovernmentCityBaseResponseToJson(this);
+}
+
+
+// address

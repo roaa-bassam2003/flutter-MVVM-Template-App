@@ -11,8 +11,8 @@ class CustomCardUpdated extends StatelessWidget {
 
   final String btnName1;
   final VoidCallback onPressed1;
-  final String btnName2;
-  final VoidCallback onPressed2;
+  final String? btnName2;
+  final VoidCallback? onPressed2;
 
   const CustomCardUpdated({
     Key? key,
@@ -22,8 +22,8 @@ class CustomCardUpdated extends StatelessWidget {
     required this.timeSlots,
     required this.btnName1,
     required this.onPressed1,
-    required this.btnName2,
-    required this.onPressed2,
+    this.btnName2,
+    this.onPressed2,
   }) : super(key: key);
 
   @override

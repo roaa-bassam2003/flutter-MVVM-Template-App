@@ -13,6 +13,7 @@ abstract class Repository {
   Future<Either<Failure, String>> changePassword(
       ChangePasswordRequest changePasswordRequest);
   Future<Either<Failure, String>> report(ReportRequest reportRequest);
+  Future<Either<Failure, Governments>> governmentsCities();
 }
 // ------------------Client----------------------
 // ------------------Service Provider------------

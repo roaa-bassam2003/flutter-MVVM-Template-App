@@ -63,11 +63,17 @@ class MyProfileView extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
+                    // CustomListTile(
+                    //   title: 'My info',
+                    //   icon: Iconsax.user,
+                    //   onTap: () =>
+                    //       Navigator.pushNamed(context, Routes.myInfoRoute),
+                    // ),
                     CustomListTile(
-                      title: 'My info',
-                      icon: Iconsax.user,
+                      title: AppStrings.appBarEditProfileTitle,
+                      icon: Iconsax.edit,
                       onTap: () =>
-                          Navigator.pushNamed(context, Routes.myInfoRoute),
+                          Navigator.pushNamed(context, Routes.editProfileRoute),
                     ),
                     CustomListTile(
                       title: 'Requested Bookings',
@@ -76,7 +82,7 @@ class MyProfileView extends StatelessWidget {
                           context, Routes.requestedBookingsRoute),
                     ),
                     CustomListTile(
-                      title: 'Current Booking',
+                      title: 'Bookings',
                       icon: Iconsax.message_tick,
                       onTap: () => Navigator.pushNamed(
                           context, Routes.currentBookingsRoute),

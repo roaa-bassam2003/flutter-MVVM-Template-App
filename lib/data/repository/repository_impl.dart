@@ -120,7 +120,7 @@ class RepositoryImpl implements Repository {
       );
     }
   }
-  
+
   @override
   Future<Either<Failure, String>> report(ReportRequest reportRequest) async {
     if (await _networkInfo.isConnected) {
@@ -130,6 +130,40 @@ class RepositoryImpl implements Repository {
         final response = await _remoteDataSource.report(
           reportRequest,
         );
+
+        if (response.status == ApiInternalStatus.success) {
+          // success --> return data --> either right
+          return Right(response.toDomain());
+          // return right(
+          //   response.toDomain(),
+          // );
+        } else {
+          // failure --> business error --> either left
+          return left(Failure(
+            ApiInternalStatus.failure,
+            response.message ?? ResponseMessage.defaultError,
+          ));
+        }
+      } catch (error) {
+        return left(
+          ErrorHandler.handle(error).failure,
+        );
+      }
+    } else {
+      // return internet connection error --> either left
+      return left(
+        DataSource.noInternetConnection.getFailure(),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, Governments>> governmentsCities() async {
+    if (await _networkInfo.isConnected) {
+      // it is connected to internet, it is save to call API
+
+      try {
+        final response = await _remoteDataSource.governmentsCities();
 
         if (response.status == ApiInternalStatus.success) {
           // success --> return data --> either right

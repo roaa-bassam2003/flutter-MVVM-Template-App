@@ -133,3 +133,38 @@ Map<String, dynamic> _$ReportResponseToJson(ReportResponse instance) =>
       'message': instance.message,
       'support': instance.support,
     };
+
+GovernmentCityResponse _$GovernmentCityResponseFromJson(
+        Map<String, dynamic> json) =>
+    GovernmentCityResponse(
+      (json['id'] as num?)?.toInt(),
+      json['governorate'] as String?,
+      (json['cities'] as List<dynamic>?)?.map((e) => e as String).toList(),
+    );
+
+Map<String, dynamic> _$GovernmentCityResponseToJson(
+        GovernmentCityResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'governorate': instance.governorate,
+      'cities': instance.cities,
+    };
+
+GovernmentCityBaseResponse _$GovernmentCityBaseResponseFromJson(
+        Map<String, dynamic> json) =>
+    GovernmentCityBaseResponse(
+      (json['governments_cities'] as List<dynamic>?)
+          ?.map(
+              (e) => GovernmentCityResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?;
+
+Map<String, dynamic> _$GovernmentCityBaseResponseToJson(
+        GovernmentCityBaseResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'governments_cities': instance.governmentsCities,
+    };

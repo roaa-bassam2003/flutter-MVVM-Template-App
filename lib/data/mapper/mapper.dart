@@ -66,3 +66,24 @@ extension ReportResponseMapper on ReportResponse? {
     return this?.support?.orEmpty() ?? Constants.empty;
   }
 }
+
+// Governments-cities list items
+extension GovernmentCityResponseMapper on GovernmentCityResponse? {
+  GovernmentList toDomain() {
+    return GovernmentList(
+      this?.id.orZero() ?? Constants.zero,
+      this?.governorate.orEmpty() ?? Constants.empty,
+      this!.cities.orEmpty(),
+    );
+  }
+}
+
+// Governments-cities base
+extension GovernmentCityBaseResponseMapper on GovernmentCityBaseResponse? {
+  Governments toDomain() {
+    return Governments(
+      (this?.governmentsCities?.map((e) => e.toDomain()).toList() ?? [])
+          as GovernmentList?,
+    );
+  }
+}

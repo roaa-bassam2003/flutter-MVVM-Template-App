@@ -95,7 +95,7 @@ class AppStrings {
   static const appBarReportTitle = "Report";
   static const appBarMyInfoTitle = "My Info";
   static const appBarRequestedBookingsTitle = "Requested Bookings";
-  static const appBarCurrentBookingsTitle = "Current Bookings";
+  // static const appBarCurrentBookingsTitle = "Current Bookings";
   static const appBarCancelledBookingsTitle = "Cancelled Bookings";
   static const appBarCompletedBookingsTitle = "Completed Bookings";
   static const appBarLogoutTitle = "Logout";

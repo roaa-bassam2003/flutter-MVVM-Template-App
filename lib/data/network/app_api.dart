@@ -35,4 +35,9 @@ abstract class AppServiceClient {
     @Field("username") String username,
     @Field("report_message") String reportMessage,
   );
+
+
+  // http methods as interface for governments-cities
+  @GET("/Account/governments-cities")
+  Future<GovernmentCityBaseResponse> governmentsCities();
 }

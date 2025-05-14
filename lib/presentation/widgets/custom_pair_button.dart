@@ -5,15 +5,15 @@ import 'package:flutter_advanced_course/presentation/resources/values_manager.da
 class CustomPairButton extends StatelessWidget {
   final String btnName1;
   final VoidCallback onPressed1;
-  final String btnName2;
-  final VoidCallback onPressed2;
+  final String? btnName2;
+  final VoidCallback? onPressed2;
 
   const CustomPairButton({
     super.key,
     required this.btnName1,
     required this.onPressed1,
-    required this.btnName2,
-    required this.onPressed2,
+    this.btnName2,
+    this.onPressed2,
   });
 
   @override
@@ -44,29 +44,31 @@ class CustomPairButton extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: AppSize.s12),
-        Expanded(
-          child: ElevatedButton(
-            onPressed: onPressed2,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: ColorManager.primary,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppSize.s12),
+        if (btnName2 != null && onPressed2 != null) ...[
+          const SizedBox(width: AppSize.s12),
+          Expanded(
+            child: ElevatedButton(
+              onPressed: onPressed2,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: ColorManager.primary,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppSize.s12),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppPadding.p16,
+                  vertical: AppPadding.p16,
+                ),
               ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppPadding.p16,
-                vertical: AppPadding.p16,
+              child: Text(
+                btnName2!,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(color: ColorManager.white),
               ),
-            ),
-            child: Text(
-              btnName2,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium
-                  ?.copyWith(color: ColorManager.white),
             ),
           ),
-        ),
+        ]
       ],
     );
   }

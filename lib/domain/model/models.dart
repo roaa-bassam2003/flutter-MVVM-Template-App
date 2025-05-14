@@ -106,6 +106,30 @@ class Authentication {
     this.information,
   );
 }
+
+
+// governments-cities
+class GovernmentList {
+  int id;
+  String governorate;
+  List<String> cities;
+
+  GovernmentList(
+    this.id,
+    this.governorate,
+    this.cities,
+  );
+}
+
+class Governments {
+  GovernmentList? governmentsCities;
+
+  Governments(
+    this.governmentsCities,
+  );
+}
+
+
 // ------------------Service Provider------------
 
 class Service {

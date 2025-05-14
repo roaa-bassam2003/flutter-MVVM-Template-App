@@ -43,6 +43,7 @@ class _LoginViewState extends State<LoginView> {
         // navigate to main screen
         // save in app Prefs
         _appPrefs.setIsUserLoggedIn();
+        _appPrefs.logoutDeleteAccount();
         _appPrefs.setUserName(userName);
 
         if (userName.contains("@sp")) {

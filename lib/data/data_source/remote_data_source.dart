@@ -9,6 +9,7 @@ abstract class RemoteDataSource {
   Future<ChangePasswordResponse> changePassword(
       ChangePasswordRequest changePasswordRequest);
   Future<ReportResponse> report(ReportRequest reportRequest);
+  Future<GovernmentCityBaseResponse> governmentsCities();
 }
 
 // --------------Common----------------
@@ -39,6 +40,11 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<ReportResponse> report(ReportRequest reportRequest) async {
     return await _appServiceClient.report(
         reportRequest.userName, reportRequest.reportMessage);
+  }
+
+  @override
+  Future<GovernmentCityBaseResponse> governmentsCities() async {
+    return await _appServiceClient.governmentsCities();
   }
 }
 // ------------------Client----------------------

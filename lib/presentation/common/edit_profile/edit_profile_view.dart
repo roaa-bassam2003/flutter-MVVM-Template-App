@@ -13,7 +13,7 @@ class EditProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorManager.white,
       appBar: customAppBar(title: AppStrings.appBarEditProfileTitle),
       body: Padding(
         padding: const EdgeInsets.symmetric(

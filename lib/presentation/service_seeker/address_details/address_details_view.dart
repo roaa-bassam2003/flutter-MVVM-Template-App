@@ -55,7 +55,7 @@ class AddressDetailsView extends StatelessWidget {
         appBar: customAppBar(title: 'Address'),
         body: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: AppPadding.p8,
+            horizontal: AppPadding.p20,
           ),
           child: Column(
             children: [

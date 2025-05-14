@@ -27,7 +27,11 @@ import 'package:flutter_advanced_course/presentation/service_seeker/address_deta
 import 'package:flutter_advanced_course/presentation/service_seeker/book_hours_provider/book_hours_provider_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/cancelled_bookings/cancelled_bookings_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/completed_bookings/completed_bookings_view.dart';
-import 'package:flutter_advanced_course/presentation/service_seeker/current_bookings/current_bookings_view.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/bookings/bookings_view.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/details_of_bookings/bookings_details.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/details_of_bookings/cancelled_details.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/details_of_bookings/completed_details.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/details_of_bookings/request_details.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/home/home_view.dart';
 import 'package:flutter_advanced_course/presentation/common/splash/splash_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/my_info/my_info_view.dart';
@@ -65,6 +69,10 @@ class Routes {
   static const String currentBookingsRoute = "/currentBookings";
   static const String cancelledBookingsRoute = "/cancelledBookings";
   static const String completedBookingsRoute = "/completedBookings";
+  static const String bookingsDetails = "/CBookingsDetails";
+  static const String requestDetails = "/CRequestDetails";
+  static const String cancelledDetails = "/CCancelledDetails";
+  static const String completedDetails = "/CCompletedDetails";
 
   // Account management routes
   static const String logoutRoute = "/logout";
@@ -182,6 +190,26 @@ class RouteGenerator {
           builder: (_) => const PaymentView(),
         );
       // Profile routes
+      case Routes.bookingsDetails:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const CBookingsDetails(),
+        );
+      case Routes.cancelledDetails:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const CCancelledDetails(),
+        );
+      case Routes.completedDetails:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const CCompletedDetails(),
+        );
+      case Routes.requestDetails:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const CRequestDetails(),
+        );
       case Routes.myInfoRoute:
         return MaterialPageRoute(
           settings: settings,

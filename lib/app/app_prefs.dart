@@ -60,6 +60,10 @@ class AppPrefs {
     return _sharedPreferences.getString(prefsKeyUserName);
   }
 
+  // Future<void> logoutUserName() async {
+  //   _sharedPreferences.remove(prefsKeyUserName);
+  // }
+
 // set the last button press time to now
   Future<void> setLastButtonPressTime() async {
     final now = DateTime.now().millisecondsSinceEpoch;
@@ -85,5 +89,9 @@ class AppPrefs {
     final diff = now.difference(lastTime);
     return diff >= const Duration(hours: 48);
     // return diff >= const Duration(seconds: 20);
+  }
+
+  Future<void> logoutDeleteAccount() async {
+    _sharedPreferences.remove(prefsKeyLastButtonPressTime);
   }
 }
