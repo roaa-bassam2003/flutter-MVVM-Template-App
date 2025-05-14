@@ -13,8 +13,12 @@ class ServiceProvidersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String? serviceName =
-        ModalRoute.of(context)!.settings.arguments as String?;
+    final Map<String, String?> arguments =
+        ModalRoute.of(context)!.settings.arguments as Map<String, String?>;
+
+// Now, you can access the serviceName from the map
+    final String? serviceName = arguments['serviceName'];
+
     if (serviceName == null) {
       return const Scaffold(
         body: Center(

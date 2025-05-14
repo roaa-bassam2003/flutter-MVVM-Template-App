@@ -36,7 +36,27 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
   @override
   void initState() {
     super.initState();
-    selectedValue = widget.selectedValue;
+    updateSelectedValue();
+  }
+
+  @override
+  void didUpdateWidget(CustomDropdownButton oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Update selected value when widget properties change
+    if (oldWidget.selectedValue != widget.selectedValue ||
+        oldWidget.items != widget.items) {
+      updateSelectedValue();
+    }
+  }
+
+  void updateSelectedValue() {
+    // Check if the selected value is in the items list
+    if (widget.selectedValue != null &&
+        widget.items.contains(widget.selectedValue)) {
+      selectedValue = widget.selectedValue;
+    } else {
+      selectedValue = null;
+    }
   }
 
   @override

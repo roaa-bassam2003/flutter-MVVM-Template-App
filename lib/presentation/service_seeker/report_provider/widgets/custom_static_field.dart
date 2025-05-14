@@ -24,9 +24,9 @@ class CustomStaticField extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 14,
-          color: Colors.black,
+          color: ColorManager.darkGrey,
         ),
       ),
     );
