@@ -22,6 +22,7 @@ class ColorManager {
   static Color lightBlue = const Color(0x66042030);
   static Color cardColor = const Color(0xff8856E1);
   static Color black = const Color(0xff000000);
+  static Color green = const Color(0xff008000);
   // roaa app
   // static Color primary = const Color(0xffA259FF);
   // static Color darkBlue = const Color(0xff042030);

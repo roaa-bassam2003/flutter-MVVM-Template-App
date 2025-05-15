@@ -36,7 +36,7 @@ class ProviderProfileView extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: AppPadding.p8,
+          horizontal: AppPadding.p16,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

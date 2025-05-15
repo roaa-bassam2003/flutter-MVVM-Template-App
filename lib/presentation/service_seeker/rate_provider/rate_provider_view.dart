@@ -7,77 +7,207 @@ import 'package:flutter_advanced_course/presentation/widgets/custom_button.dart'
 
 import '../../resources/color_manager.dart';
 
-class RateProviderView extends StatelessWidget {
+class RateProviderView extends StatefulWidget {
   const RateProviderView({super.key});
+
+  @override
+  State<RateProviderView> createState() => _RateProviderViewState();
+}
+
+class _RateProviderViewState extends State<RateProviderView> {
+  int _selectedRating = 0;
+  bool _isSubmitting = false;
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final provider = ModalRoute.of(context)!.settings.arguments as Provider;
+    // Initialize with provider's current rating if available
+    if (_selectedRating == 0 && provider.rating > 0) {
+      _selectedRating = provider.rating.floor();
+    }
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorManager.white,
       appBar: customAppBar(title: AppStrings.rate),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppPadding.p8,
-        ),
-        child: Column(
-          children: [
-            const SizedBox(height: AppSize.s16),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppPadding.p16,
+          ),
+          child: Column(
+            children: [
+              const SizedBox(height: AppSize.s24),
 
-            // الصورة
-            Center(
-              child: CircleAvatar(
-                radius: 70,
-                backgroundImage: AssetImage(provider.imagePath),
-                backgroundColor: Colors.grey.shade200,
+              // Provider image
+              Center(
+                child: CircleAvatar(
+                  radius: 70,
+                  backgroundImage: AssetImage(provider.imagePath),
+                  backgroundColor: ColorManager.grey,
+                ),
               ),
-            ),
-            const SizedBox(height: AppSize.s16),
+              const SizedBox(height: AppSize.s16),
 
-            Text(
-              provider.name,
-              style: const TextStyle(
-                fontSize: AppSize.s20,
-                fontWeight: FontWeight.bold,
+              // Provider name
+              Text(
+                provider.name,
+                style: const TextStyle(
+                  fontSize: AppSize.s20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(height: AppSize.s4),
-            Text(
-              provider.providerId,
-              style: const TextStyle(
-                color: Colors.grey,
-                fontSize: AppSize.s14,
-              ),
-            ),
-            const SizedBox(height: AppSize.s16),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [Text(AppStrings.rateYourExperience)],
-            ),
-            const SizedBox(height: AppSize.s16),
+              const SizedBox(height: AppSize.s4),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(4, (index) {
-                return Icon(
-                  index < provider.rating.floor()
-                      ? Icons.star
-                      : Icons.star_border,
-                  color: Colors.amber,
-                  size: 30,
-                );
-              }),
-            ),
-            const SizedBox(height: AppSize.s16),
-            CustomButton(
-              text: AppStrings.submit,
-              onPressed: () {},
-              backgroundColor: ColorManager.primary,
-            )
-          ],
+              // Provider ID
+              Text(
+                provider.providerId,
+                style: TextStyle(
+                  color: ColorManager.grey,
+                  fontSize: AppSize.s14,
+                ),
+              ),
+              const SizedBox(height: AppSize.s24),
+
+              // Rating title
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    AppStrings.rateYourExperience,
+                    style: TextStyle(
+                      fontSize: AppSize.s16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: AppSize.s16),
+
+              // Interactive star rating
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(5, (index) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _selectedRating = index + 1;
+                      });
+                    },
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: AppPadding.p4),
+                      child: Icon(
+                        index < _selectedRating
+                            ? Icons.star
+                            : Icons.star_border,
+                        color: ColorManager.myAmber,
+                        size: 36,
+                      ),
+                    ),
+                  );
+                }),
+              ),
+
+              // Rating text indicator
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: AppPadding.p8),
+                child: Text(
+                  _getRatingText(),
+                  style: TextStyle(
+                    color: ColorManager.primary,
+                    fontSize: AppSize.s14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              const SizedBox(height: AppSize.s16),
+
+              // Submit button
+              _isSubmitting
+                  ? const CircularProgressIndicator()
+                  : CustomButton(
+                      text: AppStrings.submit,
+                      onPressed: _selectedRating > 0 ? _submitRating : null,
+                      backgroundColor: _selectedRating > 0
+                          ? ColorManager.primary
+                          : ColorManager.grey,
+                    ),
+              const SizedBox(height: AppSize.s24),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  String _getRatingText() {
+    switch (_selectedRating) {
+      case 1:
+        return AppStrings.poor;
+      case 2:
+        return AppStrings.fair;
+      case 3:
+        return AppStrings.good;
+      case 4:
+        return AppStrings.veryGood;
+      case 5:
+        return AppStrings.excellent;
+      default:
+        return '';
+    }
+  }
+
+  Future<void> _submitRating() async {
+    if (_selectedRating == 0) return;
+
+    setState(() {
+      _isSubmitting = true;
+    });
+
+    try {
+      // Here you would typically call a service to submit the rating
+      // Example: await providerService.rateProvider(
+      //   providerId: provider.providerId,
+      //   rating: _selectedRating,
+      //   comment: _commentController.text,
+      // );
+
+      // Simulate API call with delay
+      await Future.delayed(const Duration(seconds: 1));
+
+      // Show success message
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text(AppStrings.ratingSubmittedSuccessfully),
+            backgroundColor: ColorManager.green,
+          ),
+        );
+
+        // Navigate back after successful submission
+        Navigator.of(context).pop();
+      }
+    } catch (e) {
+      // Show error message
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('${AppStrings.errorSubmittingRating}: $e'),
+            backgroundColor: ColorManager.error,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isSubmitting = false;
+        });
+      }
+    }
   }
 }

@@ -204,4 +204,12 @@ class AppStrings {
   static const report = "Report";
   static const bookedTimeSlotsOn = "Booked Time Slots On";
   static const reportMessageError = "Please enter report message";
+  static const errorSubmittingRating = "error submiting rating";
+  static const ratingSubmittedSuccessfully = "rating submitted successfully";
+  static const poor = "poor";
+  static const fair = "fair";
+  static const good = "good";
+  static const veryGood = "veryGood";
+  static const excellent = "excellent";
+  static const shareYourExperience = "share your experience";
 }

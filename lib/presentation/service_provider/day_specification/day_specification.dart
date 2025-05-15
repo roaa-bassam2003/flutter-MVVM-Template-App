@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_advanced_course/app/app_prefs.dart';
+import 'package:flutter_advanced_course/app/di.dart';
+import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 import '../../resources/color_manager.dart';
 
 class DaySpecification extends StatefulWidget {
@@ -13,40 +15,39 @@ class DaySpecification extends StatefulWidget {
 
 class _DaySpecificationState extends State<DaySpecification> {
   late List<bool> _selectedHours;
-
-  // قائمة ثابتة من 1 إلى 24
-  final List<String> _hours = [
-    '12 am - 1 am',
-    '1 am - 2 am',
-    '2 am - 3 am',
-    '3 am - 4 am',
-    '4 am - 5 am',
-    '5 am - 6 am',
-    '6 am - 7 am',
-    '7 am - 8 am',
-    '8 am - 9 am',
-    '9 am - 10 am',
-    '10 am - 11 am',
-    '11 am - 12 pm',
-    '12 pm - 1 pm',
-    '1 pm - 2 pm',
-    '2 pm - 3 pm',
-    '3 pm - 4 pm',
-    '4 pm - 5 pm',
-    '5 pm - 6 pm',
-    '6 pm - 7 pm',
-    '7 pm - 8 pm',
-    '8 pm - 9 pm',
-    '9 pm - 10 pm',
-    '10 pm - 11 pm',
-    '11 pm - 12 am',
-  ];
+  final List<String> _hours = AppPrefs.hoursList;
+  final AppPrefs _appPrefs = instance<AppPrefs>();
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    // تهيئة القائمة بـ 24 عنصر (كلهم false في البداية)
-    _selectedHours = List.generate(24, (index) => false);
+    // Initialize with all false, then load saved selections
+    _selectedHours = List.generate(_hours.length, (index) => false);
+    _loadSavedHours();
+  }
+
+  Future<void> _loadSavedHours() async {
+    // Get the saved selected hours for this day
+    Map<String, dynamic> dayHoursMap = await _appPrefs.getDayHoursMap();
+
+    if (dayHoursMap.containsKey(widget.selectedDay)) {
+      List<dynamic> hoursDynamic =
+          dayHoursMap[widget.selectedDay] as List<dynamic>;
+      List<String> savedHours =
+          hoursDynamic.map((hour) => hour.toString()).toList();
+
+      // Update the selected hours list
+      for (int i = 0; i < _hours.length; i++) {
+        if (savedHours.contains(_hours[i])) {
+          _selectedHours[i] = true;
+        }
+      }
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -60,57 +61,74 @@ class _DaySpecificationState extends State<DaySpecification> {
         ),
         automaticallyImplyLeading: true,
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'Choose your available hours',
-              style: Theme.of(context).textTheme.displayLarge,
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _hours.length, // 24 ساعة
-              itemBuilder: (context, index) => CheckboxListTile(
-                title: Text(
-                  _hours[index], // الساعة من القائمة الثابتة
-                  style: Theme.of(context).textTheme.headlineLarge,
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    'Choose your available hours',
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
                 ),
-                value: _selectedHours[index],
-                onChanged: (bool? value) {
-                  setState(() {
-                    _selectedHours[index] = value ?? false;
-                  });
-                },
-                activeColor: ColorManager.blue,
-                checkColor: ColorManager.white,
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: ColorManager.primary,
-                minimumSize: const Size(double.infinity, 48),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: _hours.length,
+                    itemBuilder: (context, index) => CheckboxListTile(
+                      title: Text(
+                        _hours[index],
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      value: _selectedHours[index],
+                      onChanged: (bool? value) {
+                        setState(() {
+                          _selectedHours[index] = value ?? false;
+                        });
+                      },
+                      activeColor: ColorManager.blue,
+                      checkColor: ColorManager.white,
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 8.0),
+                    ),
+                  ),
                 ),
-              ),
-              child: Text(
-                'Save',
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      // Save the selected hours for this day
+                      await _appPrefs.saveDayHours(
+                          widget.selectedDay, _selectedHours, _hours);
+
+                      if (mounted) {
+                        // Show success message
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: const Text('Hours saved successfully!'),
+                            duration: const Duration(seconds: 2),
+                            backgroundColor: ColorManager.green,
+                          ),
+                        );
+                        Navigator.pop(context,
+                            true); // Return true to indicate changes were made
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorManager.primary,
+                      minimumSize: const Size(double.infinity, AppSize.s48),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(AppSize.s12),
+                      ),
+                    ),
+                    child: Text(
+                      'Save',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 }
