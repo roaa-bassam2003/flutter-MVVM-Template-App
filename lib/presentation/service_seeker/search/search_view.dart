@@ -12,7 +12,7 @@ class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorManager.white,
       appBar: customAppBar(
         title: AppStrings.appBarSearchTitle,
       ),
@@ -22,13 +22,13 @@ class SearchView extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const SizedBox(height: 70),
+            const SizedBox(height: AppSize.s70),
             const CustomTextFormField(
               hintText: AppStrings.appBarSearchTitle,
               textInputType: TextInputType.text,
               suffixIcon: Icon(Icons.search),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: AppSize.s20),
             CustomButton(
               text: AppStrings.appBarSearchTitle,
               onPressed: () {},

@@ -1,5 +1,6 @@
 // lib/presentation/pages/my_profile_page.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
@@ -12,7 +13,7 @@ class MyProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorManager.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -27,37 +28,37 @@ class MyProfileView extends StatelessWidget {
                     child: Text(
                       AppStrings.appBarMyProfileTitle,
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: AppSize.s16,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: AppSize.s20),
                 // Profile Picture
                 const CircleAvatar(
-                  radius: 60,
+                  radius: AppSize.s60,
                   backgroundImage: AssetImage('assets/images/person.jpg'),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: AppSize.s10),
                 // User Name
-                const Text(
+                Text(
                   'Jack Wilson',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: AppSize.s20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+                    color: ColorManager.black,
                   ),
                 ),
                 // User Handle
                 Text(
                   '@se_2025',
                   style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[600],
+                    fontSize: AppSize.s14,
+                    color: ColorManager.grey,
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: AppSize.s10),
                 // List of Profile Options
                 ListView(
                   shrinkWrap: true,

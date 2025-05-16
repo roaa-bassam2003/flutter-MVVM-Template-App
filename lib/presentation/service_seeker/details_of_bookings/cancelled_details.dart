@@ -18,16 +18,29 @@ class CCancelledDetails extends StatelessWidget {
       appBar: customAppBar(
         title: AppStrings.preview,
         isIcon: true,
-        iconButton: IconButton(
-          icon: const Icon(Icons.report_outlined),
-          onPressed: () {
-            // Navigator.pushNamed(context, ProviderRoutes.reportClient);
-            Navigator.pushNamed(
-              context,
-              ProviderRoutes.reportClient,
-              arguments: "@sp_2025",
-            );
-          },
+        iconButton: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.report_outlined),
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  ProviderRoutes.reportClient,
+                  arguments: "@sp_2025",
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.rate_review_rounded),
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  Routes.rateProviderRoute,
+                );
+              },
+            ),
+          ],
         ),
       ),
       body: Padding(
@@ -75,7 +88,7 @@ class CCancelledDetails extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: AppSize.s10),
                 ],
               ),
             ),

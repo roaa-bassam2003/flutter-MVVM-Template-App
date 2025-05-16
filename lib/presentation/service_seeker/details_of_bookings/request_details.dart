@@ -63,7 +63,7 @@ class CRequestDetails extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: AppSize.s10),
                 ],
               ),
             ),
@@ -133,13 +133,9 @@ class CRequestDetails extends StatelessWidget {
             const SizedBox(height: AppSize.s16),
 
             CustomPairButton(
-              btnName1: AppStrings.approve,
+              btnName1: AppStrings.cancelled,
               onPressed1: () {
                 // Handle cancel
-              },
-              btnName2: AppStrings.notApprove,
-              onPressed2: () {
-                // Handle done
               },
             ),
           ],

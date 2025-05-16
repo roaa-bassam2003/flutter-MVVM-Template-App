@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/data/dummy_data/dummy_data.dart';
 import 'package:flutter_advanced_course/domain/model/models.dart';
 import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
-import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
@@ -26,7 +25,7 @@ class _BookHoursProviderViewState extends State<BookHoursProviderView> {
     final provider = ModalRoute.of(context)!.settings.arguments as Provider;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorManager.white,
       appBar: customAppBar(title: AppStrings.bookHours),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -42,7 +41,9 @@ class _BookHoursProviderViewState extends State<BookHoursProviderView> {
                 bool isAvailable = provider.availableDays.contains(day);
                 bool isSelected = selectedDay == day;
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 3),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppPadding.p3,
+                  ),
                   child: GestureDetector(
                     onTap: isAvailable
                         ? () {
@@ -58,23 +59,23 @@ class _BookHoursProviderViewState extends State<BookHoursProviderView> {
                         shape: BoxShape.circle,
                         border: Border.all(
                           color: ColorManager.primary,
-                          width: 2,
+                          width: AppSize.s2,
                         ),
                       ),
                       child: CircleAvatar(
-                        radius: 12,
+                        radius: AppSize.s12,
                         backgroundColor: isSelected
                             ? ColorManager.lightGrey
                             : (isAvailable
-                                ? Colors.white
+                                ? ColorManager.white
                                 : ColorManager.primary),
                         child: Text(
                           day[0],
                           style: TextStyle(
                             color: isAvailable
                                 ? ColorManager.primary
-                                : Colors.white,
-                            fontSize: 12,
+                                : ColorManager.white,
+                            fontSize: AppSize.s12,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -84,7 +85,7 @@ class _BookHoursProviderViewState extends State<BookHoursProviderView> {
                 );
               }).toList(),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: AppSize.s20),
 
             // Available Hours Section
             if (selectedDay != null &&
@@ -95,22 +96,22 @@ class _BookHoursProviderViewState extends State<BookHoursProviderView> {
                   Text(
                     AppStrings.availableHours,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: AppSize.s16,
                       fontWeight: FontWeight.bold,
                       color: ColorManager.primary,
                     ),
                   ),
                   Text(
                     ' $selectedDay',
-                    style: const TextStyle(
-                      fontSize: 16,
+                    style: TextStyle(
+                      fontSize: AppSize.s16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.grey,
+                      color: ColorManager.grey,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: AppSize.s10),
               // Display available hours for the selected day
               ...provider.availableHours[selectedDay]!.map((hour) {
                 bool isHourSelected = selectedHours.contains(hour);
@@ -129,16 +130,16 @@ class _BookHoursProviderViewState extends State<BookHoursProviderView> {
                 );
               })
             ],
-            const SizedBox(height: 10),
+            const SizedBox(height: AppSize.s10),
             CustomButton(
               text: AppStrings.submit,
               onPressed: () {
                 if (selectedDay == null) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Please select a day first!'),
-                      duration: Duration(seconds: 2),
-                      backgroundColor: Colors.red,
+                    SnackBar(
+                      content: const Text(AppStrings.bookHoursSelectADayFirst),
+                      duration: const Duration(seconds: 2),
+                      backgroundColor: ColorManager.error,
                     ),
                   );
                   return;
@@ -146,24 +147,22 @@ class _BookHoursProviderViewState extends State<BookHoursProviderView> {
 
                 if (selectedHours.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(AppStrings.selectTimeSlot),
-                      duration: Duration(seconds: 2),
-                      backgroundColor: Colors.red,
+                    SnackBar(
+                      content: const Text(AppStrings.selectTimeSlot),
+                      duration: const Duration(seconds: 2),
+                      backgroundColor: ColorManager.error,
                     ),
                   );
                   return;
                 }
 
                 // If validation passes
-                print('Selected Day: $selectedDay');
-                print('Selected Hours: $selectedHours');
-                Navigator.pushNamed(context, Routes.paymentRoute);
+                // Navigator.pushNamed(context, Routes.paymentRoute);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text(AppStrings.bookingSuccess),
-                    duration: Duration(seconds: 5),
-                    backgroundColor: Colors.green,
+                  SnackBar(
+                    content: const Text(AppStrings.bookingSuccess),
+                    duration: const Duration(seconds: 5),
+                    backgroundColor: ColorManager.green,
                   ),
                 );
               },

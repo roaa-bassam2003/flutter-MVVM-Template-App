@@ -4,7 +4,7 @@ import 'package:flutter_advanced_course/presentation/resources/values_manager.da
 AppBar customAppBar({
   String title = '',
   bool isIcon = false,
-  IconButton? iconButton,
+  Widget? iconButton,
 }) {
   return AppBar(
     title: Text(

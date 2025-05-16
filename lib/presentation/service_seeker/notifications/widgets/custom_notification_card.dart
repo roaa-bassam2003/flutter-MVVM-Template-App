@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/domain/model/models.dart';
 import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 import 'package:iconsax/iconsax.dart';
 
 class CustomNotificationCard extends StatelessWidget {
@@ -12,40 +13,36 @@ class CustomNotificationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // print("Tapped on notification: ${notification.title}");
-      },
+      onTap: () {},
       child: Card(
         elevation: 1,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12), // زوايا دائرية
-          // side: BorderSide(
-          //   // color: ColorManager.primary,
-          //   width: 2,
-          // ),
+          borderRadius: BorderRadius.circular(AppSize.s12),
         ),
         shadowColor: ColorManager.white,
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(AppPadding.p12),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Icon based on notification type
               Container(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(AppPadding.p8),
                 decoration: BoxDecoration(
                   color: notification.isApproved
-                      ? Colors.green[100]
-                      : Colors.yellow[100],
+                      ? ColorManager.lightPrimary
+                      : ColorManager.white,
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   notification.isApproved ? Icons.check : Iconsax.danger,
-                  color: notification.isApproved ? Colors.green : Colors.red,
-                  size: 20.0,
+                  color: notification.isApproved
+                      ? ColorManager.green
+                      : ColorManager.error,
+                  size: AppSize.s20,
                 ),
               ),
-              const SizedBox(width: 16.0), // Spacing between icon and text
+              const SizedBox(width: AppSize.s16),
               // Text content
               Expanded(
                 child: Column(
@@ -54,17 +51,24 @@ class CustomNotificationCard extends StatelessWidget {
                     Text(
                       notification.title,
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 12.0),
+                        fontWeight: FontWeight.bold,
+                        fontSize: AppSize.s12,
+                      ),
                     ),
                     Text(
                       notification.message,
-                      style: TextStyle(fontSize: 14.0, color: Colors.grey[600]),
+                      style: TextStyle(
+                        fontSize: AppSize.s14,
+                        color: ColorManager.grey,
+                      ),
                     ),
                     if (notification.timer != null)
                       Text(
                         "Time left: ${notification.timer}",
-                        style: const TextStyle(
-                            color: Colors.red, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          color: ColorManager.error,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                   ],
                 ),

@@ -12,7 +12,7 @@ class PaymentView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorManager.white,
       appBar: customAppBar(title: AppStrings.payment),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -20,20 +20,20 @@ class PaymentView extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const SizedBox(height: 10),
+            const SizedBox(height: AppSize.s10),
             // const Text(
             //   AppStrings.paymentMethod,
             //   style: TextStyle(
             //     fontSize: 16,
             //   ),
             // ),
-            const SizedBox(height: 10),
+            const SizedBox(height: AppSize.s10),
             const CustomTextFormField(
               suffixIcon: Icon(Icons.payment),
               hintText: 'Card Number',
               textInputType: TextInputType.number,
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: AppSize.s10),
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -43,7 +43,7 @@ class PaymentView extends StatelessWidget {
                     textInputType: TextInputType.datetime,
                   ),
                 ),
-                SizedBox(width: 5),
+                SizedBox(width: AppSize.s5),
                 Expanded(
                   child: CustomTextFormField(
                     hintText: 'CVV',
@@ -52,7 +52,7 @@ class PaymentView extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: AppSize.s16),
             CustomButton(
               text: AppStrings.pay,
               onPressed: () {},

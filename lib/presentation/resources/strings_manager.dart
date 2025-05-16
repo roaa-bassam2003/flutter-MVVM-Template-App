@@ -26,7 +26,7 @@ class AppStrings {
   static const homeSubTitle2 = """Professional Nursing 
   Care You Can Trust""";
 
-  static const homeTitle3 = "Elderly Care";
+  static const homeTitle3 = "HouseKeeper";
   static const homeSubTitle3 = """Dedicated Care for a Comfortable 
                 and Dignified Life""";
 
@@ -212,4 +212,7 @@ class AppStrings {
   static const veryGood = "veryGood";
   static const excellent = "excellent";
   static const shareYourExperience = "share your experience";
+  static const viewDetails = "View Details";
+  static const bookHoursSelectADayFirst = "Please select a day first!";
+
 }

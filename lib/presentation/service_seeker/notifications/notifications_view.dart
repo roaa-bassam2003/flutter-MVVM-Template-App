@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/domain/model/models.dart';
+import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 
@@ -43,7 +45,7 @@ class NotificationsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorManager.white,
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
           horizontal: AppPadding.p16,
@@ -57,7 +59,7 @@ class NotificationsView extends StatelessWidget {
                   child: Text(
                     AppStrings.appBarNotificationsTitle,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: AppSize.s16,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -65,14 +67,23 @@ class NotificationsView extends StatelessWidget {
               ),
               // List of Notifications
               ListView.builder(
-                shrinkWrap:
-                    true, // Allows the ListView to take only the space it needs
-                physics:
-                    const NeverScrollableScrollPhysics(), // Disables inner scrolling
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: notifications.length,
                 itemBuilder: (context, index) {
-                  return CustomNotificationCard(
-                      notification: notifications[index]);
+                  return InkWell(
+                    onTap: notifications[index].title ==
+                            "Your Booking is approved:"
+                        ? () {
+                            Navigator.pushNamed(context, Routes.paymentRoute);
+                          }
+                        : null,
+                    child: IgnorePointer(
+                      child: CustomNotificationCard(
+                        notification: notifications[index],
+                      ),
+                    ),
+                  );
                 },
               ),
             ],

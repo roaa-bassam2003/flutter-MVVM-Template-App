@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
@@ -15,7 +16,7 @@ class _RequestedBookingsViewState extends State<RequestedBookingsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorManager.white,
       appBar: customAppBar(title: AppStrings.appBarRequestedBookingsTitle),
       body: SingleChildScrollView(
         // physics: const NeverScrollableScrollPhysics(),
@@ -36,7 +37,7 @@ class _RequestedBookingsViewState extends State<RequestedBookingsView> {
   Widget _card(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, Routes.bookingsDetails);
+        Navigator.pushNamed(context, Routes.requestDetails);
       },
       child: Column(
         children: [

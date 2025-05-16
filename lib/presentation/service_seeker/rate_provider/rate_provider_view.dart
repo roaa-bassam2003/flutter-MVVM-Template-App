@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_course/domain/model/models.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
@@ -25,10 +24,15 @@ class _RateProviderViewState extends State<RateProviderView> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = ModalRoute.of(context)!.settings.arguments as Provider;
+    // final provider = ModalRoute.of(context)!.settings.arguments as Provider;
+    const String providerName = "Provider Name";
+    const String providerImagePath = "assets/images/person.jpg";
+    const String providerId = "@sp_2025";
+    const int providerRating = 4;
+
     // Initialize with provider's current rating if available
-    if (_selectedRating == 0 && provider.rating > 0) {
-      _selectedRating = provider.rating.floor();
+    if (_selectedRating == 0 && providerRating > 0) {
+      _selectedRating = providerRating.floor();
     }
 
     return Scaffold(
@@ -46,17 +50,17 @@ class _RateProviderViewState extends State<RateProviderView> {
               // Provider image
               Center(
                 child: CircleAvatar(
-                  radius: 70,
-                  backgroundImage: AssetImage(provider.imagePath),
+                  radius: AppSize.s70,
+                  backgroundImage: const AssetImage(providerImagePath),
                   backgroundColor: ColorManager.grey,
                 ),
               ),
               const SizedBox(height: AppSize.s16),
 
               // Provider name
-              Text(
-                provider.name,
-                style: const TextStyle(
+              const Text(
+                providerName,
+                style: TextStyle(
                   fontSize: AppSize.s20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -65,7 +69,7 @@ class _RateProviderViewState extends State<RateProviderView> {
 
               // Provider ID
               Text(
-                provider.providerId,
+                providerId,
                 style: TextStyle(
                   color: ColorManager.grey,
                   fontSize: AppSize.s14,
@@ -106,7 +110,7 @@ class _RateProviderViewState extends State<RateProviderView> {
                             ? Icons.star
                             : Icons.star_border,
                         color: ColorManager.myAmber,
-                        size: 36,
+                        size: AppSize.s36,
                       ),
                     ),
                   );

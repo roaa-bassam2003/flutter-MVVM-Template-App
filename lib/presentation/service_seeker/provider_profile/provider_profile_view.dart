@@ -17,7 +17,7 @@ class ProviderProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = ModalRoute.of(context)!.settings.arguments as Provider;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorManager.white,
       appBar: customAppBar(
         title: 'Preview',
         isIcon: true,
@@ -44,9 +44,9 @@ class ProviderProfileView extends StatelessWidget {
             // الصورة
             Center(
               child: CircleAvatar(
-                radius: 70,
+                radius: AppSize.s70,
                 backgroundImage: AssetImage(provider.imagePath),
-                backgroundColor: Colors.grey.shade200,
+                backgroundColor: ColorManager.grey,
               ),
             ),
             const SizedBox(height: AppSize.s16),
@@ -63,12 +63,12 @@ class ProviderProfileView extends StatelessWidget {
                   const SizedBox(height: AppSize.s4),
                   Text(
                     provider.providerId,
-                    style: const TextStyle(
-                      color: Colors.grey,
+                    style: TextStyle(
+                      color: ColorManager.grey,
                       fontSize: AppSize.s14,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: AppSize.s10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -78,8 +78,8 @@ class ProviderProfileView extends StatelessWidget {
                             index < provider.rating.floor()
                                 ? Icons.star
                                 : Icons.star_border,
-                            color: Colors.amber,
-                            size: 22,
+                            color: ColorManager.myAmber,
+                            size: AppSize.s22,
                           );
                         }),
                       ),
@@ -116,26 +116,26 @@ class ProviderProfileView extends StatelessWidget {
                 // Check if the day is in the provider's available days
                 bool isAvailable = provider.availableDays.contains(day);
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 3),
+                  padding: const EdgeInsets.symmetric(horizontal: AppPadding.p3),
                   child: Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
                         color: ColorManager
                             .primary, // Border color is always purple
-                        width: 2, // Border thickness
+                        width: AppSize.s2, // Border thickness
                       ),
                     ),
                     child: CircleAvatar(
-                      radius: 12, // Circle size
+                      radius: AppSize.s12, // Circle size
                       backgroundColor:
-                          isAvailable ? Colors.white : ColorManager.primary,
+                          isAvailable ? ColorManager.white : ColorManager.primary,
                       child: Text(
                         day[0],
                         style: TextStyle(
                           color:
-                              isAvailable ? ColorManager.primary : Colors.white,
-                          fontSize: 12,
+                              isAvailable ? ColorManager.primary : ColorManager.white,
+                          fontSize: AppSize.s12,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -144,17 +144,17 @@ class ProviderProfileView extends StatelessWidget {
                 );
               }).toList(),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: AppSize.s20),
 
-            CustomButton(
-              onPressed: () {
-                Navigator.pushNamed(context, Routes.rateProviderRoute,
-                    arguments: provider);
-              },
-              text: AppStrings.rate,
-              backgroundColor: ColorManager.darkBlue,
-            ),
-            const SizedBox(height: 10),
+            // CustomButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, Routes.rateProviderRoute,
+            //         arguments: provider);
+            //   },
+            //   text: AppStrings.rate,
+            //   backgroundColor: ColorManager.darkBlue,
+            // ),
+            const SizedBox(height: AppSize.s10),
             CustomButton(
               onPressed: () {
                 Navigator.pushNamed(context, Routes.bookHoursProviderRoute,

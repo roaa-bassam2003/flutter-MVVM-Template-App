@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
+import 'package:flutter_advanced_course/presentation/resources/font_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
@@ -10,7 +11,7 @@ class MyInfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorManager.white,
       appBar: customAppBar(title: AppStrings.appBarMyInfoTitle),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -23,45 +24,45 @@ class MyInfoView extends StatelessWidget {
             Text(
               AppStrings.currentAddress,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: FontSize.s16,
                 color: ColorManager.primary,
               ),
             ),
-            const Text(
+            Text(
               AppStrings.currentAddressValue,
               style: TextStyle(
-                fontSize: 14,
-                color: Colors.black,
+                fontSize: AppSize.s12,
+                color: ColorManager.black,
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: AppSize.s10),
             Text(
               AppStrings.mobileNumber,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: AppSize.s16,
                 color: ColorManager.primary,
               ),
             ),
-            const Text(
+            Text(
               AppStrings.phoneNumberValue,
               style: TextStyle(
-                fontSize: 14,
-                color: Colors.black,
+                fontSize: AppSize.s14,
+                color: ColorManager.black,
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: AppSize.s10),
             Text(
               AppStrings.email,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: AppSize.s16,
                 color: ColorManager.primary,
               ),
             ),
-            const Text(
+            Text(
               AppStrings.emailValue,
               style: TextStyle(
-                fontSize: 14,
-                color: Colors.black,
+                fontSize: AppSize.s14,
+                color: ColorManager.black,
               ),
             ),
           ],

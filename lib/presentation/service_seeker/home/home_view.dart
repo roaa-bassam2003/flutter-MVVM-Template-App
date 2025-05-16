@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/home/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/home/widgets/home_view_body.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/notifications/notifications_view.dart';
@@ -35,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
         onTap: _onItemTapped,
         currentIndex: _currentIndex,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: ColorManager.white,
       body: IndexedStack(
         index: _currentIndex,
         children: _pages,
