@@ -201,7 +201,7 @@ List<Service> services = [
     ],
   ),
   Service(
-    name: 'Elderly Care',
+    name: 'HouseKeeper',
     imagePath: 'assets/images/onboarding_logo1.png',
     providers: [
       Provider(
@@ -209,7 +209,7 @@ List<Service> services = [
         providerId: '@sp_2025',
         rating: 5.0,
         price: 50,
-        role: 'Elderly Care',
+        role: 'HouseKeeper',
         availableDays: [
           'Sunday',
           'Monday',
@@ -230,7 +230,7 @@ List<Service> services = [
         providerId: '@sp_2025',
         rating: 5.0,
         price: 50,
-        role: 'Elderly Care',
+        role: 'HouseKeeper',
         availableDays: [
           'Sunday',
           'Monday',
@@ -249,7 +249,7 @@ List<Service> services = [
         providerId: '@sp_2025',
         rating: 5.0,
         price: 50,
-        role: 'Elderly Care',
+        role: 'HouseKeeper',
         availableDays: [
           'Sunday',
           'Monday',
