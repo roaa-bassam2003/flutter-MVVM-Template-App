@@ -136,7 +136,7 @@ class _SplashViewState extends State<SplashView> {
     _appPrefs.isUserLoggedIn().then((isUserLoggedIn) {
       _appPrefs.getUserName().then((userNameValue) {
         setState(() {
-          userName = userNameValue!;
+          userName = userNameValue ?? "@sp";
         });
 
         if (isUserLoggedIn && userName.contains("@sp")) {
