@@ -8,4 +8,8 @@ void main() async {
   runApp(MyApp());
 }
 
-// {email: mohamed123@gmail.com, password: mohamed}
+// service provider
+// {email: mohamed123@gmail.com, password: mohamed123}
+
+// client test
+// {"email": "mohamedc123@gmail.com", "password": "mohamedc123"}
