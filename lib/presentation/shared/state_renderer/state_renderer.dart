@@ -87,8 +87,8 @@ class StateRenderer extends StatelessWidget {
         ]);
       case StateRendererType.contentState:
         return Container();
-      default:
-        return Container();
+      // default:
+      //   return Container();
     }
   }
 
