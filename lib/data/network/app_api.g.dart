@@ -14,7 +14,7 @@ class _AppServiceClient implements AppServiceClient {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'https://d837326c-7e37-4881-b23f-d1f50ea3d76d.mock.pstmn.io';
+    baseUrl ??= 'http://themagicparents.runasp.net';
   }
 
   final Dio _dio;
@@ -42,7 +42,7 @@ class _AppServiceClient implements AppServiceClient {
     )
         .compose(
           _dio.options,
-          '/user/login',
+          '/api/Account/login',
           queryParameters: queryParameters,
           data: _data,
         )

@@ -59,51 +59,25 @@ class NotificationModel {
 // login models
 class Client {
   String id;
-  String name;
+  String token;
+  String tokenExpire;
   String userName;
+  List<String> userType;
 
   Client(
     this.id,
-    this.name,
+    this.token,
+    this.tokenExpire,
     this.userName,
-  );
-}
-
-class Address {
-  String country;
-  String government;
-  String city;
-  String currentAddress;
-
-  Address(
-    this.country,
-    this.government,
-    this.city,
-    this.currentAddress,
-  );
-}
-
-class Information {
-  Address? address;
-  String email;
-  String phone;
-  String photo;
-
-  Information(
-    this.address,
-    this.email,
-    this.phone,
-    this.photo,
+    this.userType,
   );
 }
 
 class Authentication {
   Client? user;
-  Information? information;
 
   Authentication(
     this.user,
-    this.information,
   );
 }
 

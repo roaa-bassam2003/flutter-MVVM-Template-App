@@ -46,13 +46,13 @@ class _LoginViewState extends State<LoginView> {
         _appPrefs.logoutDeleteAccount();
         _appPrefs.setUserName(userName);
 
-        if (userName.contains("@sp")) {
+        if (userName == "ServiceProvider") {
           // Navigator.pushNamed(context, Routes.homeRoute);
           SchedulerBinding.instance.addPostFrameCallback((_) {
             Navigator.of(context)
                 .pushReplacementNamed(ProviderRoutes.mainRoute);
           });
-        } else if (userName.contains("@ss")) {
+        } else if (userName == "Client") {
           SchedulerBinding.instance.addPostFrameCallback((_) {
             Navigator.of(context).pushReplacementNamed(Routes.homeRoute);
           });

@@ -11,22 +11,32 @@ class BaseResponse {
   int? status;
   @JsonKey(name: "message")
   String? message;
+  @JsonKey(name: "token")
+  String? token;
+  @JsonKey(name: "errors")
+  List<String>? errors;
 }
 
 // -----------------------Clent--------------------------
 // Login
 @JsonSerializable()
 class ClientResponse {
-  @JsonKey(name: "user_id")
+  @JsonKey(name: "userId")
   String? id;
-  @JsonKey(name: "name")
-  String? name;
-  @JsonKey(name: "user_name")
+  @JsonKey(name: "token")
+  String? token;
+  @JsonKey(name: "tokenExpire")
+  String? tokenExpire;
+  @JsonKey(name: "userType")
+  List<String>? userType;
+  @JsonKey(name: "userName")
   String? userName;
   ClientResponse(
     this.id,
-    this.name,
+    this.token,
+    this.tokenExpire,
     this.userName,
+    this.userType,
   );
 
   // from json
@@ -37,62 +47,11 @@ class ClientResponse {
 }
 
 @JsonSerializable()
-class AddressResponse {
-  @JsonKey(name: "country")
-  String? country;
-  @JsonKey(name: "government")
-  String? government;
-  @JsonKey(name: "city")
-  String? city;
-  @JsonKey(name: "current_address")
-  String? currentAddress;
-  AddressResponse(
-    this.country,
-    this.government,
-    this.city,
-    this.currentAddress,
-  );
-
-  // from json
-  factory AddressResponse.fromJson(Map<String, dynamic> json) =>
-      _$AddressResponseFromJson(json);
-  // to json
-  Map<String, dynamic> toJson() => _$AddressResponseToJson(this);
-}
-
-@JsonSerializable()
-class InformationResponse {
-  @JsonKey(name: "address")
-  AddressResponse? address;
-  @JsonKey(name: "email")
-  String? email;
-  @JsonKey(name: "phone")
-  String? phone;
-  @JsonKey(name: "photo")
-  String? photo;
-  InformationResponse(
-    this.address,
-    this.email,
-    this.phone,
-    this.photo,
-  );
-
-  // from json
-  factory InformationResponse.fromJson(Map<String, dynamic> json) =>
-      _$InformationResponseFromJson(json);
-  // to json
-  Map<String, dynamic> toJson() => _$InformationResponseToJson(this);
-}
-
-@JsonSerializable()
 class AuthenticationResponse extends BaseResponse {
-  @JsonKey(name: "user")
-  ClientResponse? user;
-  @JsonKey(name: "information")
-  InformationResponse? information;
+  @JsonKey(name: "data")
+  ClientResponse? data;
   AuthenticationResponse(
-    this.user,
-    this.information,
+    this.data,
   );
 
   // from json
@@ -100,6 +59,73 @@ class AuthenticationResponse extends BaseResponse {
       _$AuthenticationResponseFromJson(json);
   // to json
   Map<String, dynamic> toJson() => _$AuthenticationResponseToJson(this);
+}
+
+// register service provider
+@JsonSerializable()
+class ServiceProviderRegisterResponse {
+  @JsonKey(name: "type")
+  int? type;
+  @JsonKey(name: "certification")
+  String? certification;
+  @JsonKey(name: "hourPrice")
+  int? hourPrice;
+  @JsonKey(name: "id")
+  String? id;
+  @JsonKey(name: "userName")
+  String? userName;
+  @JsonKey(name: "userNameId")
+  String? userNameId;
+  @JsonKey(name: "phoneNumber")
+  String? phoneNumber;
+  @JsonKey(name: "email")
+  String? email;
+  @JsonKey(name: "personalPhoto")
+  String? personalPhoto;
+  @JsonKey(name: "idCardFrontPhoto")
+  String? idCardFrontPhoto;
+  @JsonKey(name: "idCardBackPhoto")
+  String? idCardBackPhoto;
+  @JsonKey(name: "city")
+  String? city;
+  @JsonKey(name: "government")
+  String? government;
+  ServiceProviderRegisterResponse(
+    this.type,
+    this.certification,
+    this.hourPrice,
+    this.id,
+    this.userName,
+    this.userNameId,
+    this.phoneNumber,
+    this.email,
+    this.personalPhoto,
+    this.idCardBackPhoto,
+    this.idCardFrontPhoto,
+    this.city,
+    this.government,
+  );
+
+  // from json
+  factory ServiceProviderRegisterResponse.fromJson(Map<String, dynamic> json) =>
+      _$ServiceProviderRegisterResponseFromJson(json);
+  // to json
+  Map<String, dynamic> toJson() => _$ServiceProviderRegisterResponseToJson(this);
+}
+
+@JsonSerializable()
+class AuthenticationServiceProviderResponse extends BaseResponse {
+  @JsonKey(name: "data")
+  ServiceProviderRegisterResponse? data;
+  AuthenticationServiceProviderResponse(
+    this.data,
+  );
+
+  // from json
+  factory AuthenticationServiceProviderResponse.fromJson(Map<String, dynamic> json) =>
+      _$AuthenticationServiceProviderResponseFromJson(json);
+  // to json
+  Map<String, dynamic> toJson() => _$AuthenticationServiceProviderResponseToJson(this);
 }
 
 // forget password

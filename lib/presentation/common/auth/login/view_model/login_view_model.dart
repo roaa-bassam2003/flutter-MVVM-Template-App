@@ -80,7 +80,8 @@ class LoginViewModel extends BaseViewModel
     }, (data) {
       inputState.add(ContentState());
       // navigate to main screen
-      userType = data.user!.userName;
+      // userType = data.user!.userName;
+      userType = data.user!.userType.first;
       isUserLoggedInSuccessfullyStreamController.add(true);
     });
   }

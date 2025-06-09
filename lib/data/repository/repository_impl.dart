@@ -36,10 +36,12 @@ class RepositoryImpl implements Repository {
           );
         } else {
           // failure --> business error --> either left
-          return left(Failure(
-            ApiInternalStatus.failure,
-            response.message ?? ResponseMessage.defaultError,
-          ));
+          return left(
+            Failure(
+              ApiInternalStatus.failure,
+              response.message ?? ResponseMessage.defaultError,
+            ),
+          );
         }
       } catch (error) {
         return left(
