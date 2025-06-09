@@ -16,18 +16,37 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   Future<void> _sendEmail() async {
+    final String subject = Uri.encodeComponent('Support');
+    final String body = Uri.encodeComponent('Problem');
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
-      path: 'magic.parents@gmail.com',
-      // You can add subject and body as well
-      // queryParameters: {'subject': 'App Support', 'body': 'Hello,'}
+      path: 'magicteam285@gmail.com',
+      queryParameters: {
+        'subject': subject,
+        'body': body,
+      },
     );
 
-    if (await canLaunchUrl(emailLaunchUri)) {
-      await launchUrl(emailLaunchUri);
-    } else {
-      // Handle error
-      debugPrint('Could not launch email client');
+    try {
+      bool launched = await launchUrl(
+        emailLaunchUri,
+        mode: LaunchMode.externalApplication,
+      );
+
+      if (!launched) {
+        throw 'Could not launch email client';
+      }
+    } catch (e) {
+      debugPrint('Error: $e');
+
+      // fallback: open URL in browser
+      final webFallback = Uri.parse(
+          'https://mail.google.com/mail/?view=cm&fs=1&to=magicteam285@gmail.com');
+      if (await canLaunchUrl(webFallback)) {
+        await launchUrl(webFallback, mode: LaunchMode.externalApplication);
+      } else {
+        debugPrint('Fallback also failed');
+      }
     }
   }
 

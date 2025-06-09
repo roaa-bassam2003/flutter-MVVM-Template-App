@@ -13,6 +13,7 @@ import 'package:flutter_advanced_course/presentation/common/edit_profile/edit_pr
 import 'package:flutter_advanced_course/presentation/common/logout/logout_view.dart';
 import 'package:flutter_advanced_course/presentation/common/onboarding/view/onboarding_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/register/register_user_view.dart';
+import 'package:flutter_advanced_course/presentation/common/reset_password.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/day_specification/day_specification.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/edit_profile/edit_profile_view.dart';
@@ -81,6 +82,9 @@ class Routes {
   static const String editProfileRoute = "/editProfile";
   // About & Information routes
   static const String aboutMagicParentsRoute = "/aboutMagicParents";
+
+  // test reset pass
+  static const String resetPasswordRoute = "/resetPassword";
 }
 
 class ProviderRoutes {
@@ -102,6 +106,12 @@ class SeekerRoutes {
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
+      // test reset pass
+      case Routes.resetPasswordRoute:
+        return MaterialPageRoute(
+          builder: (_) => const ResetPasswordView(),
+        );
+
       // common
       case Routes.splashRoute:
         return MaterialPageRoute(
