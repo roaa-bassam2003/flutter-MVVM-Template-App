@@ -37,9 +37,8 @@ class AppStrings {
   static const skip = "skip";
   static const String usernameOrEmail = "Email";
   static const String password = "Password";
-  static const String usernameError =
-      "Please enter your email or correct email";
-  static const String passwordError = "Please enter password";
+  static const String usernameError = "please enter correct email";
+  static const String passwordError = "please enter password";
   static const String login = "Login";
   static const String signUp = " Sign Up";
   static const String forgotPassword = "Forgot Password?";
@@ -60,7 +59,7 @@ class AppStrings {
 
   static const String confirmationMessage =
       """We Will Confirm the Register after
-                     48 hours""";
+              48 hours in email""";
 
   // General
   static const String name = "Name";
@@ -68,6 +67,7 @@ class AppStrings {
 
   // Profile & ID
   static const String profilePicture = "Profile Picture";
+  static const String personWithCardPicture = "Person With ID Picture";
   static const String frontIdPicture = "Front ID Picture";
   static const String backIdPicture = "Back ID Picture";
   static const String certification = "Certification";
@@ -215,4 +215,19 @@ class AppStrings {
   static const viewDetails = "View Details";
   static const bookHoursSelectADayFirst = "Please select a day first!";
 
+  // service provider register
+  static const userNameInValid = "user name should be at least 4 chars";
+  static const phoneNumberValid =
+      "phone number should be at least 11 digit, like 01**";
+
+  static const passwordUpperCaseValid = 'Must contain an uppercase letter';
+  static const passwordLowerCaseValid = 'Must contain a lowercase letter';
+  static const passwordNumberValid = 'Must contain a number';
+  static const passwordSpecialCharValid = 'Must contain a special character';
+  static const passwordLengthValid = 'Must be at least 8 characters';
+
+  static const hourePriceValid = 'Must be in range 30 to 500';
+  static const photoGallery = 'photo from gallery';
+  static const photoCamera = 'photo from camera';
+  static const file = 'file';
 }

@@ -7,14 +7,19 @@ import 'package:flutter_advanced_course/data/network/network_info.dart';
 import 'package:flutter_advanced_course/data/repository/repository_impl.dart';
 import 'package:flutter_advanced_course/domain/repository/repository.dart';
 import 'package:flutter_advanced_course/domain/usecase/change_password_use_case.dart';
+import 'package:flutter_advanced_course/domain/usecase/city_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/forgot_password_use_case.dart';
+import 'package:flutter_advanced_course/domain/usecase/government_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/login_use_case.dart';
+import 'package:flutter_advanced_course/domain/usecase/register_service_provider_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/report_use_case.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/change_password/view_model/change_password_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/forgot_password/view_model/forgot_password_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/login/view_model/login_view_model.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/register/service_provider/view_model/register_provider_view_model.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/report/report_client_view_model.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -59,6 +64,42 @@ initLoginModule() {
     instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
     // login view model
     instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
+  }
+}
+
+// government module is a module where we put all DI related to RegisterProviderViewModel
+initGovernmentModule() {
+  if (!GetIt.I.isRegistered<GovernmentUseCase>()) {
+    // login use case
+    instance.registerFactory<GovernmentUseCase>(
+        () => GovernmentUseCase(instance()));
+    // login view model
+    // instance.registerFactory<RegisterProviderViewModel>(() => RegisterProviderViewModel(instance()));
+  }
+}
+
+// city module is a module where we put all DI related to RegisterProviderViewModel
+initCityModule() {
+  if (!GetIt.I.isRegistered<CityUseCase>()) {
+    // login use case
+    instance.registerFactory<CityUseCase>(() => CityUseCase(instance()));
+    // login view model
+    // instance.registerFactory<RegisterProviderViewModel>(() => RegisterProviderViewModel(instance()));
+  }
+}
+
+// register service provider module is a module where we put all DI related to RegisterProviderViewModel
+initRegisterProviderModule() {
+  if (!GetIt.I.isRegistered<RegisterServiceProviderUseCase>()) {
+    // login use case
+    instance.registerFactory<RegisterServiceProviderUseCase>(
+        () => RegisterServiceProviderUseCase(instance()));
+    // login view model
+    instance.registerFactory<RegisterProviderViewModel>(
+        () => RegisterProviderViewModel(instance(), instance(), instance()));
+
+    // image picker
+    instance.registerFactory<ImagePicker>(() => ImagePicker());
   }
 }
 

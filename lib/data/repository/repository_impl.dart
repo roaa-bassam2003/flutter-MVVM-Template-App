@@ -158,27 +158,30 @@ class RepositoryImpl implements Repository {
       );
     }
   }
-
+  
   @override
-  Future<Either<Failure, Governments>> governmentsCities() async {
+  Future<Either<Failure, AuthenticationServiceProvider>> registerServiceProvider(ServiceProviderRegisterRequest serviceProviderRegisterRequest) async {
     if (await _networkInfo.isConnected) {
       // it is connected to internet, it is save to call API
 
       try {
-        final response = await _remoteDataSource.governmentsCities();
+        final response = await _remoteDataSource.registerServiceProvider(
+          serviceProviderRegisterRequest,
+        );
 
         if (response.status == ApiInternalStatus.success) {
           // success --> return data --> either right
-          return Right(response.toDomain());
-          // return right(
-          //   response.toDomain(),
-          // );
+          return right(
+            response.toDomain(),
+          );
         } else {
           // failure --> business error --> either left
-          return left(Failure(
-            ApiInternalStatus.failure,
-            response.message ?? ResponseMessage.defaultError,
-          ));
+          return left(
+            Failure(
+              ApiInternalStatus.failure,
+              response.message ?? ResponseMessage.defaultError,
+            ),
+          );
         }
       } catch (error) {
         return left(
@@ -190,6 +193,64 @@ class RepositoryImpl implements Repository {
       return left(
         DataSource.noInternetConnection.getFailure(),
       );
+    }
+  }
+  
+  @override
+  Future<Either<Failure, Cities>> cities(int id) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        // its safe to call API
+        final response = await _remoteDataSource.cities(id);
+
+        if (response.status == ApiInternalStatus.success) {
+          // success
+          // return right
+          return Right(response.toDomain());
+        } else {
+          // failure
+          // return left
+          return Left(Failure(
+            ApiInternalStatus.failure,
+            response.message ?? ResponseMessage.defaultError,
+          ));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      // return network connection error
+      // return left
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
+  
+  @override
+  Future<Either<Failure, Governments>> government() async{
+    if (await _networkInfo.isConnected) {
+      try {
+        // its safe to call API
+        final response = await _remoteDataSource.government();
+
+        if (response.status == ApiInternalStatus.success) {
+          // success
+          // return right
+          return Right(response.toDomain());
+        } else {
+          // failure
+          // return left
+          return Left(Failure(
+            ApiInternalStatus.failure,
+            response.message ?? ResponseMessage.defaultError,
+          ));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      // return network connection error
+      // return left
+      return Left(DataSource.noInternetConnection.getFailure());
     }
   }
 }

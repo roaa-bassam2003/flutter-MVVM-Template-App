@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_advanced_course/app/constants.dart';
 import 'package:flutter_advanced_course/data/response/responses.dart';
-import 'package:retrofit/http.dart';
-import 'parse_error_logger.dart';
+import 'package:retrofit/retrofit.dart';
+
 part 'app_api.g.dart';
 
 @RestApi(baseUrl: Constants.baseUrl)
@@ -14,6 +14,12 @@ abstract class AppServiceClient {
   Future<AuthenticationResponse> login(
     @Field("email") String email,
     @Field("password") String password,
+  );
+
+  // http methods as interface for register service provider
+  @POST("/api/Account/register/ServiceProvider")
+  Future<AuthenticationServiceProviderResponse> registerServiceProvider(
+    @Body() FormData formData,
   );
 
   // http methods as interface for forget password
@@ -36,8 +42,14 @@ abstract class AppServiceClient {
     @Field("report_message") String reportMessage,
   );
 
+  // http methods as interface for governments
+  @GET("/api/Account/governments")
+  Future<GovernmentResponse> government();
 
   // http methods as interface for governments-cities
-  @GET("/Account/governments-cities")
-  Future<GovernmentCityBaseResponse> governmentsCities();
+  @FormUrlEncoded()
+  @GET("/api/Account/cities/{id}")
+  Future<CityResponse> city(
+    @Path("id") int id,
+  );
 }

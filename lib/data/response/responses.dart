@@ -110,7 +110,8 @@ class ServiceProviderRegisterResponse {
   factory ServiceProviderRegisterResponse.fromJson(Map<String, dynamic> json) =>
       _$ServiceProviderRegisterResponseFromJson(json);
   // to json
-  Map<String, dynamic> toJson() => _$ServiceProviderRegisterResponseToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$ServiceProviderRegisterResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -122,10 +123,12 @@ class AuthenticationServiceProviderResponse extends BaseResponse {
   );
 
   // from json
-  factory AuthenticationServiceProviderResponse.fromJson(Map<String, dynamic> json) =>
+  factory AuthenticationServiceProviderResponse.fromJson(
+          Map<String, dynamic> json) =>
       _$AuthenticationServiceProviderResponseFromJson(json);
   // to json
-  Map<String, dynamic> toJson() => _$AuthenticationServiceProviderResponseToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$AuthenticationServiceProviderResponseToJson(this);
 }
 
 // forget password
@@ -176,44 +179,76 @@ class ReportResponse extends BaseResponse {
   Map<String, dynamic> toJson() => _$ReportResponseToJson(this);
 }
 
-
-// Governments-cities list items
+// government
 @JsonSerializable()
-class GovernmentCityResponse {
+class Government {
   @JsonKey(name: "id")
   int? id;
+  @JsonKey(name: "name")
+  String? name;
+  @JsonKey(name: "cities")
+  String? cities;
+  Government(
+    this.id,
+    this.name,
+    this.cities,
+  );
+
+  factory Government.fromJson(Map<String, dynamic> json) =>
+      _$GovernmentFromJson(json);
+
+  Map<String, dynamic> toJson() => _$GovernmentToJson(this);
+}
+
+@JsonSerializable()
+class GovernmentResponse extends BaseResponse {
+  @JsonKey(name: "data")
+  List<Government>? data;
+
+  GovernmentResponse(this.data);
+
+  factory GovernmentResponse.fromJson(Map<String, dynamic> json) =>
+      _$GovernmentResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$GovernmentResponseToJson(this);
+}
+
+// city
+@JsonSerializable()
+class City {
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "name")
+  String? name;
+  @JsonKey(name: "governorateId")
+  String? governorateId;
   @JsonKey(name: "governorate")
   String? governorate;
-  @JsonKey(name: "cities")
-  List<String>? cities;
-
-  GovernmentCityResponse(
+  @JsonKey(name: "users")
+  String? users;
+  City(
     this.id,
-     this.governorate,
-     this.cities,
+    this.name,
+    this.governorateId,
+    this.governorate,
+    this.users,
   );
 
-  factory GovernmentCityResponse.fromJson(Map<String, dynamic> json) =>
-      _$GovernmentCityResponseFromJson(json);
+  factory City.fromJson(Map<String, dynamic> json) =>
+      _$CityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$GovernmentCityResponseToJson(this);
+  Map<String, dynamic> toJson() => _$CityToJson(this);
 }
 
-// Governments-cities base
 @JsonSerializable()
-class GovernmentCityBaseResponse extends BaseResponse {
-  @JsonKey(name: "governments_cities")
-  List<GovernmentCityResponse>? governmentsCities;
+class CityResponse extends BaseResponse {
+  @JsonKey(name: "data")
+  List<City>? data;
 
-  GovernmentCityBaseResponse(
-    this.governmentsCities,
-  );
+  CityResponse(this.data);
 
-  factory GovernmentCityBaseResponse.fromJson(Map<String, dynamic> json) =>
-      _$GovernmentCityBaseResponseFromJson(json);
+  factory CityResponse.fromJson(Map<String, dynamic> json) =>
+      _$CityResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$GovernmentCityBaseResponseToJson(this);
+  Map<String, dynamic> toJson() => _$CityResponseToJson(this);
 }
-
-
-// address

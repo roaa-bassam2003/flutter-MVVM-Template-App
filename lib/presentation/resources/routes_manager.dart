@@ -5,7 +5,7 @@ import 'package:flutter_advanced_course/presentation/common/auth/change_password
 import 'package:flutter_advanced_course/presentation/common/auth/forgot_password/view/forgot_password_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/login/view/login_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/pending_approval/pending_approval_view.dart';
-import 'package:flutter_advanced_course/presentation/common/auth/register/register_provider_view.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/register/service_provider/view/register_provider_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/service_type/service_type_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/user_type/user_type_view.dart';
 import 'package:flutter_advanced_course/presentation/common/delete_account/delete_account_view.dart';
@@ -127,8 +127,12 @@ class RouteGenerator {
           builder: (_) => const RegisterUserView(),
         );
       case Routes.registerProviderRoute:
+        initRegisterProviderModule();
+        initCityModule();
+        initGovernmentModule();
         return MaterialPageRoute(
           builder: (_) => const RegisterProviderView(),
+          settings: settings,
         );
       case Routes.onBoardingRoute:
         return MaterialPageRoute(

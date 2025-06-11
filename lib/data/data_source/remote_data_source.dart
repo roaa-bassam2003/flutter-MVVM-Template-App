@@ -9,7 +9,10 @@ abstract class RemoteDataSource {
   Future<ChangePasswordResponse> changePassword(
       ChangePasswordRequest changePasswordRequest);
   Future<ReportResponse> report(ReportRequest reportRequest);
-  Future<GovernmentCityBaseResponse> governmentsCities();
+  Future<CityResponse> cities(int id);
+  Future<GovernmentResponse> government();
+  Future<AuthenticationServiceProviderResponse> registerServiceProvider(
+      ServiceProviderRegisterRequest serviceProviderRegisterRequest);
 }
 
 // --------------Common----------------
@@ -43,8 +46,20 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<GovernmentCityBaseResponse> governmentsCities() async {
-    return await _appServiceClient.governmentsCities();
+  Future<AuthenticationServiceProviderResponse> registerServiceProvider(
+      ServiceProviderRegisterRequest serviceProviderRegisterRequest) async {
+    final formData = await serviceProviderRegisterRequest.toFormData();
+    return await _appServiceClient.registerServiceProvider(formData);
+  }
+
+  @override
+  Future<CityResponse> cities(int id) async {
+    return await _appServiceClient.city(id);
+  }
+
+  @override
+  Future<GovernmentResponse> government() async {
+    return await _appServiceClient.government();
   }
 }
 // ------------------Client----------------------

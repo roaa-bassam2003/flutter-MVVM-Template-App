@@ -8,8 +8,22 @@ import 'package:flutter_advanced_course/presentation/resources/color_manager.dar
 import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 
-class ServiceTypeView extends StatelessWidget {
+class ServiceTypeView extends StatefulWidget {
   const ServiceTypeView({super.key});
+
+  @override
+  State<ServiceTypeView> createState() => _ServiceTypeViewState();
+}
+
+class _ServiceTypeViewState extends State<ServiceTypeView> {
+  int _selectedIndex = -1;
+
+  final List<String> _serviceTypes = [
+    'Babysitter',
+    'Petsitter',
+    'Nurse',
+    'HouseKeeper',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +51,7 @@ class ServiceTypeView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 50),
+
             CustomDropdownButton(
               fontWeight: false,
               backgroundColor: ColorManager.white,
@@ -44,19 +59,38 @@ class ServiceTypeView extends StatelessWidget {
               iconColor: ColorManager.primary,
               borderColor: ColorManager.primary,
               hint: AppStrings.selectService,
-              items: const [
-                'Pet Care',
-                'Nurse',
-                'Elderly Care',
-                'Babysitter',
-              ],
+              items: _serviceTypes,
+              onChanged: (value) {
+                final newIndex = _serviceTypes.indexOf(value!);
+
+                setState(() {
+                  _selectedIndex = newIndex;
+                });
+              },
             ),
             // space
             const SizedBox(height: 18),
-            //Login
+            //Continue Button
             CustomButton(
               onPressed: () {
-                Navigator.pushNamed(context, Routes.registerProviderRoute);
+                if (_selectedIndex != -1) {
+                  final arguments = {
+                    'serviceType': _selectedIndex,
+                  };
+
+                  Navigator.pushNamed(
+                    context,
+                    Routes.registerProviderRoute,
+                    arguments: arguments,
+                  );
+                } else {
+                  // if nothing selected
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Please select a service type'),
+                    ),
+                  );
+                }
               },
               text: AppStrings.continueButton,
               backgroundColor: ColorManager.primary,

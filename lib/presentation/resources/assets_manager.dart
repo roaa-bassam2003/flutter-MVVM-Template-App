@@ -18,6 +18,7 @@ class ImageAssets {
   static const String nurseImage = "$imagePath/nurse-cropped.svg";
   static const String houseKeeperImage = "$imagePath/undraw_sweet-home_ezw3.svg";
   static const String babysitterImage = "$imagePath/undraw_baby_uoep.svg";
+  static const String photoCameraImage = "$imagePath/photo-camera.svg";
 }
 
 class JsonAssets{

@@ -1,10 +1,10 @@
 // ------------Client--------------
-// login
 import 'package:flutter_advanced_course/app/extensions.dart';
 import 'package:flutter_advanced_course/data/response/responses.dart';
 import 'package:flutter_advanced_course/domain/model/models.dart';
 import 'package:flutter_advanced_course/app/constants.dart';
 
+// login
 extension ClientResponseMapper on ClientResponse? {
   Client toDomain() {
     return Client(
@@ -20,6 +20,36 @@ extension ClientResponseMapper on ClientResponse? {
 extension AuthenticationResponseMapper on AuthenticationResponse? {
   Authentication toDomain() {
     return Authentication(
+      this?.data.toDomain(),
+    );
+  }
+}
+
+// Register Service Provider Response Mapper
+extension RegisterServiceProviderResponseMapper on ServiceProviderRegisterResponse? {
+  RegisterServiceProvider toDomain() {
+    return RegisterServiceProvider(
+      type: this?.type?.orZero() ?? Constants.zero,
+      certification: this?.certification?.orEmpty() ?? Constants.empty,
+      hourPrice: this?.hourPrice?.orZero() ?? Constants.zero,
+      id: this?.id.orEmpty() ?? Constants.empty,
+      userNameId: this?.userNameId.orEmpty() ?? Constants.empty,
+      userName: this?.userName.orEmpty() ?? Constants.empty,
+      phoneNumber: this?.phoneNumber.orEmpty() ?? Constants.empty,
+      email: this?.email.orEmpty() ?? Constants.empty,
+      personalPhoto: this?.personalPhoto.orEmpty() ?? Constants.empty,
+      idCardFrontPhoto:
+          this?.idCardFrontPhoto.orEmpty() ?? Constants.empty,
+      idCardBackPhoto: this?.idCardBackPhoto.orEmpty() ?? Constants.empty,
+      city: this?.city.orEmpty() ?? Constants.empty,
+      government: this?.government.orEmpty() ?? Constants.empty,
+    );
+  }
+}
+
+extension AuthenticationServiceProviderResponseMapper on AuthenticationServiceProviderResponse? {
+  AuthenticationServiceProvider toDomain() {
+    return AuthenticationServiceProvider(
       this?.data.toDomain(),
     );
   }
@@ -46,23 +76,44 @@ extension ReportResponseMapper on ReportResponse? {
   }
 }
 
-// Governments-cities list items
-extension GovernmentCityResponseMapper on GovernmentCityResponse? {
+
+// Governments list items
+extension GovernmentMapper on Government? {
   GovernmentList toDomain() {
     return GovernmentList(
       this?.id.orZero() ?? Constants.zero,
-      this?.governorate.orEmpty() ?? Constants.empty,
-      this!.cities.orEmpty(),
+      this?.name.orEmpty() ?? Constants.empty,
+      this?.cities.orEmpty() ?? Constants.empty,
     );
   }
 }
 
-// Governments-cities base
-extension GovernmentCityBaseResponseMapper on GovernmentCityBaseResponse? {
+extension GovernmentResponseMapper on GovernmentResponse? {
   Governments toDomain() {
     return Governments(
-      (this?.governmentsCities?.map((e) => e.toDomain()).toList() ?? [])
-          as GovernmentList?,
+      this?.data?.map((e) => e.toDomain()).toList() ?? [],
+    );
+  }
+}
+
+// Governments-cities list items
+
+extension CityMapper on City? {
+  CityList toDomain() {
+    return CityList(
+      this?.id.orZero() ?? Constants.zero,
+      this?.name.orEmpty() ?? Constants.empty,
+      this?.governorateId.orEmpty() ?? Constants.empty,
+      this?.governorate.orEmpty() ?? Constants.empty,
+      this?.users.orEmpty() ?? Constants.empty,
+    );
+  }
+}
+
+extension CityResponseMapper on CityResponse? {
+  Cities toDomain() {
+    return Cities(
+      this?.data?.map((e) => e.toDomain()).toList() ?? [],
     );
   }
 }

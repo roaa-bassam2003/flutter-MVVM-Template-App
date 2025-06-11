@@ -81,24 +81,91 @@ class Authentication {
   );
 }
 
+// Register Service Provider
+class RegisterServiceProvider {
+  final int type;
+  final String? certification;
+  final int hourPrice;
+  final String id;
+  final String userNameId;
+  final String userName;
+  final String phoneNumber;
+  final String email;
+  final String personalPhoto;
+  final String idCardFrontPhoto;
+  final String idCardBackPhoto;
+  final String city;
+  final String government;
 
-// governments-cities
+  RegisterServiceProvider({
+    required this.type,
+    required this.certification,
+    required this.hourPrice,
+    required this.id,
+    required this.userNameId,
+    required this.userName,
+    required this.phoneNumber,
+    required this.email,
+    required this.personalPhoto,
+    required this.idCardFrontPhoto,
+    required this.idCardBackPhoto,
+    required this.city,
+    required this.government,
+  });
+}
+
+class AuthenticationServiceProvider {
+  RegisterServiceProvider? serviceProvider;
+
+  AuthenticationServiceProvider(
+    this.serviceProvider,
+  );
+}
+
+
+// governments
 class GovernmentList {
   int id;
-  String governorate;
-  List<String> cities;
+  String name;
+  String cities;
 
   GovernmentList(
     this.id,
-    this.governorate,
+    this.name,
     this.cities,
   );
 }
 
 class Governments {
-  GovernmentList? governmentsCities;
+  List<GovernmentList>? governments;
 
   Governments(
+    this.governments,
+  );
+}
+
+
+// governments-cities
+class CityList {
+  int id;
+  String name;
+  String governorateId;
+  String governorate;
+  String users;
+
+  CityList(
+    this.id,
+    this.name,
+    this.governorateId,
+    this.governorate,
+    this.users,
+  );
+}
+
+class Cities {
+  List<CityList>? governmentsCities;
+
+  Cities(
     this.governmentsCities,
   );
 }

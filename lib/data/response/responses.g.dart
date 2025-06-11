@@ -185,28 +185,23 @@ Map<String, dynamic> _$ReportResponseToJson(ReportResponse instance) =>
       'support': instance.support,
     };
 
-GovernmentCityResponse _$GovernmentCityResponseFromJson(
-        Map<String, dynamic> json) =>
-    GovernmentCityResponse(
+Government _$GovernmentFromJson(Map<String, dynamic> json) => Government(
       (json['id'] as num?)?.toInt(),
-      json['governorate'] as String?,
-      (json['cities'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      json['name'] as String?,
+      json['cities'] as String?,
     );
 
-Map<String, dynamic> _$GovernmentCityResponseToJson(
-        GovernmentCityResponse instance) =>
+Map<String, dynamic> _$GovernmentToJson(Government instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'governorate': instance.governorate,
+      'name': instance.name,
       'cities': instance.cities,
     };
 
-GovernmentCityBaseResponse _$GovernmentCityBaseResponseFromJson(
-        Map<String, dynamic> json) =>
-    GovernmentCityBaseResponse(
-      (json['governments_cities'] as List<dynamic>?)
-          ?.map(
-              (e) => GovernmentCityResponse.fromJson(e as Map<String, dynamic>))
+GovernmentResponse _$GovernmentResponseFromJson(Map<String, dynamic> json) =>
+    GovernmentResponse(
+      (json['data'] as List<dynamic>?)
+          ?.map((e) => Government.fromJson(e as Map<String, dynamic>))
           .toList(),
     )
       ..status = (json['status'] as num?)?.toInt()
@@ -215,12 +210,47 @@ GovernmentCityBaseResponse _$GovernmentCityBaseResponseFromJson(
       ..errors =
           (json['errors'] as List<dynamic>?)?.map((e) => e as String).toList();
 
-Map<String, dynamic> _$GovernmentCityBaseResponseToJson(
-        GovernmentCityBaseResponse instance) =>
+Map<String, dynamic> _$GovernmentResponseToJson(GovernmentResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
       'token': instance.token,
       'errors': instance.errors,
-      'governments_cities': instance.governmentsCities,
+      'data': instance.data,
+    };
+
+City _$CityFromJson(Map<String, dynamic> json) => City(
+      (json['id'] as num?)?.toInt(),
+      json['name'] as String?,
+      json['governorateId'] as String?,
+      json['governorate'] as String?,
+      json['users'] as String?,
+    );
+
+Map<String, dynamic> _$CityToJson(City instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'governorateId': instance.governorateId,
+      'governorate': instance.governorate,
+      'users': instance.users,
+    };
+
+CityResponse _$CityResponseFromJson(Map<String, dynamic> json) => CityResponse(
+      (json['data'] as List<dynamic>?)
+          ?.map((e) => City.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?
+      ..token = json['token'] as String?
+      ..errors =
+          (json['errors'] as List<dynamic>?)?.map((e) => e as String).toList();
+
+Map<String, dynamic> _$CityResponseToJson(CityResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'token': instance.token,
+      'errors': instance.errors,
+      'data': instance.data,
     };
