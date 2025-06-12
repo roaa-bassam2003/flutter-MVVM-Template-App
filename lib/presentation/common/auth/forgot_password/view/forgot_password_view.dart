@@ -94,10 +94,9 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                     onPressed: (snapshot.data ?? false)
                         ? () {
                             _viewModel.forgotPassword();
-                            // Navigator.of(context).pushReplacementNamed(ProviderRoutes.mainRoute);
                           }
                         : null,
-                    text: AppStrings.login,
+                    text: AppStrings.send,
                     backgroundColor: ColorManager.primary,
                   );
                 }),

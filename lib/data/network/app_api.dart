@@ -23,7 +23,7 @@ abstract class AppServiceClient {
   );
 
   // http methods as interface for forget password
-  @POST("/Account/forget-password")
+  @POST("/api/Account/forgot-password")
   Future<ForgotPasswordResponse> forgotPassword(
     @Field("email") String email,
   );

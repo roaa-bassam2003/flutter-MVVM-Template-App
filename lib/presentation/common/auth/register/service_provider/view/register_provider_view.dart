@@ -143,7 +143,6 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
   }
 
   Widget _getContentWidget() {
-    // حذف إعلان المتغيرات من هنا لأنها أصبحت متغيرات للكلاس
     List<String> cities = [];
 
     if (selectedGovernorate != null) {
@@ -335,7 +334,7 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
                 onChanged: (value) {
                   setState(() {
                     selectedGovernorate = value;
-                    selectedCity = null; // إعادة تعيين المدينة
+                    selectedCity = null;
                     _viewModel.setCurrentGovernId(selectedGovernorate);
                   });
                 },
@@ -541,7 +540,7 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
     try {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
-        allowedExtensions: ['pdf', 'doc', 'docx'], // إضافة صيغ أخرى
+        allowedExtensions: ['pdf'],
         allowMultiple: false,
       );
 

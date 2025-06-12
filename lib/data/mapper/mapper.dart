@@ -26,7 +26,8 @@ extension AuthenticationResponseMapper on AuthenticationResponse? {
 }
 
 // Register Service Provider Response Mapper
-extension RegisterServiceProviderResponseMapper on ServiceProviderRegisterResponse? {
+extension RegisterServiceProviderResponseMapper
+    on ServiceProviderRegisterResponse? {
   RegisterServiceProvider toDomain() {
     return RegisterServiceProvider(
       type: this?.type?.orZero() ?? Constants.zero,
@@ -38,8 +39,7 @@ extension RegisterServiceProviderResponseMapper on ServiceProviderRegisterRespon
       phoneNumber: this?.phoneNumber.orEmpty() ?? Constants.empty,
       email: this?.email.orEmpty() ?? Constants.empty,
       personalPhoto: this?.personalPhoto.orEmpty() ?? Constants.empty,
-      idCardFrontPhoto:
-          this?.idCardFrontPhoto.orEmpty() ?? Constants.empty,
+      idCardFrontPhoto: this?.idCardFrontPhoto.orEmpty() ?? Constants.empty,
       idCardBackPhoto: this?.idCardBackPhoto.orEmpty() ?? Constants.empty,
       city: this?.city.orEmpty() ?? Constants.empty,
       government: this?.government.orEmpty() ?? Constants.empty,
@@ -47,7 +47,8 @@ extension RegisterServiceProviderResponseMapper on ServiceProviderRegisterRespon
   }
 }
 
-extension AuthenticationServiceProviderResponseMapper on AuthenticationServiceProviderResponse? {
+extension AuthenticationServiceProviderResponseMapper
+    on AuthenticationServiceProviderResponse? {
   AuthenticationServiceProvider toDomain() {
     return AuthenticationServiceProvider(
       this?.data.toDomain(),
@@ -58,7 +59,7 @@ extension AuthenticationServiceProviderResponseMapper on AuthenticationServicePr
 // forget password
 extension ForgotPasswordResponseMapper on ForgotPasswordResponse? {
   String toDomain() {
-    return this?.support?.orEmpty() ?? Constants.empty;
+    return this?.message?.orEmpty() ?? Constants.empty;
   }
 }
 
@@ -75,7 +76,6 @@ extension ReportResponseMapper on ReportResponse? {
     return this?.support?.orEmpty() ?? Constants.empty;
   }
 }
-
 
 // Governments list items
 extension GovernmentMapper on Government? {

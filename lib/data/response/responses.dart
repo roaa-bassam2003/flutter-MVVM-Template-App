@@ -134,10 +134,10 @@ class AuthenticationServiceProviderResponse extends BaseResponse {
 // forget password
 @JsonSerializable()
 class ForgotPasswordResponse extends BaseResponse {
-  @JsonKey(name: "support")
-  String? support;
+  @JsonKey(name: "data")
+  String? data;
   ForgotPasswordResponse(
-    this.support,
+    this.data,
   );
 
   // from json
