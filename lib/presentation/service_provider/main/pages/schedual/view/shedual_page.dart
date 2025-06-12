@@ -188,7 +188,7 @@ class _DaysScheduleViewState extends State<ShedualPage> {
                     },
                   ),
                 );
-              }).toList(),
+              }),
 
               // Clear All Button at the end of the list
               Padding(
@@ -221,6 +221,7 @@ class _DaysScheduleViewState extends State<ShedualPage> {
                             await _appPrefs.clearAllDayHours();
                             _loadAllDaysHours();
                             if (mounted) {
+                              // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content:
@@ -242,7 +243,7 @@ class _DaysScheduleViewState extends State<ShedualPage> {
                     // The button automatically applies a disabled style when onPressed is null
                     disabledBackgroundColor: ColorManager.lightGrey,
                     disabledForegroundColor:
-                        ColorManager.white.withOpacity(0.5),
+                        ColorManager.white.withValues(alpha: 0.5),
                   ),
                   child: Text(
                     'Clear All Hours',

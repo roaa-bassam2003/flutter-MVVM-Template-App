@@ -15,7 +15,7 @@ class CustomCardUpdated extends StatelessWidget {
   final VoidCallback? onPressed2;
 
   const CustomCardUpdated({
-    Key? key,
+    super.key,
     required this.name,
     required this.day,
     required this.location,
@@ -24,7 +24,7 @@ class CustomCardUpdated extends StatelessWidget {
     required this.onPressed1,
     this.btnName2,
     this.onPressed2,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class CustomCardUpdated extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppSize.s16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha:  0.05),
             blurRadius: AppSize.s10,
             offset: const Offset(AppSize.s0, AppSize.s2),
           ),

@@ -42,13 +42,13 @@ class _ChangePasswordViewState extends State<ResetPasswordView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomTextFormField(
+            const CustomTextFormField(
               hintText: AppStrings.oldPassword,
               labelText: AppStrings.oldPassword,
               textInputType: TextInputType.text,
             ),
             const SizedBox(height: 10),
-            CustomTextFormField(
+            const CustomTextFormField(
               labelText: AppStrings.currentPassword,
               hintText: AppStrings.currentPassword,
               textInputType: TextInputType.text,

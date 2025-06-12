@@ -103,6 +103,7 @@ class _DaySpecificationState extends State<DaySpecification> {
 
                       if (mounted) {
                         // Show success message
+                        // ignore: use_build_context_synchronously
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: const Text('Hours saved successfully!'),
@@ -110,6 +111,7 @@ class _DaySpecificationState extends State<DaySpecification> {
                             backgroundColor: ColorManager.green,
                           ),
                         );
+                        // ignore: use_build_context_synchronously
                         Navigator.pop(context,
                             true); // Return true to indicate changes were made
                       }

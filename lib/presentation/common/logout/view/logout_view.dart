@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/app/app_prefs.dart';
 import 'package:flutter_advanced_course/app/di.dart';
-import 'package:flutter_advanced_course/presentation/common/logout/logout_view_model.dart';
+import 'package:flutter_advanced_course/presentation/common/logout/view_model/logout_view_model.dart';
 import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';

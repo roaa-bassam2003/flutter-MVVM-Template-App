@@ -550,12 +550,14 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
         File selectedFile = File(result.files.single.path!);
         _viewModel.setCertification(selectedFile);
       } else {
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
               content: Text("No file selected or wrong picker type")),
         );
       }
     } catch (e) {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("erro selecting file: $e")),
       );

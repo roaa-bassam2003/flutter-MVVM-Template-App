@@ -9,10 +9,10 @@ import 'package:flutter_advanced_course/presentation/common/auth/register/servic
 import 'package:flutter_advanced_course/presentation/common/auth/service_type/service_type_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/user_type/user_type_view.dart';
 import 'package:flutter_advanced_course/presentation/common/edit_profile/edit_profile_view.dart';
-import 'package:flutter_advanced_course/presentation/common/logout/logout_view.dart';
+import 'package:flutter_advanced_course/presentation/common/logout/view/logout_view.dart';
 import 'package:flutter_advanced_course/presentation/common/onboarding/view/onboarding_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/register/register_user_view.dart';
-import 'package:flutter_advanced_course/presentation/common/reset_password.dart';
+import 'package:flutter_advanced_course/presentation/common/reset_passward/reset_password.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/day_specification/day_specification.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/edit_profile/edit_profile_view.dart';
@@ -256,7 +256,7 @@ class RouteGenerator {
         initLogoutModule();
         return MaterialPageRoute(
           settings: settings,
-          builder: (_) => LogoutView(),
+          builder: (_) => const LogoutView(),
         );
       case Routes.deleteAccountRoute:
         initDeleteAccountModule();

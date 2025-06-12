@@ -36,16 +36,20 @@ class _SplashViewState extends State<SplashView> {
 
         if (isUserLoggedIn && userName.contains("ServiceProvider")) {
           // navigate to main screen
+          // ignore: use_build_context_synchronously
           Navigator.pushReplacementNamed(context, ProviderRoutes.mainRoute);
         } else if (isUserLoggedIn && userName.contains("Client")) {
+          // ignore: use_build_context_synchronously
           Navigator.pushReplacementNamed(context, Routes.homeRoute);
         } else {
           _appPrefs.isOnBoardingScreenViewed().then((isOnBoardingScreenViewed) {
             if (isOnBoardingScreenViewed) {
               // navigate to login screen
+              // ignore: use_build_context_synchronously
               Navigator.pushReplacementNamed(context, Routes.loginRoute);
             } else {
               // navigate to on boarding screen
+              // ignore: use_build_context_synchronously
               Navigator.pushReplacementNamed(context, Routes.onBoardingRoute);
             }
           });

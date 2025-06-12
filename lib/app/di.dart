@@ -20,7 +20,7 @@ import 'package:flutter_advanced_course/presentation/common/auth/forgot_password
 import 'package:flutter_advanced_course/presentation/common/auth/login/view_model/login_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/register/service_provider/view_model/register_provider_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/delete_account/view_model/delete_account_view_model.dart';
-import 'package:flutter_advanced_course/presentation/common/logout/logout_view_model.dart';
+import 'package:flutter_advanced_course/presentation/common/logout/view_model/logout_view_model.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/report/report_client_view_model.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';

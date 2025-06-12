@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
                   shape: Border(
                     bottom: BorderSide(
                       width: 4,
-                      color: ColorManager.grey.withOpacity(.1),
+                      color: ColorManager.grey.withValues(alpha: 0.1),
                     ),
                   ),
                   bottom: PreferredSize(

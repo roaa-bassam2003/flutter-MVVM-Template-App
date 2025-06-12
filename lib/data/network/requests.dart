@@ -85,12 +85,8 @@ class ServiceProviderRegisterRequest {
     };
 
     if (certification?.existsSync() == true) {
-      print("Certification file exists: ${certification!.path}");
       map['Certification'] = await MultipartFile.fromFile(certification!.path);
     }
-    else {
-  print("Certification file is missing or doesn't exist");
-}
 
     return FormData.fromMap(map);
   }
