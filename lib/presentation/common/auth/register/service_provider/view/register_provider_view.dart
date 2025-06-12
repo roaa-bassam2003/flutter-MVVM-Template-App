@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/app/di.dart';
+import 'package:flutter_advanced_course/data/dummy_data/government_city.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/register/service_provider/view_model/register_provider_view_model.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
+import 'package:flutter_advanced_course/presentation/service_seeker/report_provider/widgets/custom_static_field.dart';
 import 'package:flutter_advanced_course/presentation/shared/state_renderer/state_renderer_impl.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_button.dart';
@@ -42,6 +44,10 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
   final TextEditingController _passwordEditingController =
       TextEditingController();
 
+  // نقل المتغيرات إلى مستوى الكلاس
+  String? selectedGovernorate;
+  String? selectedCity;
+
   _bind() {
     _viewModel.start();
     _userNameEditingController.addListener(() {
@@ -76,6 +82,7 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
   void initState() {
     _bind();
     super.initState();
+    setState(() {});
   }
 
   @override
@@ -136,6 +143,15 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
   }
 
   Widget _getContentWidget() {
+    // حذف إعلان المتغيرات من هنا لأنها أصبحت متغيرات للكلاس
+    List<String> cities = [];
+
+    if (selectedGovernorate != null) {
+      final governorateData = governoratesWithCities
+          .firstWhere((item) => item['governorate'] == selectedGovernorate);
+      cities = List<String>.from(governorateData['cities']);
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppPadding.p20,
@@ -249,11 +265,6 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
 
               const SizedBox(height: 8),
               //Front ID Picture
-              // const CustomTextFormField(
-              //   hintText: AppStrings.frontIdPicture,
-              //   textInputType: TextInputType.text,
-              //   suffixIcon: Icon(Icons.camera_alt_outlined),
-              // ),
               Container(
                 height: AppSize.s40,
                 decoration: BoxDecoration(
@@ -271,11 +282,6 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
               //Space
               const SizedBox(height: 8),
               //Back ID Picture
-              // const CustomTextFormField(
-              //   hintText: AppStrings.backIdPicture,
-              //   textInputType: TextInputType.text,
-              //   suffixIcon: Icon(Icons.camera_alt_outlined),
-              // ),
               Container(
                 height: AppSize.s40,
                 decoration: BoxDecoration(
@@ -293,12 +299,6 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
               //Space
               const SizedBox(height: 8),
               //Certification
-              // const CustomTextFormField(
-              //   hintText: AppStrings.certification,
-              //   textInputType: TextInputType.text,
-              //   suffixIcon: Icon(Icons.camera_alt_outlined),
-              // ),
-
               Container(
                 height: AppSize.s40,
                 decoration: BoxDecoration(
@@ -317,47 +317,48 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
               //Space
               const SizedBox(height: 8),
               //Governorate
-              // CustomDropdownButton(
-              //   textColor: ColorManager.grey,
-              //   backgroundColor: ColorManager.white,
-              //   borderColor: ColorManager.lightGrey,
-              //   hint: AppStrings.governorate,
-              //   items: const [],
-              // ),
-
+              // static for country
+              const CustomStaticField(
+                label: "Egypt",
+              ),
+              const SizedBox(height: 10),
+              // Dropdown للمحافظة
               CustomDropdownButton(
                 textColor: ColorManager.grey,
                 backgroundColor: ColorManager.white,
                 borderColor: ColorManager.lightGrey,
                 hint: AppStrings.governorate,
-                // items: _viewModel.getGovernmentList(),
-                items: const [],
-                onChanged: (selected) {
-                  _viewModel.setCurrentGovernId("Cairo");
+                items: governoratesWithCities
+                    .map((item) => item['governorate'] as String)
+                    .toList(),
+                selectedValue: selectedGovernorate,
+                onChanged: (value) {
+                  setState(() {
+                    selectedGovernorate = value;
+                    selectedCity = null; // إعادة تعيين المدينة
+                    _viewModel.setCurrentGovernId(selectedGovernorate);
+                  });
                 },
               ),
-
               //Space
               const SizedBox(height: 8),
               //city
-              // CustomDropdownButton(
-              //   textColor: ColorManager.grey,
-              //   backgroundColor: ColorManager.white,
-              //   borderColor: ColorManager.lightGrey,
-              //   hint: AppStrings.city,
-              //   items: const [],
-              // ),
-
+              // Dropdown للمدينة
               CustomDropdownButton(
                 textColor: ColorManager.grey,
                 backgroundColor: ColorManager.white,
                 borderColor: ColorManager.lightGrey,
                 hint: AppStrings.city,
-                // items: _viewModel.getCity(),
-                items: const [],
-                onChanged: (selected) {
-                  _viewModel.setCityId("1");
-                },
+                items: cities,
+                selectedValue: selectedCity,
+                onChanged: selectedGovernorate != null
+                    ? (value) {
+                        setState(() {
+                          selectedCity = value;
+                          _viewModel.setCityId(selectedCity);
+                        });
+                      }
+                    : null, // تعطيل المدينة إذا لم يتم اختيار محافظة
               ),
               //Space
               const SizedBox(height: 8),
@@ -437,10 +438,6 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
             child: StreamBuilder<File>(
               stream: stream,
               builder: (context, snapshot) {
-                // if (stream != _viewModel.outCertification) {
-                //   return _imagePickedByUser(snapshot.data);
-                // }
-                // return const Text("Certification");
                 final file = snapshot.data;
                 if (file == null) {
                   return const Text("");
@@ -468,15 +465,6 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
       ),
     );
   }
-
-  // Widget _imagePickedByUser(File? file) {
-  //   if (file != null && file.path.isNotEmpty) {
-  //     // return image
-  //     return Image.file(file);
-  //   } else {
-  //     return Container();
-  //   }
-  // }
 
   _showPicker(BuildContext context, String typePicker) {
     showModalBottomSheet(
@@ -562,17 +550,15 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
           typePicker == "setCertification") {
         File selectedFile = File(result.files.single.path!);
         _viewModel.setCertification(selectedFile);
-
-        // طباعة للتأكد من النجاح
-        print("File selected: ${selectedFile.path}");
       } else {
-        print("No file selected or wrong picker type");
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text("No file selected or wrong picker type")),
+        );
       }
     } catch (e) {
-      print("Error picking file: $e");
-      // يمكنك إظهار رسالة خطأ للمستخدم هنا
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("حدث خطأ في اختيار الملف: $e")),
+        SnackBar(content: Text("erro selecting file: $e")),
       );
     }
   }

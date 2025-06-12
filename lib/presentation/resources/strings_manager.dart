@@ -223,6 +223,7 @@ class AppStrings {
   static const passwordUpperCaseValid = 'Must contain an uppercase letter';
   static const passwordLowerCaseValid = 'Must contain a lowercase letter';
   static const passwordNumberValid = 'Must contain a number';
+  static const passwordLenghtValid = 'Must be at least 6';
   static const passwordSpecialCharValid = 'Must contain a special character';
   static const passwordLengthValid = 'Must be at least 8 characters';
 

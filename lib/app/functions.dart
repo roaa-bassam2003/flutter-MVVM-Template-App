@@ -34,5 +34,8 @@ String? validatePassword(String password) {
   if (!password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
     return AppStrings.passwordSpecialCharValid;
   }
+  if (password.length < 6) {
+    return AppStrings.passwordLenghtValid;
+  }
   return null; // Password is valid
 }

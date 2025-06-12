@@ -55,7 +55,6 @@ class LoginViewModel extends BaseViewModel
     inputPassword.add(password);
     loginObject = loginObject.copyWith(password: password);
     inputAreAllInputsValid.add(null);
-    // _resetStateToContent(); // Reset state when password changes
   }
 
   @override
@@ -80,7 +79,6 @@ class LoginViewModel extends BaseViewModel
     }, (data) {
       inputState.add(ContentState());
       // navigate to main screen
-      // userType = data.user!.userName;
       userType = data.user!.userType.first;
       isUserLoggedInSuccessfullyStreamController.add(true);
     });
@@ -106,12 +104,9 @@ class LoginViewModel extends BaseViewModel
   }
 
   bool _isUserNameValid(String userName) {
-    // Regex for email validation
     String emailRegex = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
     RegExp regExp = RegExp(emailRegex);
     return regExp.hasMatch(userName) && userName.isNotEmpty;
-    // return userName.isNotEmpty;
-    // return userName.isNotEmpty;
   }
 
   bool _areAllInputsValid() {
@@ -123,42 +118,21 @@ class LoginViewModel extends BaseViewModel
   getUserType() {
     return userType;
   }
-
-  // New method to reset the state to ContentState
-  // void _resetStateToContent() {
-  //   inputState.add(ContentState());
-  // }
-
-  // Method to call when toggling password visibility
-  // void onPasswordVisibilityToggled() {
-  //   _resetStateToContent();
-  // }
 }
 
 abstract class LoginViewModelInputs {
-  // 3 orders (3 functions) : from view to view model
-  // لما المستخدم يكتب اسم المستخدم، الفيو هتبعته هنا
   setUserName(String userName);
-  // لما المستخدم يكتب كلمة المرور، الفيو هتبعته هنا
   setPassword(String password);
-  // لما المستخدم يضغط على زر "تسجيل الدخول"، الدالة دي هتتنفذ
   login();
 
   getUserType();
-
-  // 2 streams (Sink) : from view to view model (to send inputs to view model in order to validate them)
-  // قناة بتبعت اسم المستخدم للـمودل  كل ما المستخدم يكتب حرف
   Sink get inputUserName;
-  // قناة بتبعت كلمة المرور للـمودل  كل ما المستخدم يكتب حرف
   Sink get inputPassword;
   Sink get inputAreAllInputsValid;
 }
 
 abstract class LoginViewModelOutputs {
-  // 2 streams (Stream) : from view model to view (to validate the inputs and tell the view about the result of validation)
-  // تبعت قيمة (صح أو غلط) عشان تقول للشاشة إذا كان اسم المستخدم صالح (مثلًا مش فاضي أو طوله مناسب)
   Stream<bool> get outIsUserNameValid;
-  // نفس الفكرة لكلمة المرور (مثلًا لازم تكون أكتر من 6 أحرف)
   Stream<bool> get outIsPasswordValid;
   Stream<bool> get outAreAllInputsValid;
 }

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-// import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
 
 import 'package:flutter_advanced_course/app/functions.dart';
 import 'package:flutter_advanced_course/domain/usecase/city_use_case.dart';
@@ -33,9 +32,6 @@ class RegisterProviderViewModel extends BaseViewModel
 
   final StreamController _phoneNumberStreamController =
       StreamController<String>.broadcast();
-
-//   final StreamController _typeStreamController =
-//       StreamController<String>.broadcast();
 
   final StreamController _idCardBackPhotoStreamController =
       StreamController<File>.broadcast();
@@ -87,8 +83,6 @@ class RegisterProviderViewModel extends BaseViewModel
   // inputs
   @override
   void start() {
-    // getGovernment();
-    // getCity();
     inputState.add(ContentState());
   }
 
@@ -105,10 +99,15 @@ class RegisterProviderViewModel extends BaseViewModel
     _emailStreamController.close();
     _passwordStreamController.close();
     _phoneNumberStreamController.close();
-    // _typeStreamController.close();
     _userNameStreamController.close();
     _areAllInputsValidStreamController.close();
     isUserRegisterProviderSuccessfullyStreamController.close();
+  }
+
+  // إضافة method للرجوع للـ content state بعد dismiss الـ error
+  @override
+  void dismissError() {
+    inputState.add(ContentState());
   }
 
   @override
@@ -159,8 +158,6 @@ class RegisterProviderViewModel extends BaseViewModel
       ));
     }, (data) {
       inputState.add(ContentState());
-      // navigate to main screen
-      //   isUserLoggedInSuccessfullyStreamController.add(true);
     });
   }
 
@@ -177,8 +174,6 @@ class RegisterProviderViewModel extends BaseViewModel
     }, (data) {
       inputState.add(ContentState());
       governmentList = data.governments!.map((gov) => gov.name).toList();
-      // navigate to main screen
-      //   isUserLoggedInSuccessfullyStreamController.add(true);
     });
   }
 
@@ -187,7 +182,6 @@ class RegisterProviderViewModel extends BaseViewModel
     inputState.add(LoadingState(
       stateRendererType: StateRendererType.popUpLoadingState,
     ));
-    print("loading");
     (await _registerServiceProviderUseCase
             .execute(RegisterServiceProviderUseCaseInput(
       type: registerProviderObject.type,
@@ -204,22 +198,27 @@ class RegisterProviderViewModel extends BaseViewModel
       certification: registerProviderObject.certification,
     )))
         .fold((failure) {
+      // هنا المشكلة كانت - المفروض نرجع للـ ContentState بدلاً من ErrorState
+      // عشان المستخدم يقدر يعدل في الـ form
       inputState.add(ErrorState(
         StateRendererType.popUpErrorState,
         failure.message,
       ));
-      print("error");
+
+      // إضافة delay صغير ثم الرجوع للـ content state
+      Timer(Duration(milliseconds: 100), () {
+        inputState.add(ContentState());
+      });
     }, (data) {
       inputState.add(ContentState());
-      // navigate to waiting screen
       isUserRegisterProviderSuccessfullyStreamController.add(true);
-      print("done");
     });
   }
 
   @override
-  setCurrentGovernId(String value) {
-    currentGovernId = governmentList.indexOf(value) + 1;
+  setCurrentGovernId(String? value) {
+    currentGovernId = governmentList.indexOf(value!) + 1;
+    validate();
   }
 
   @override
@@ -228,8 +227,8 @@ class RegisterProviderViewModel extends BaseViewModel
   }
 
   @override
-  setCityId(String cityId) {
-    final parsedCityId = int.tryParse(cityId) ?? 0;
+  setCityId(String? cityId) {
+    final parsedCityId = int.tryParse(cityId!) ?? 0;
     registerProviderObject =
         registerProviderObject.copyWith(city: parsedCityId);
     validate();
@@ -239,11 +238,9 @@ class RegisterProviderViewModel extends BaseViewModel
   setCertification(File? certification) {
     inputCertification.add(certification);
     if (certification != null && certification.path.isNotEmpty) {
-      // update registerProviderObject
       registerProviderObject =
           registerProviderObject.copyWith(certification: certification);
     } else {
-      // reset certification value in registerProviderObject
       registerProviderObject =
           registerProviderObject.copyWith(certification: null);
     }
@@ -254,10 +251,8 @@ class RegisterProviderViewModel extends BaseViewModel
   setEmail(String email) {
     inputEmail.add(email);
     if (emailValid(email)) {
-      // update registerProviderObject
       registerProviderObject = registerProviderObject.copyWith(email: email);
     } else {
-      // reset email value in registerProviderObject
       registerProviderObject = registerProviderObject.copyWith(email: "");
     }
     validate();
@@ -268,11 +263,9 @@ class RegisterProviderViewModel extends BaseViewModel
     inputHourPrice.add(hourePrice);
     final parsedPrice = double.tryParse(hourePrice);
     if (parsedPrice != null && isHourPriceValid(parsedPrice)) {
-      // update registerProviderObject
       registerProviderObject =
           registerProviderObject.copyWith(hourPrice: parsedPrice);
     } else {
-      // reset houre price value in registerProviderObject
       registerProviderObject = registerProviderObject.copyWith(hourPrice: 0.0);
     }
     validate();
@@ -282,11 +275,9 @@ class RegisterProviderViewModel extends BaseViewModel
   setIdCardBackPhoto(File idCardBackPhoto) {
     inputIdCardBackPhoto.add(idCardBackPhoto);
     if (idCardBackPhoto.path.isNotEmpty) {
-      // update registerProviderObject
       registerProviderObject =
           registerProviderObject.copyWith(idCardBackPhoto: idCardBackPhoto);
     } else {
-      // reset id card back photo value in registerProviderObject
       registerProviderObject =
           registerProviderObject.copyWith(idCardBackPhoto: File(""));
     }
@@ -297,11 +288,9 @@ class RegisterProviderViewModel extends BaseViewModel
   setIdCardFrontPhoto(File idCardFrontPhoto) {
     inputIdCardFrontPhoto.add(idCardFrontPhoto);
     if (idCardFrontPhoto.path.isNotEmpty) {
-      // update registerProviderObject
       registerProviderObject =
           registerProviderObject.copyWith(idCardFrontPhoto: idCardFrontPhoto);
     } else {
-      // reset id card front photo value in registerProviderObject
       registerProviderObject =
           registerProviderObject.copyWith(idCardFrontPhoto: File(""));
     }
@@ -312,11 +301,9 @@ class RegisterProviderViewModel extends BaseViewModel
   setPassword(String password) {
     inputPassword.add(password);
     if (validatePassword(password) == null) {
-      // update registerProviderObject
       registerProviderObject =
           registerProviderObject.copyWith(password: password);
     } else {
-      // reset phone number value in registerProviderObject
       registerProviderObject = registerProviderObject.copyWith(password: "");
     }
     validate();
@@ -326,11 +313,9 @@ class RegisterProviderViewModel extends BaseViewModel
   setPersonWithCard(File personWithCard) {
     inputPersonWithCard.add(personWithCard);
     if (personWithCard.path.isNotEmpty) {
-      // update registerProviderObject
       registerProviderObject =
           registerProviderObject.copyWith(personWithCard: personWithCard);
     } else {
-      // reset person with card value in registerProviderObject
       registerProviderObject =
           registerProviderObject.copyWith(personWithCard: File(""));
     }
@@ -341,11 +326,9 @@ class RegisterProviderViewModel extends BaseViewModel
   setPersonalPhoto(File personalPhoto) {
     inputPersonalPhoto.add(personalPhoto);
     if (personalPhoto.path.isNotEmpty) {
-      // update registerProviderObject
       registerProviderObject =
           registerProviderObject.copyWith(personalPhoto: personalPhoto);
     } else {
-      // reset personal photo value in registerProviderObject
       registerProviderObject =
           registerProviderObject.copyWith(personalPhoto: File(""));
     }
@@ -356,11 +339,9 @@ class RegisterProviderViewModel extends BaseViewModel
   setPhoneNumber(String phoneNumber) {
     inputPhoneNumber.add(phoneNumber);
     if (isPhoneNumberValid(phoneNumber)) {
-      // update registerProviderObject
       registerProviderObject =
           registerProviderObject.copyWith(phoneNumber: phoneNumber);
     } else {
-      // reset phone number value in registerProviderObject
       registerProviderObject = registerProviderObject.copyWith(phoneNumber: "");
     }
     validate();
@@ -369,7 +350,6 @@ class RegisterProviderViewModel extends BaseViewModel
   @override
   setType(String type) {
     final parsedType = int.tryParse(type) ?? 0;
-    // update registerProviderObject
     registerProviderObject = registerProviderObject.copyWith(type: parsedType);
     validate();
   }
@@ -378,11 +358,9 @@ class RegisterProviderViewModel extends BaseViewModel
   setUserName(String userName) {
     inputUserName.add(userName);
     if (isUserNameValid(userName)) {
-      // update registerProviderObject
       registerProviderObject =
           registerProviderObject.copyWith(userName: userName);
     } else {
-      // reset user name value in registerProviderObject
       registerProviderObject = registerProviderObject.copyWith(userName: "");
     }
     validate();
@@ -425,7 +403,6 @@ class RegisterProviderViewModel extends BaseViewModel
   @override
   Stream<bool> get outIsHourPriceValid =>
       _hourPriceStreamController.stream.map((hourPriceStr) {
-        // _isHourPriceValid(hourPrice),
         double? hourPrice = double.tryParse(hourPriceStr);
         if (hourPrice == null) return false;
         return isHourPriceValid(hourPrice);
@@ -505,66 +482,52 @@ abstract class RegisterProviderViewModelInputs {
   Sink get inputHourPrice;
   Sink get inputPassword;
   Sink get inputPhoneNumber;
-//   Sink get inputType;
   Sink get inputIdCardBackPhoto;
   Sink get inputIdCardFrontPhoto;
   Sink get inputPersonalPhoto;
   Sink get inputPersonWithCard;
   Sink get inputCertification;
-
   Sink get inputAllInputsValid;
 
   setUserName(String userName);
-  setCityId(String cityId);
+  setCityId(String? cityId);
   setEmail(String email);
   setHourePrice(String hourePrice);
   setPassword(String password);
   setPhoneNumber(String phoneNumber);
-
-// type from the service type args
   setType(String type);
-
-//   files
   setIdCardBackPhoto(File idCardBackPhoto);
   setIdCardFrontPhoto(File idCardFrontPhoto);
   setPersonalPhoto(File personalPhoto);
   setPersonWithCard(File personWithCard);
-  setCertification(File? certification); // optional
+  setCertification(File? certification);
 
   registerProvider();
   getCity();
   getGovernment();
-  setCurrentGovernId(String value);
+  setCurrentGovernId(String? value);
   getGovernmentList();
+
+  // إضافة method للـ dismiss error
+  void dismissError();
 }
 
 abstract class RegisterProviderViewModelOutputs {
   Stream<bool> get outIsUserNameValid;
   Stream<String?> get outIsErrorUserName;
-
   Stream<bool> get outIsGovernIdValid;
-//   Stream<String?> get outIsErrorCityId;
-
   Stream<bool> get outIsEmailValid;
   Stream<String?> get outIsErrorEmail;
-
   Stream<bool> get outIsHourPriceValid;
   Stream<String?> get outIsErrorHourPrice;
-
   Stream<bool> get outIsPasswordValid;
   Stream<String?> get outIsErrorPassword;
-
   Stream<bool> get outIsPhoneNumberValid;
   Stream<String?> get outIsErrorPhoneNumber;
-
-//   Stream<bool> get outIsTypeValid;
-//   Stream<String?> get outIsErrorType;
-
   Stream<File> get outIdCardBackPhoto;
   Stream<File> get outIdCardFrontPhoto;
   Stream<File> get outPersonalPhoto;
   Stream<File> get outPersonWithCard;
   Stream<File> get outCertification;
-
   Stream<bool> get outAreAllInputsValid;
 }
