@@ -211,8 +211,8 @@ class _AppServiceClient implements AppServiceClient {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = {
-      'username': username,
-      'report_message': reportMessage,
+      'userName': username,
+      'comment': reportMessage,
     };
     final _options = _setStreamType<ReportResponse>(Options(
       method: 'POST',
@@ -221,7 +221,7 @@ class _AppServiceClient implements AppServiceClient {
     )
         .compose(
           _dio.options,
-          '/Account/report',
+          '/api/User/report-user',
           queryParameters: queryParameters,
           data: _data,
         )

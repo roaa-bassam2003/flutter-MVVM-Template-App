@@ -53,7 +53,6 @@ class ReportClientViewModel extends BaseViewModel
 
   @override
   setUserName(String userName) {
-    // inputUserName.add(userName);
     reportObj = reportObj.copyWith(userName: userName);
     inputIsAllInputValid.add(null);
   }
@@ -68,15 +67,8 @@ class ReportClientViewModel extends BaseViewModel
   @override
   Sink get inputIsAllInputValid => _isAllInputValidStreamController.sink;
 
-  // @override
-  // Sink get inputUserName => _userNameStreamController.sink;
-
   @override
   Sink get inputReportMessage => _reportMessageStreamController.sink;
-
-  // @override
-  // Stream<bool> get outputIsUserNameValid => _userNameStreamController.stream
-  //     .map((userName) => _isUserNameValid(userName));
 
   @override
   Stream<bool> get outputIsReportMessageValid =>
@@ -97,14 +89,9 @@ class ReportClientViewModel extends BaseViewModel
   }
 
   _isAllInputValid() {
-    print(reportObj.userName);
     return _isUserNameValid(reportObj.userName) &&
         _isSupportMessageValid(reportObj.reportMessage);
   }
-
-  // _validate() {
-  //   inputIsAllInputValid.add(null);
-  // }
 }
 
 abstract class ForgotPasswordViewModelInput {
@@ -114,15 +101,12 @@ abstract class ForgotPasswordViewModelInput {
 
   setReportMessage(String reportMessage);
 
-  // Sink get inputUserName;
-
   Sink get inputReportMessage;
 
   Sink get inputIsAllInputValid;
 }
 
 abstract class ForgotPasswordViewModelOutput {
-  // Stream<bool> get outputIsUserNameValid;
 
   Stream<bool> get outputIsReportMessageValid;
 

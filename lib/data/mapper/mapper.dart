@@ -80,7 +80,7 @@ extension DeleteAccountResponseMapper on DeleteAccountResponse? {
 // report
 extension ReportResponseMapper on ReportResponse? {
   String toDomain() {
-    return this?.support?.orEmpty() ?? Constants.empty;
+    return this?.data?.orEmpty() ?? Constants.empty;
   }
 }
 

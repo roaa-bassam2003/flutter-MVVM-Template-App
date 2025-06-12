@@ -40,10 +40,10 @@ abstract class AppServiceClient {
   Future<DeleteAccountResponse> deleteAccount();
 
   // http methods as interface for report
-  @POST("/Account/report")
+  @POST("/api/User/report-user")
   Future<ReportResponse> report(
-    @Field("username") String username,
-    @Field("report_message") String reportMessage,
+    @Field("userName") String username,
+    @Field("comment") String reportMessage,
   );
 
   // http methods as interface for governments

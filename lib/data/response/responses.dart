@@ -166,10 +166,10 @@ class ChangePasswordResponse extends BaseResponse {
 // report
 @JsonSerializable()
 class ReportResponse extends BaseResponse {
-  @JsonKey(name: "support")
-  String? support;
+  @JsonKey(name: "data")
+  String? data;
   ReportResponse(
-    this.support,
+    this.data,
   );
 
   // from json

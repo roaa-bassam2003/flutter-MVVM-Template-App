@@ -168,7 +168,7 @@ Map<String, dynamic> _$ChangePasswordResponseToJson(
 
 ReportResponse _$ReportResponseFromJson(Map<String, dynamic> json) =>
     ReportResponse(
-      json['support'] as String?,
+      json['data'] as String?,
     )
       ..status = (json['status'] as num?)?.toInt()
       ..message = json['message'] as String?
@@ -182,7 +182,7 @@ Map<String, dynamic> _$ReportResponseToJson(ReportResponse instance) =>
       'message': instance.message,
       'token': instance.token,
       'errors': instance.errors,
-      'support': instance.support,
+      'data': instance.data,
     };
 
 DeleteAccountResponse _$DeleteAccountResponseFromJson(

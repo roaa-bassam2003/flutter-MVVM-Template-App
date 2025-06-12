@@ -29,7 +29,7 @@ class ProviderProfileView extends StatelessWidget {
             Navigator.pushNamed(
               context,
               ProviderRoutes.reportClient,
-              arguments: "@sp_2025",
+              arguments: "keshtaroah",
             );
           },
         ),
@@ -116,7 +116,8 @@ class ProviderProfileView extends StatelessWidget {
                 // Check if the day is in the provider's available days
                 bool isAvailable = provider.availableDays.contains(day);
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppPadding.p3),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: AppPadding.p3),
                   child: Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -128,13 +129,15 @@ class ProviderProfileView extends StatelessWidget {
                     ),
                     child: CircleAvatar(
                       radius: AppSize.s12, // Circle size
-                      backgroundColor:
-                          isAvailable ? ColorManager.white : ColorManager.primary,
+                      backgroundColor: isAvailable
+                          ? ColorManager.white
+                          : ColorManager.primary,
                       child: Text(
                         day[0],
                         style: TextStyle(
-                          color:
-                              isAvailable ? ColorManager.primary : ColorManager.white,
+                          color: isAvailable
+                              ? ColorManager.primary
+                              : ColorManager.white,
                           fontSize: AppSize.s12,
                           fontWeight: FontWeight.bold,
                         ),
