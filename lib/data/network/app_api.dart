@@ -39,6 +39,10 @@ abstract class AppServiceClient {
   @POST("/api/User/request-account-deletion")
   Future<DeleteAccountResponse> deleteAccount();
 
+  // http methods as interface for logout
+  @POST("/api/Account/logout")
+  Future<LogoutResponse> logout();
+
   // http methods as interface for report
   @POST("/api/User/report-user")
   Future<ReportResponse> report(

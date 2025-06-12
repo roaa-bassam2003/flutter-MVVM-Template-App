@@ -185,6 +185,25 @@ Map<String, dynamic> _$ReportResponseToJson(ReportResponse instance) =>
       'data': instance.data,
     };
 
+LogoutResponse _$LogoutResponseFromJson(Map<String, dynamic> json) =>
+    LogoutResponse(
+      json['data'] as String?,
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?
+      ..token = json['token'] as String?
+      ..errors =
+          (json['errors'] as List<dynamic>?)?.map((e) => e as String).toList();
+
+Map<String, dynamic> _$LogoutResponseToJson(LogoutResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'token': instance.token,
+      'errors': instance.errors,
+      'data': instance.data,
+    };
+
 DeleteAccountResponse _$DeleteAccountResponseFromJson(
         Map<String, dynamic> json) =>
     DeleteAccountResponse(

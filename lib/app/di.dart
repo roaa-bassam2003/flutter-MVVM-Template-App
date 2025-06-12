@@ -12,6 +12,7 @@ import 'package:flutter_advanced_course/domain/usecase/delete_account_use_case.d
 import 'package:flutter_advanced_course/domain/usecase/forgot_password_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/government_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/login_use_case.dart';
+import 'package:flutter_advanced_course/domain/usecase/logout_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/register_service_provider_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/report_use_case.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/change_password/view_model/change_password_view_model.dart';
@@ -19,6 +20,7 @@ import 'package:flutter_advanced_course/presentation/common/auth/forgot_password
 import 'package:flutter_advanced_course/presentation/common/auth/login/view_model/login_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/register/service_provider/view_model/register_provider_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/delete_account/view_model/delete_account_view_model.dart';
+import 'package:flutter_advanced_course/presentation/common/logout/logout_view_model.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/report/report_client_view_model.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -126,6 +128,18 @@ initDeleteAccountModule() {
     // forgot password view model
     instance.registerFactory<DeleteAccountViewModel>(
         () => DeleteAccountViewModel(instance()));
+  }
+}
+
+// logout module is a module where we put all DI related to logout account
+initLogoutModule() {
+  if (!GetIt.I.isRegistered<LogoutUseCase>()) {
+    // forgot password  use case
+    instance.registerFactory<LogoutUseCase>(
+        () => LogoutUseCase(instance()));
+    // forgot password view model
+    instance.registerFactory<LogoutViewModel>(
+        () => LogoutViewModel(instance()));
   }
 }
 

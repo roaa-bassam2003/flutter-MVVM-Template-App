@@ -179,6 +179,22 @@ class ReportResponse extends BaseResponse {
   Map<String, dynamic> toJson() => _$ReportResponseToJson(this);
 }
 
+// report
+@JsonSerializable()
+class LogoutResponse extends BaseResponse {
+  @JsonKey(name: "data")
+  String? data;
+  LogoutResponse(
+    this.data,
+  );
+
+  // from json
+  factory LogoutResponse.fromJson(Map<String, dynamic> json) =>
+      _$LogoutResponseFromJson(json);
+  // to json
+  Map<String, dynamic> toJson() => _$LogoutResponseToJson(this);
+}
+
 // delete account
 @JsonSerializable()
 class DeleteAccountResponse extends BaseResponse {

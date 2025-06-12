@@ -253,6 +253,7 @@ class RouteGenerator {
 
       // Account management routes
       case Routes.logoutRoute:
+        initLogoutModule();
         return MaterialPageRoute(
           settings: settings,
           builder: (_) => LogoutView(),

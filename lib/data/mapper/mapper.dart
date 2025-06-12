@@ -84,6 +84,13 @@ extension ReportResponseMapper on ReportResponse? {
   }
 }
 
+// logout
+extension LogoutResponseMapper on LogoutResponse? {
+  String toDomain() {
+    return this?.data?.orEmpty() ?? Constants.empty;
+  }
+}
+
 // Governments list items
 extension GovernmentMapper on Government? {
   GovernmentList toDomain() {
