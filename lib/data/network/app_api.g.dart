@@ -139,8 +139,8 @@ class _AppServiceClient implements AppServiceClient {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = {
-      'passwordOne': passwordOne,
-      'passwordTwo': passwordTwo,
+      'oldPassword': passwordOne,
+      'newPassword': passwordTwo,
     };
     final _options = _setStreamType<ChangePasswordResponse>(Options(
       method: 'POST',
@@ -149,7 +149,7 @@ class _AppServiceClient implements AppServiceClient {
     )
         .compose(
           _dio.options,
-          '/Account/change-password',
+          '/api/Account/change-password',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -162,6 +162,39 @@ class _AppServiceClient implements AppServiceClient {
     late ChangePasswordResponse _value;
     try {
       _value = ChangePasswordResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<DeleteAccountResponse> deleteAccount() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<DeleteAccountResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/User/request-account-deletion',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late DeleteAccountResponse _value;
+    try {
+      _value = DeleteAccountResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

@@ -69,12 +69,6 @@ class _SettingPageState extends State<SettingPage> {
             const SizedBox(
               height: AppSize.s12,
             ),
-            // CustomListTile(
-            //   title: AppStrings.appBarEditProfileTitle,
-            //   icon: Iconsax.edit,
-            //   onTap: () =>
-            //       Navigator.pushNamed(context, ProviderRoutes.pEditProfileView),
-            // ),
             CustomListTile(
               title: AppStrings.appBarChangePasswordTitle,
               icon: Iconsax.lock,

@@ -120,6 +120,7 @@ class AppStrings {
   static const shedual = "Shedual";
   static const setting = "Setting";
   static const person = "Person";
+  static const notification = "Notification";
 
   // tabs
   static const bookings = "Booking";

@@ -9,9 +9,7 @@ void main() async {
 }
 
 // service provider
-// {email: mohamed123@gmail.com, password: mohamed123}
-
-// {"email": "keshtaroah@gmail.com","password": "Rb123456#"}
+// {"email": "keshtaroah@gmail.com","password": "Roaa123456#"}
 
 // client test
-// {"email": "mohamedc123@gmail.com", "password": "mohamedc123"}
+// {"email": "r.soliman3526@su.edu.eg", "password": "Rashad1234#"}

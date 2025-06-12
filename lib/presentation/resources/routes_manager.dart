@@ -8,7 +8,6 @@ import 'package:flutter_advanced_course/presentation/common/auth/pending_approva
 import 'package:flutter_advanced_course/presentation/common/auth/register/service_provider/view/register_provider_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/service_type/service_type_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/user_type/user_type_view.dart';
-import 'package:flutter_advanced_course/presentation/common/delete_account/delete_account_view.dart';
 import 'package:flutter_advanced_course/presentation/common/edit_profile/edit_profile_view.dart';
 import 'package:flutter_advanced_course/presentation/common/logout/logout_view.dart';
 import 'package:flutter_advanced_course/presentation/common/onboarding/view/onboarding_view.dart';
@@ -43,6 +42,8 @@ import 'package:flutter_advanced_course/presentation/service_seeker/report_provi
 import 'package:flutter_advanced_course/presentation/service_seeker/requested_bookings/requested_bookings_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/search/search_view.dart';
 import 'package:flutter_advanced_course/presentation/service_seeker/service_providers/service_providers_view.dart';
+
+import '../common/delete_account/view/delete_account_view.dart';
 
 class Routes {
   static const String splashRoute = "/";
@@ -257,6 +258,7 @@ class RouteGenerator {
           builder: (_) => LogoutView(),
         );
       case Routes.deleteAccountRoute:
+        initDeleteAccountModule();
         return MaterialPageRoute(
           settings: settings,
           builder: (_) => const DeleteAccountView(),

@@ -29,11 +29,15 @@ abstract class AppServiceClient {
   );
 
   // http methods as interface for change password
-  @POST("/Account/change-password")
+  @POST("/api/Account/change-password")
   Future<ChangePasswordResponse> changePassword(
-    @Field("passwordOne") String passwordOne,
-    @Field("passwordTwo") String passwordTwo,
+    @Field("oldPassword") String passwordOne,
+    @Field("newPassword") String passwordTwo,
   );
+
+  // http methods as interface for delete account
+  @POST("/api/User/request-account-deletion")
+  Future<DeleteAccountResponse> deleteAccount();
 
   // http methods as interface for report
   @POST("/Account/report")

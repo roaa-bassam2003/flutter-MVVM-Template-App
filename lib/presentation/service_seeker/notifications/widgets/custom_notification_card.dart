@@ -30,14 +30,14 @@ class CustomNotificationCard extends StatelessWidget {
                 padding: const EdgeInsets.all(AppPadding.p8),
                 decoration: BoxDecoration(
                   color: notification.isApproved
-                      ? ColorManager.lightPrimary
+                      ? ColorManager.green
                       : ColorManager.white,
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   notification.isApproved ? Icons.check : Iconsax.danger,
                   color: notification.isApproved
-                      ? ColorManager.green
+                      ? ColorManager.white
                       : ColorManager.error,
                   size: AppSize.s20,
                 ),

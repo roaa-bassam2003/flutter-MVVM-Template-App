@@ -34,10 +34,10 @@ class _SplashViewState extends State<SplashView> {
           userName = userNameValue ?? "@sp";
         });
 
-        if (isUserLoggedIn && userName.contains("@sp")) {
+        if (isUserLoggedIn && userName.contains("ServiceProvider")) {
           // navigate to main screen
           Navigator.pushReplacementNamed(context, ProviderRoutes.mainRoute);
-        } else if (isUserLoggedIn && userName.contains("@ss")) {
+        } else if (isUserLoggedIn && userName.contains("Client")) {
           Navigator.pushReplacementNamed(context, Routes.homeRoute);
         } else {
           _appPrefs.isOnBoardingScreenViewed().then((isOnBoardingScreenViewed) {

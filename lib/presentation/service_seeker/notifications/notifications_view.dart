@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/domain/model/models.dart';
 import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
-import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
 
 import 'widgets/custom_notification_card.dart';
@@ -48,22 +47,13 @@ class NotificationsView extends StatelessWidget {
       backgroundColor: ColorManager.white,
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
-          horizontal: AppPadding.p16,
+          horizontal: AppPadding.p8,
         ),
         child: SafeArea(
           child: Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(AppPadding.p8),
-                child: Center(
-                  child: Text(
-                    AppStrings.appBarNotificationsTitle,
-                    style: TextStyle(
-                      fontSize: AppSize.s16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
+              const SizedBox(
+                height: AppSize.s12,
               ),
               // List of Notifications
               ListView.builder(

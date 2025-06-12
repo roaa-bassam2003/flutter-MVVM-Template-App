@@ -148,7 +148,7 @@ Map<String, dynamic> _$ForgotPasswordResponseToJson(
 ChangePasswordResponse _$ChangePasswordResponseFromJson(
         Map<String, dynamic> json) =>
     ChangePasswordResponse(
-      json['support'] as String?,
+      json['data'] as String?,
     )
       ..status = (json['status'] as num?)?.toInt()
       ..message = json['message'] as String?
@@ -163,7 +163,7 @@ Map<String, dynamic> _$ChangePasswordResponseToJson(
       'message': instance.message,
       'token': instance.token,
       'errors': instance.errors,
-      'support': instance.support,
+      'data': instance.support,
     };
 
 ReportResponse _$ReportResponseFromJson(Map<String, dynamic> json) =>
@@ -183,6 +183,27 @@ Map<String, dynamic> _$ReportResponseToJson(ReportResponse instance) =>
       'token': instance.token,
       'errors': instance.errors,
       'support': instance.support,
+    };
+
+DeleteAccountResponse _$DeleteAccountResponseFromJson(
+        Map<String, dynamic> json) =>
+    DeleteAccountResponse(
+      json['data'] as String?,
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?
+      ..token = json['token'] as String?
+      ..errors =
+          (json['errors'] as List<dynamic>?)?.map((e) => e as String).toList();
+
+Map<String, dynamic> _$DeleteAccountResponseToJson(
+        DeleteAccountResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'token': instance.token,
+      'errors': instance.errors,
+      'data': instance.data,
     };
 
 Government _$GovernmentFromJson(Map<String, dynamic> json) => Government(

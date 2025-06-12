@@ -150,7 +150,7 @@ class ForgotPasswordResponse extends BaseResponse {
 // change password
 @JsonSerializable()
 class ChangePasswordResponse extends BaseResponse {
-  @JsonKey(name: "support")
+  @JsonKey(name: "data")
   String? support;
   ChangePasswordResponse(
     this.support,
@@ -177,6 +177,22 @@ class ReportResponse extends BaseResponse {
       _$ReportResponseFromJson(json);
   // to json
   Map<String, dynamic> toJson() => _$ReportResponseToJson(this);
+}
+
+// delete account
+@JsonSerializable()
+class DeleteAccountResponse extends BaseResponse {
+  @JsonKey(name: "data")
+  String? data;
+  DeleteAccountResponse(
+    this.data,
+  );
+
+  // from json
+  factory DeleteAccountResponse.fromJson(Map<String, dynamic> json) =>
+      _$DeleteAccountResponseFromJson(json);
+  // to json
+  Map<String, dynamic> toJson() => _$DeleteAccountResponseToJson(this);
 }
 
 // government

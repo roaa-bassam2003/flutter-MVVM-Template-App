@@ -22,19 +22,21 @@ class MyProfileView extends StatelessWidget {
             ),
             child: Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(AppPadding.p8),
-                  child: Center(
-                    child: Text(
-                      AppStrings.appBarMyProfileTitle,
-                      style: TextStyle(
-                        fontSize: AppSize.s16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
+                // const Padding(
+                //   padding: EdgeInsets.all(AppPadding.p8),
+                //   child: Center(
+                //     child: Text(
+                //       AppStrings.appBarMyProfileTitle,
+                //       style: TextStyle(
+                //         fontSize: AppSize.s16,
+                //         fontWeight: FontWeight.w500,
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                const SizedBox(
+                  height: AppSize.s12,
                 ),
-                const SizedBox(height: AppSize.s20),
                 // Profile Picture
                 const CircleAvatar(
                   radius: AppSize.s60,

@@ -25,7 +25,6 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  // bool _isPasswordVisible = false;
   final AppPrefs _appPrefs = instance<AppPrefs>();
   var userName = "";
 
@@ -45,9 +44,7 @@ class _LoginViewState extends State<LoginView> {
         _appPrefs.setIsUserLoggedIn();
         _appPrefs.logoutDeleteAccount();
         _appPrefs.setUserName(userName);
-
         if (userName == "ServiceProvider") {
-          // Navigator.pushNamed(context, Routes.homeRoute);
           SchedulerBinding.instance.addPostFrameCallback((_) {
             Navigator.of(context)
                 .pushReplacementNamed(ProviderRoutes.mainRoute);
@@ -131,18 +128,6 @@ class _LoginViewState extends State<LoginView> {
                     hintText: AppStrings.password,
                     labelText: AppStrings.password,
                     textInputType: TextInputType.visiblePassword,
-                    // obscureText: _isPasswordVisible ? false : true,
-                    // suffixIcon: Icon(
-                    //   _isPasswordVisible
-                    //       ? Icons.visibility
-                    //       : Icons.visibility_off,
-                    // ),
-                    // onSuffixIconPressed: () {
-                    //   setState(() {
-                    //     _isPasswordVisible = !_isPasswordVisible;
-                    //     // _viewModel.onPasswordVisibilityToggled(); // Reset state
-                    //   });
-                    // },
                     controller: _passwordController,
                     errorText: (snapshot.data ?? true)
                         ? null
@@ -177,10 +162,6 @@ class _LoginViewState extends State<LoginView> {
                             _viewModel.login();
                           }
                         : null,
-                    //     {
-                    //   _viewModel.login();
-                    //   Navigator.pushNamed(context, Routes.homeRoute);
-                    // },
                     text: AppStrings.login,
                     backgroundColor: ColorManager.primary,
                   );

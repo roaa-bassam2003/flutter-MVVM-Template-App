@@ -13,15 +13,16 @@ class HomeViewBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: AppPadding.p16,
+          horizontal: AppPadding.p8,
         ),
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              //AppBar
-              homeAppBar(),
+              const SizedBox(
+                height: AppSize.s12,
+              ),
 
               //Pet Care Card
               HomeServiceCard(

@@ -51,27 +51,9 @@ class _SettingsViewState extends State<SettingsView> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(AppPadding.p8),
-                    child: Text(
-                      AppStrings.appBarSettingsTitle,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
                 const SizedBox(
                   height: 15,
                 ),
-                // CustomListTile(
-                //   title: AppStrings.appBarEditProfileTitle,
-                //   icon: Iconsax.edit,
-                //   onTap: () =>
-                //       Navigator.pushNamed(context, Routes.editProfileRoute),
-                // ),
                 CustomListTile(
                   title: AppStrings.appBarChangePasswordTitle,
                   icon: Iconsax.lock,

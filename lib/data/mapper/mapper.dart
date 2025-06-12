@@ -66,7 +66,14 @@ extension ForgotPasswordResponseMapper on ForgotPasswordResponse? {
 // change password
 extension ChangePasswordResponseMapper on ChangePasswordResponse? {
   String toDomain() {
-    return this?.support?.orEmpty() ?? Constants.empty;
+    return this?.message?.orEmpty() ?? Constants.empty;
+  }
+}
+
+// delete account
+extension DeleteAccountResponseMapper on DeleteAccountResponse? {
+  String toDomain() {
+    return this?.message?.orEmpty() ?? Constants.empty;
   }
 }
 

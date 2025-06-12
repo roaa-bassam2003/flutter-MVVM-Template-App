@@ -6,6 +6,7 @@ import 'package:flutter_advanced_course/data/response/responses.dart';
 abstract class RemoteDataSource {
   Future<AuthenticationResponse> login(LoginRequest loginRequest);
   Future<ForgotPasswordResponse> forgotPassword(String email);
+  Future<DeleteAccountResponse> deleteAccount();
   Future<ChangePasswordResponse> changePassword(
       ChangePasswordRequest changePasswordRequest);
   Future<ReportResponse> report(ReportRequest reportRequest);
@@ -60,6 +61,11 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<GovernmentResponse> government() async {
     return await _appServiceClient.government();
+  }
+  
+  @override
+  Future<DeleteAccountResponse> deleteAccount() async {
+   return await _appServiceClient.deleteAccount();
   }
 }
 // ------------------Client----------------------
