@@ -77,10 +77,18 @@ class LoginViewModel extends BaseViewModel
         failure.message,
       ));
     }, (data) {
-      inputState.add(ContentState());
-      // navigate to main screen
-      userType = data.user!.userType.first;
-      isUserLoggedInSuccessfullyStreamController.add(true);
+      // inputState.add(ContentState());
+      // userType = data.user!.userType.first;
+      // isUserLoggedInSuccessfullyStreamController.add(true);
+      if (data.user != null && data.user!.userType.isNotEmpty) {
+        userType = data.user!.userType.first;
+        isUserLoggedInSuccessfullyStreamController.add(true);
+      } else {
+        inputState.add(ErrorState(
+          StateRendererType.popUpErrorState,
+          "نوع المستخدم غير معروف أو غير موجود.",
+        ));
+      }
     });
   }
 

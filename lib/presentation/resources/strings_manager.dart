@@ -82,6 +82,7 @@ class AppStrings {
 
   // Pricing
   static const String pricePerHour = "Price Per Hour";
+  static const String location = "Location";
 
   // Registration
   static const String register = "Register";
@@ -216,8 +217,9 @@ class AppStrings {
   static const viewDetails = "View Details";
   static const bookHoursSelectADayFirst = "Please select a day first!";
 
-  // service provider register
+  // service provider register & Client
   static const userNameInValid = "user name should be at least 4 chars";
+  static const locationValid = "location should be at least 4 chars";
   static const phoneNumberValid =
       "phone number should be at least 11 digit, like 01**";
 

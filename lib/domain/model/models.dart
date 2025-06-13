@@ -123,6 +123,44 @@ class AuthenticationServiceProvider {
 }
 
 
+// Register client
+class RegisterClient {
+  final String location;
+  final String id;
+  final String userNameId;
+  final String userName;
+  final String phoneNumber;
+  final String email;
+  final String personalPhoto;
+  final String idCardFrontPhoto;
+  final String idCardBackPhoto;
+  final String city;
+  final String government;
+
+  RegisterClient({
+    required this.location,
+    required this.id,
+    required this.userNameId,
+    required this.userName,
+    required this.phoneNumber,
+    required this.email,
+    required this.personalPhoto,
+    required this.idCardFrontPhoto,
+    required this.idCardBackPhoto,
+    required this.city,
+    required this.government,
+  });
+}
+
+class AuthenticationClient {
+  RegisterClient? client;
+
+  AuthenticationClient(
+    this.client,
+  );
+}
+
+
 // governments
 class GovernmentList {
   int id;

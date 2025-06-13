@@ -22,6 +22,12 @@ abstract class AppServiceClient {
     @Body() FormData formData,
   );
 
+  // http methods as interface for register client
+  @POST("/api/Account/register/client")
+  Future<AuthenticationClientResponse> registerClient(
+    @Body() FormData formData,
+  );
+
   // http methods as interface for forget password
   @POST("/api/Account/forgot-password")
   Future<ForgotPasswordResponse> forgotPassword(

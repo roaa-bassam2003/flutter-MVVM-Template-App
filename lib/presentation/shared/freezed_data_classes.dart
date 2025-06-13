@@ -29,6 +29,25 @@ class RegisterProviderObject with _$RegisterProviderObject {
   ) = _RegisterProviderObject;
 }
 
+
+// register client
+@freezed
+class RegisterClientObject with _$RegisterClientObject {
+  factory RegisterClientObject(
+    String location,
+    String userName,
+    String phoneNumber,
+    String email,
+    String password,
+    int city,
+    int government,
+    File personalPhoto,
+    File personWithCard,
+    File idCardFrontPhoto,
+    File idCardBackPhoto,
+  ) = _RegisterClientObject;
+}
+
 // change password
 @freezed
 class ChangePasswordObject with _$ChangePasswordObject {

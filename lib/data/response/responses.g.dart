@@ -124,6 +124,62 @@ Map<String, dynamic> _$AuthenticationServiceProviderResponseToJson(
       'data': instance.data,
     };
 
+ClientRegisterResponse _$ClientRegisterResponseFromJson(
+        Map<String, dynamic> json) =>
+    ClientRegisterResponse(
+      json['location'] as String?,
+      json['id'] as String?,
+      json['userName'] as String?,
+      json['userNameId'] as String?,
+      json['phoneNumber'] as String?,
+      json['email'] as String?,
+      json['personalPhoto'] as String?,
+      json['idCardBackPhoto'] as String?,
+      json['idCardFrontPhoto'] as String?,
+      json['city'] as String?,
+      json['government'] as String?,
+    );
+
+Map<String, dynamic> _$ClientRegisterResponseToJson(
+        ClientRegisterResponse instance) =>
+    <String, dynamic>{
+      'location': instance.location,
+      'id': instance.id,
+      'userName': instance.userName,
+      'userNameId': instance.userNameId,
+      'phoneNumber': instance.phoneNumber,
+      'email': instance.email,
+      'personalPhoto': instance.personalPhoto,
+      'idCardFrontPhoto': instance.idCardFrontPhoto,
+      'idCardBackPhoto': instance.idCardBackPhoto,
+      'city': instance.city,
+      'government': instance.government,
+    };
+
+AuthenticationClientResponse _$AuthenticationClientResponseFromJson(
+        Map<String, dynamic> json) =>
+    AuthenticationClientResponse(
+      json['data'] == null
+          ? null
+          : ClientRegisterResponse.fromJson(
+              json['data'] as Map<String, dynamic>),
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?
+      ..token = json['token'] as String?
+      ..errors =
+          (json['errors'] as List<dynamic>?)?.map((e) => e as String).toList();
+
+Map<String, dynamic> _$AuthenticationClientResponseToJson(
+        AuthenticationClientResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'token': instance.token,
+      'errors': instance.errors,
+      'data': instance.data,
+    };
+
 ForgotPasswordResponse _$ForgotPasswordResponseFromJson(
         Map<String, dynamic> json) =>
     ForgotPasswordResponse(

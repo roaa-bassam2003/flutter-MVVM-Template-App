@@ -11,7 +11,7 @@ import 'package:flutter_advanced_course/presentation/common/auth/user_type/user_
 import 'package:flutter_advanced_course/presentation/common/edit_profile/edit_profile_view.dart';
 import 'package:flutter_advanced_course/presentation/common/logout/view/logout_view.dart';
 import 'package:flutter_advanced_course/presentation/common/onboarding/view/onboarding_view.dart';
-import 'package:flutter_advanced_course/presentation/common/auth/register/register_user_view.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/register/client/view/register_user_view.dart';
 import 'package:flutter_advanced_course/presentation/common/reset_passward/reset_password.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/day_specification/day_specification.dart';
@@ -124,6 +124,9 @@ class RouteGenerator {
           builder: (_) => const LoginView(),
         );
       case Routes.registerUserRoute:
+        initRegisterClientModule();
+        initCityModule();
+        initGovernmentModule();
         return MaterialPageRoute(
           builder: (_) => const RegisterUserView(),
         );

@@ -37,6 +37,55 @@ class ReportRequest {
   );
 }
 // ------------------Client----------------------
+
+// register client
+
+class ClientRegisterRequest {
+  final String location;
+  final String email;
+  final String password;
+  final String phoneNumber;
+  final String userNameId;
+  final File idCardBackPhoto;
+  final File idCardFrontPhoto;
+  final File personalPhoto;
+  final File personWithCard;
+  final int government;
+  final int city;
+
+  ClientRegisterRequest({
+    required this.location,
+    required this.email,
+    required this.password,
+    required this.phoneNumber,
+    required this.userNameId,
+    required this.idCardBackPhoto,
+    required this.idCardFrontPhoto,
+    required this.personalPhoto,
+    required this.personWithCard,
+    required this.city,
+    required this.government,
+  });
+
+  Future<FormData> toFormData() async {
+    final Map<String, dynamic> map = {
+      'CityId': city,
+      'GovernorateId': government,
+      'Location': location,
+      'Email': email,
+      'Password': password,
+      'PhoneNumber': phoneNumber,
+      'UserNameId': userNameId,
+      'IdCardBackPhoto': await MultipartFile.fromFile(idCardBackPhoto.path),
+      'IdCardFrontPhoto': await MultipartFile.fromFile(idCardFrontPhoto.path),
+      'PersonalPhoto': await MultipartFile.fromFile(personalPhoto.path),
+      'PersonWithCard': await MultipartFile.fromFile(personWithCard.path),
+    };
+
+    return FormData.fromMap(map);
+  }
+}
+
 // ------------------Service Provider------------
 // register service provider
 

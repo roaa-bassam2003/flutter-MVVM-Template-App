@@ -3,86 +3,65 @@ import 'dart:io';
 import 'package:flutter_advanced_course/app/functions.dart';
 import 'package:flutter_advanced_course/domain/usecase/city_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/government_use_case.dart';
-import 'package:flutter_advanced_course/domain/usecase/register_service_provider_use_case.dart';
+import 'package:flutter_advanced_course/domain/usecase/register_client_use_case.dart';
 import 'package:flutter_advanced_course/presentation/base/base_view_model.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/shared/freezed_data_classes.dart';
 import 'package:flutter_advanced_course/presentation/shared/state_renderer/state_renderer.dart';
 import 'package:flutter_advanced_course/presentation/shared/state_renderer/state_renderer_impl.dart';
 
-class RegisterProviderViewModel extends BaseViewModel
-    implements
-        RegisterProviderViewModelInputs,
-        RegisterProviderViewModelOutputs {
+class RegisterClientViewModel extends BaseViewModel
+    implements RegisterClientViewModelInputs, RegisterClientViewModelOutputs {
   final StreamController _userNameStreamController =
       StreamController<String>.broadcast();
-
   final StreamController _governIdStreamController =
       StreamController<String>.broadcast();
-
   final StreamController _emailStreamController =
       StreamController<String>.broadcast();
-
-  final StreamController _hourPriceStreamController =
+  final StreamController _locationStreamController =
       StreamController<String>.broadcast();
-
   final StreamController _passwordStreamController =
       StreamController<String>.broadcast();
-
   final StreamController _phoneNumberStreamController =
       StreamController<String>.broadcast();
-
-//   final StreamController _typeStreamController =
-//       StreamController<String>.broadcast();
-
   final StreamController _idCardBackPhotoStreamController =
       StreamController<File>.broadcast();
-
   final StreamController _idCardFrontPhotoStreamController =
       StreamController<File>.broadcast();
-
   final StreamController _personalPhotoStreamController =
       StreamController<File>.broadcast();
-
   final StreamController _personWithCardStreamController =
       StreamController<File>.broadcast();
-
-  final StreamController _certificationStreamController =
-      StreamController<File>.broadcast();
-
   final StreamController _areAllInputsValidStreamController =
       StreamController<void>.broadcast();
-
-  final StreamController isUserRegisterProviderSuccessfullyStreamController =
+  final StreamController<bool>
+      isUserRegisterProviderSuccessfullyStreamController =
       StreamController<bool>.broadcast();
 
   String _currentPassword = '';
-
-  var registerProviderObject = RegisterProviderObject(
-    0, // type
-    0.0, // hourPrice
+  var registerClientObject = RegisterClientObject(
+    "", // location
     "", // userName
     "", // phoneNumber
     "", // email
     "", // password
     1, // city
+    1, // government
     File(''), // personalPhoto
     File(''), // personWithCard
     File(''), // idCardFrontPhoto
     File(''), // idCardBackPhoto
-    null, // certification
   );
 
-  final RegisterServiceProviderUseCase _registerServiceProviderUseCase;
+  final RegisterClientUseCase _registerClientUseCase;
   final GovernmentUseCase _governmentUseCase;
   final CityUseCase _cityUseCase;
-  RegisterProviderViewModel(this._registerServiceProviderUseCase,
-      this._cityUseCase, this._governmentUseCase);
+  RegisterClientViewModel(
+      this._registerClientUseCase, this._cityUseCase, this._governmentUseCase);
 
   var currentGovernId = 1;
   List<String> governmentList = [];
 
-  // inputs
   @override
   void start() {
     inputState.add(ContentState());
@@ -90,9 +69,8 @@ class RegisterProviderViewModel extends BaseViewModel
 
   @override
   void dispose() {
-    _certificationStreamController.close();
     _idCardBackPhotoStreamController.close();
-    _hourPriceStreamController.close();
+    _locationStreamController.close();
     _idCardFrontPhotoStreamController.close();
     _personWithCardStreamController.close();
     _personalPhotoStreamController.close();
@@ -107,38 +85,23 @@ class RegisterProviderViewModel extends BaseViewModel
   }
 
   @override
-  Sink get inputCertification => _certificationStreamController.sink;
-
-  @override
-  Sink get inputGovernId => _governIdStreamController.sink;
-
+  Sink get inputLocation => _locationStreamController.sink;
   @override
   Sink get inputEmail => _emailStreamController.sink;
-
-  @override
-  Sink get inputHourPrice => _hourPriceStreamController.sink;
-
   @override
   Sink get inputIdCardBackPhoto => _idCardBackPhotoStreamController.sink;
-
   @override
   Sink get inputIdCardFrontPhoto => _idCardFrontPhotoStreamController.sink;
-
   @override
   Sink get inputPassword => _passwordStreamController.sink;
-
   @override
   Sink get inputPersonWithCard => _personWithCardStreamController.sink;
-
   @override
   Sink get inputPersonalPhoto => _personalPhotoStreamController.sink;
-
   @override
   Sink get inputPhoneNumber => _phoneNumberStreamController.sink;
-
   @override
   Sink get inputUserName => _userNameStreamController.sink;
-
   @override
   Sink get inputAllInputsValid => _areAllInputsValidStreamController.sink;
 
@@ -154,8 +117,6 @@ class RegisterProviderViewModel extends BaseViewModel
       ));
     }, (data) {
       inputState.add(ContentState());
-      // navigate to main screen
-      //   isUserLoggedInSuccessfullyStreamController.add(true);
     });
   }
 
@@ -172,30 +133,26 @@ class RegisterProviderViewModel extends BaseViewModel
     }, (data) {
       inputState.add(ContentState());
       governmentList = data.governments!.map((gov) => gov.name).toList();
-      // navigate to main screen
-      //   isUserLoggedInSuccessfullyStreamController.add(true);
     });
   }
 
   @override
-  registerProvider() async {
+  registerClient() async {
     inputState.add(LoadingState(
       stateRendererType: StateRendererType.popUpLoadingState,
     ));
-    (await _registerServiceProviderUseCase
-            .execute(RegisterServiceProviderUseCaseInput(
-      type: registerProviderObject.type,
-      hourPrice: registerProviderObject.hourPrice,
-      userNameId: registerProviderObject.userName,
-      phoneNumber: registerProviderObject.phoneNumber,
-      email: registerProviderObject.email,
-      password: registerProviderObject.password,
-      city: registerProviderObject.city,
-      personWithCard: registerProviderObject.personWithCard,
-      personalPhoto: registerProviderObject.personalPhoto,
-      idCardFrontPhoto: registerProviderObject.idCardFrontPhoto,
-      idCardBackPhoto: registerProviderObject.idCardBackPhoto,
-      certification: registerProviderObject.certification,
+    (await _registerClientUseCase.execute(RegisterClientUseCaseInput(
+      location: registerClientObject.location,
+      userNameId: registerClientObject.userName,
+      phoneNumber: registerClientObject.phoneNumber,
+      email: registerClientObject.email,
+      password: registerClientObject.password,
+      city: registerClientObject.city,
+      government: registerClientObject.government,
+      personWithCard: registerClientObject.personWithCard,
+      personalPhoto: registerClientObject.personalPhoto,
+      idCardBackPhoto: registerClientObject.idCardBackPhoto,
+      idCardFrontPhoto: registerClientObject.idCardFrontPhoto,
     )))
         .fold((failure) {
       inputState.add(ErrorState(
@@ -204,15 +161,18 @@ class RegisterProviderViewModel extends BaseViewModel
       ));
     }, (data) {
       inputState.add(ContentState());
-      // navigate to waiting screen
       isUserRegisterProviderSuccessfullyStreamController.add(true);
     });
   }
 
   @override
   setCurrentGovernId(String? value) {
-    currentGovernId = governmentList.indexOf(value!) + 1;
-    validate();
+    if (value != null) {
+      currentGovernId = governmentList.indexOf(value) + 1;
+      registerClientObject =
+          registerClientObject.copyWith(government: currentGovernId);
+      validate();
+    }
   }
 
   @override
@@ -222,51 +182,20 @@ class RegisterProviderViewModel extends BaseViewModel
 
   @override
   setCityId(String? cityId) {
-    final parsedCityId = int.tryParse(cityId!) ?? 0;
-    registerProviderObject =
-        registerProviderObject.copyWith(city: parsedCityId);
-    validate();
-  }
-
-  @override
-  setCertification(File? certification) {
-    inputCertification.add(certification);
-    if (certification != null && certification.path.isNotEmpty) {
-      // update registerProviderObject
-      registerProviderObject =
-          registerProviderObject.copyWith(certification: certification);
-    } else {
-      // reset certification value in registerProviderObject
-      registerProviderObject =
-          registerProviderObject.copyWith(certification: null);
+    if (cityId != null) {
+      final parsedCityId = int.tryParse(cityId) ?? 0;
+      registerClientObject = registerClientObject.copyWith(city: parsedCityId);
+      validate();
     }
-    validate();
   }
 
   @override
   setEmail(String email) {
     inputEmail.add(email);
     if (emailValid(email)) {
-      // update registerProviderObject
-      registerProviderObject = registerProviderObject.copyWith(email: email);
+      registerClientObject = registerClientObject.copyWith(email: email);
     } else {
-      // reset email value in registerProviderObject
-      registerProviderObject = registerProviderObject.copyWith(email: "");
-    }
-    validate();
-  }
-
-  @override
-  setHourePrice(String hourePrice) {
-    inputHourPrice.add(hourePrice);
-    final parsedPrice = double.tryParse(hourePrice);
-    if (parsedPrice != null && isHourPriceValid(parsedPrice)) {
-      // update registerProviderObject
-      registerProviderObject =
-          registerProviderObject.copyWith(hourPrice: parsedPrice);
-    } else {
-      // reset houre price value in registerProviderObject
-      registerProviderObject = registerProviderObject.copyWith(hourPrice: 0.0);
+      registerClientObject = registerClientObject.copyWith(email: "");
     }
     validate();
   }
@@ -275,13 +204,11 @@ class RegisterProviderViewModel extends BaseViewModel
   setIdCardBackPhoto(File idCardBackPhoto) {
     inputIdCardBackPhoto.add(idCardBackPhoto);
     if (idCardBackPhoto.path.isNotEmpty) {
-      // update registerProviderObject
-      registerProviderObject =
-          registerProviderObject.copyWith(idCardBackPhoto: idCardBackPhoto);
+      registerClientObject =
+          registerClientObject.copyWith(idCardBackPhoto: idCardBackPhoto);
     } else {
-      // reset id card back photo value in registerProviderObject
-      registerProviderObject =
-          registerProviderObject.copyWith(idCardBackPhoto: File(""));
+      registerClientObject =
+          registerClientObject.copyWith(idCardBackPhoto: File(""));
     }
     validate();
   }
@@ -290,13 +217,11 @@ class RegisterProviderViewModel extends BaseViewModel
   setIdCardFrontPhoto(File idCardFrontPhoto) {
     inputIdCardFrontPhoto.add(idCardFrontPhoto);
     if (idCardFrontPhoto.path.isNotEmpty) {
-      // update registerProviderObject
-      registerProviderObject =
-          registerProviderObject.copyWith(idCardFrontPhoto: idCardFrontPhoto);
+      registerClientObject =
+          registerClientObject.copyWith(idCardFrontPhoto: idCardFrontPhoto);
     } else {
-      // reset id card front photo value in registerProviderObject
-      registerProviderObject =
-          registerProviderObject.copyWith(idCardFrontPhoto: File(""));
+      registerClientObject =
+          registerClientObject.copyWith(idCardFrontPhoto: File(""));
     }
     validate();
   }
@@ -305,12 +230,9 @@ class RegisterProviderViewModel extends BaseViewModel
   setPassword(String password) {
     inputPassword.add(password);
     if (validatePassword(password) == null) {
-      // update registerProviderObject
-      registerProviderObject =
-          registerProviderObject.copyWith(password: password);
+      registerClientObject = registerClientObject.copyWith(password: password);
     } else {
-      // reset phone number value in registerProviderObject
-      registerProviderObject = registerProviderObject.copyWith(password: "");
+      registerClientObject = registerClientObject.copyWith(password: "");
     }
     validate();
   }
@@ -319,13 +241,11 @@ class RegisterProviderViewModel extends BaseViewModel
   setPersonWithCard(File personWithCard) {
     inputPersonWithCard.add(personWithCard);
     if (personWithCard.path.isNotEmpty) {
-      // update registerProviderObject
-      registerProviderObject =
-          registerProviderObject.copyWith(personWithCard: personWithCard);
+      registerClientObject =
+          registerClientObject.copyWith(personWithCard: personWithCard);
     } else {
-      // reset person with card value in registerProviderObject
-      registerProviderObject =
-          registerProviderObject.copyWith(personWithCard: File(""));
+      registerClientObject =
+          registerClientObject.copyWith(personWithCard: File(""));
     }
     validate();
   }
@@ -334,13 +254,11 @@ class RegisterProviderViewModel extends BaseViewModel
   setPersonalPhoto(File personalPhoto) {
     inputPersonalPhoto.add(personalPhoto);
     if (personalPhoto.path.isNotEmpty) {
-      // update registerProviderObject
-      registerProviderObject =
-          registerProviderObject.copyWith(personalPhoto: personalPhoto);
+      registerClientObject =
+          registerClientObject.copyWith(personalPhoto: personalPhoto);
     } else {
-      // reset personal photo value in registerProviderObject
-      registerProviderObject =
-          registerProviderObject.copyWith(personalPhoto: File(""));
+      registerClientObject =
+          registerClientObject.copyWith(personalPhoto: File(""));
     }
     validate();
   }
@@ -349,21 +267,11 @@ class RegisterProviderViewModel extends BaseViewModel
   setPhoneNumber(String phoneNumber) {
     inputPhoneNumber.add(phoneNumber);
     if (isPhoneNumberValid(phoneNumber)) {
-      // update registerProviderObject
-      registerProviderObject =
-          registerProviderObject.copyWith(phoneNumber: phoneNumber);
+      registerClientObject =
+          registerClientObject.copyWith(phoneNumber: phoneNumber);
     } else {
-      // reset phone number value in registerProviderObject
-      registerProviderObject = registerProviderObject.copyWith(phoneNumber: "");
+      registerClientObject = registerClientObject.copyWith(phoneNumber: "");
     }
-    validate();
-  }
-
-  @override
-  setType(String type) {
-    final parsedType = int.tryParse(type) ?? 0;
-    // update registerProviderObject
-    registerProviderObject = registerProviderObject.copyWith(type: parsedType);
     validate();
   }
 
@@ -371,20 +279,23 @@ class RegisterProviderViewModel extends BaseViewModel
   setUserName(String userName) {
     inputUserName.add(userName);
     if (isUserNameValid(userName)) {
-      // update registerProviderObject
-      registerProviderObject =
-          registerProviderObject.copyWith(userName: userName);
+      registerClientObject = registerClientObject.copyWith(userName: userName);
     } else {
-      // reset user name value in registerProviderObject
-      registerProviderObject = registerProviderObject.copyWith(userName: "");
+      registerClientObject = registerClientObject.copyWith(userName: "");
     }
     validate();
   }
 
-  // outputs
   @override
-  Stream<File> get outCertification =>
-      _certificationStreamController.stream.map((file) => file);
+  setLocation(String location) {
+    inputLocation.add(location);
+    if (isUserNameValid(location)) {
+      registerClientObject = registerClientObject.copyWith(location: location);
+    } else {
+      registerClientObject = registerClientObject.copyWith(location: "");
+    }
+    validate();
+  }
 
   @override
   Stream<File> get outPersonWithCard =>
@@ -407,26 +318,12 @@ class RegisterProviderViewModel extends BaseViewModel
       _governIdStreamController.stream.map((governId) => governId.isNotEmpty);
 
   @override
-  Stream<bool> get outIsEmailValid => _emailStreamController.stream.map(
-        (email) => emailValid(email),
-      );
+  Stream<bool> get outIsEmailValid =>
+      _emailStreamController.stream.map((email) => emailValid(email));
 
   @override
   Stream<String?> get outIsErrorEmail => outIsEmailValid
       .map((isEmail) => isEmail ? null : AppStrings.usernameError);
-
-  @override
-  Stream<bool> get outIsHourPriceValid =>
-      _hourPriceStreamController.stream.map((hourPriceStr) {
-        // _isHourPriceValid(hourPrice),
-        double? hourPrice = double.tryParse(hourPriceStr);
-        if (hourPrice == null) return false;
-        return isHourPriceValid(hourPrice);
-      });
-
-  @override
-  Stream<String?> get outIsErrorHourPrice => outIsHourPriceValid
-      .map((isHourePrice) => isHourePrice ? null : AppStrings.hourePriceValid);
 
   @override
   Stream<bool> get outIsPasswordValid => _passwordStreamController.stream.map(
@@ -450,7 +347,8 @@ class RegisterProviderViewModel extends BaseViewModel
 
   @override
   Stream<String?> get outIsErrorPhoneNumber => outIsPhoneNumberValid.map(
-      (isPhoneNumber) => isPhoneNumber ? null : AppStrings.phoneNumberValid);
+        (isPhoneNumber) => isPhoneNumber ? null : AppStrings.phoneNumberValid,
+      );
 
   @override
   Stream<bool> get outIsUserNameValid => _userNameStreamController.stream.map(
@@ -462,28 +360,29 @@ class RegisterProviderViewModel extends BaseViewModel
       .map((isUserName) => isUserName ? null : AppStrings.userNameInValid);
 
   @override
+  Stream<bool> get outIsLocationValid => _locationStreamController.stream.map(
+        (location) => isUserNameValid(location),
+      );
+
+  @override
+  Stream<String?> get outIsErrorLocation => outIsLocationValid
+      .map((isLocation) => isLocation ? null : AppStrings.locationValid);
+
+  @override
   Stream<bool> get outAreAllInputsValid =>
       _areAllInputsValidStreamController.stream
           .map((_) => _areAllInputsValid());
 
-  // private functions
   bool _areAllInputsValid() {
-    final isTypeTwo = registerProviderObject.type == 2;
-
-    final isCertificationValid = !isTypeTwo ||
-        (registerProviderObject.certification != null &&
-            registerProviderObject.certification!.path.isNotEmpty);
-
-    return registerProviderObject.hourPrice != 0.0 &&
-        registerProviderObject.userName.isNotEmpty &&
-        registerProviderObject.phoneNumber.isNotEmpty &&
-        registerProviderObject.email.isNotEmpty &&
-        registerProviderObject.password.isNotEmpty &&
-        registerProviderObject.personalPhoto.path.isNotEmpty &&
-        registerProviderObject.personWithCard.path.isNotEmpty &&
-        registerProviderObject.idCardBackPhoto.path.isNotEmpty &&
-        registerProviderObject.idCardFrontPhoto.path.isNotEmpty &&
-        isCertificationValid;
+    return registerClientObject.userName.isNotEmpty &&
+        registerClientObject.phoneNumber.isNotEmpty &&
+        registerClientObject.location.isNotEmpty &&
+        registerClientObject.email.isNotEmpty &&
+        registerClientObject.password.isNotEmpty &&
+        registerClientObject.personalPhoto.path.isNotEmpty &&
+        registerClientObject.personWithCard.path.isNotEmpty &&
+        registerClientObject.idCardBackPhoto.path.isNotEmpty &&
+        registerClientObject.idCardFrontPhoto.path.isNotEmpty;
   }
 
   validate() {
@@ -491,73 +390,50 @@ class RegisterProviderViewModel extends BaseViewModel
   }
 }
 
-abstract class RegisterProviderViewModelInputs {
+abstract class RegisterClientViewModelInputs {
   Sink get inputUserName;
-  Sink get inputGovernId;
   Sink get inputEmail;
-  Sink get inputHourPrice;
+  Sink get inputLocation;
   Sink get inputPassword;
   Sink get inputPhoneNumber;
-//   Sink get inputType;
   Sink get inputIdCardBackPhoto;
   Sink get inputIdCardFrontPhoto;
   Sink get inputPersonalPhoto;
   Sink get inputPersonWithCard;
-  Sink get inputCertification;
-
   Sink get inputAllInputsValid;
 
   setUserName(String userName);
   setCityId(String? cityId);
+  setLocation(String location);
   setEmail(String email);
-  setHourePrice(String hourePrice);
   setPassword(String password);
   setPhoneNumber(String phoneNumber);
-
-// type from the service type args
-  setType(String type);
-
-//   files
   setIdCardBackPhoto(File idCardBackPhoto);
   setIdCardFrontPhoto(File idCardFrontPhoto);
   setPersonalPhoto(File personalPhoto);
   setPersonWithCard(File personWithCard);
-  setCertification(File? certification); // optional
-
-  registerProvider();
+  registerClient();
   getCity();
   getGovernment();
   setCurrentGovernId(String? value);
   getGovernmentList();
 }
 
-abstract class RegisterProviderViewModelOutputs {
+abstract class RegisterClientViewModelOutputs {
   Stream<bool> get outIsUserNameValid;
   Stream<String?> get outIsErrorUserName;
-
   Stream<bool> get outIsGovernIdValid;
-//   Stream<String?> get outIsErrorCityId;
-
   Stream<bool> get outIsEmailValid;
   Stream<String?> get outIsErrorEmail;
-
-  Stream<bool> get outIsHourPriceValid;
-  Stream<String?> get outIsErrorHourPrice;
-
+  Stream<bool> get outIsLocationValid;
+  Stream<String?> get outIsErrorLocation;
   Stream<bool> get outIsPasswordValid;
   Stream<String?> get outIsErrorPassword;
-
   Stream<bool> get outIsPhoneNumberValid;
   Stream<String?> get outIsErrorPhoneNumber;
-
-//   Stream<bool> get outIsTypeValid;
-//   Stream<String?> get outIsErrorType;
-
   Stream<File> get outIdCardBackPhoto;
   Stream<File> get outIdCardFrontPhoto;
   Stream<File> get outPersonalPhoto;
   Stream<File> get outPersonWithCard;
-  Stream<File> get outCertification;
-
   Stream<bool> get outAreAllInputsValid;
 }

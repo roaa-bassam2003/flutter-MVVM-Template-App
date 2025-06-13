@@ -86,10 +86,11 @@ extension FlowStateExtension on FlowState {
     Function retryActionFunction,
   ) {
     switch (runtimeType) {
-      case LoadingState _:
+      case LoadingState :
         if (getStateRendererType() == StateRendererType.popUpLoadingState) {
           // إظهار Pop-up للتحميل
           _showPopUp(context, getStateRendererType(), getMessage());
+          print("👀 Showing popup: load");
           return contentScreenWidget;
         } else {
           return StateRenderer(
@@ -98,12 +99,13 @@ extension FlowStateExtension on FlowState {
             retryActionFunction: retryActionFunction,
           );
         }
-      case ErrorState _:
+      case ErrorState :
         // Dismiss any existing popup safely
         _dismissDialog(context);
         if (getStateRendererType() == StateRendererType.popUpErrorState) {
           // Show error popup
           _showPopUp(context, getStateRendererType(), getMessage());
+          print("👀 Showing popup: error");
           return contentScreenWidget;
         } else {
           return StateRenderer(
@@ -112,7 +114,7 @@ extension FlowStateExtension on FlowState {
             retryActionFunction: retryActionFunction,
           );
         }
-      case SuccessState _:
+      case SuccessState :
         {
           // i should check if we are showing loading popup to remove it before showing success popup
           _dismissDialog(context);
@@ -120,10 +122,12 @@ extension FlowStateExtension on FlowState {
           // show popup
           _showPopUp(context, StateRendererType.popUpSuccess, getMessage(),
               title: AppStrings.success);
+          print("👀 Showing popup: sucess");
+
           // return content ui of the screen
           return contentScreenWidget;
         }
-      case ContentState _:
+      case ContentState :
         _dismissDialog(context); // Dismiss any existing popup
         return contentScreenWidget;
       case EmptyState _:

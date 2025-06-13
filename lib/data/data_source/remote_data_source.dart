@@ -15,6 +15,8 @@ abstract class RemoteDataSource {
   Future<GovernmentResponse> government();
   Future<AuthenticationServiceProviderResponse> registerServiceProvider(
       ServiceProviderRegisterRequest serviceProviderRegisterRequest);
+  Future<AuthenticationClientResponse> registerClient(
+      ClientRegisterRequest clientRegisterRequest);
 }
 
 // --------------Common----------------
@@ -72,6 +74,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<LogoutResponse> logout() async{
     return await _appServiceClient.logout();
+  }
+  
+  @override
+  Future<AuthenticationClientResponse> registerClient(ClientRegisterRequest clientRegisterRequest) async{
+    final formData = await clientRegisterRequest.toFormData();
+    return await _appServiceClient.registerClient(formData);
   }
 }
 // ------------------Client----------------------

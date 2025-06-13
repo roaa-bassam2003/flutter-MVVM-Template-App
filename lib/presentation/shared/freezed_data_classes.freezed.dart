@@ -541,6 +541,362 @@ abstract class _RegisterProviderObject implements RegisterProviderObject {
 }
 
 /// @nodoc
+mixin _$RegisterClientObject {
+  String get location => throw _privateConstructorUsedError;
+  String get userName => throw _privateConstructorUsedError;
+  String get phoneNumber => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  int get city => throw _privateConstructorUsedError;
+  int get government => throw _privateConstructorUsedError;
+  File get personalPhoto => throw _privateConstructorUsedError;
+  File get personWithCard => throw _privateConstructorUsedError;
+  File get idCardFrontPhoto => throw _privateConstructorUsedError;
+  File get idCardBackPhoto => throw _privateConstructorUsedError;
+
+  /// Create a copy of RegisterClientObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $RegisterClientObjectCopyWith<RegisterClientObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RegisterClientObjectCopyWith<$Res> {
+  factory $RegisterClientObjectCopyWith(RegisterClientObject value,
+          $Res Function(RegisterClientObject) then) =
+      _$RegisterClientObjectCopyWithImpl<$Res, RegisterClientObject>;
+  @useResult
+  $Res call(
+      {String location,
+      String userName,
+      String phoneNumber,
+      String email,
+      String password,
+      int city,
+      int government,
+      File personalPhoto,
+      File personWithCard,
+      File idCardFrontPhoto,
+      File idCardBackPhoto});
+}
+
+/// @nodoc
+class _$RegisterClientObjectCopyWithImpl<$Res,
+        $Val extends RegisterClientObject>
+    implements $RegisterClientObjectCopyWith<$Res> {
+  _$RegisterClientObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of RegisterClientObject
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? location = null,
+    Object? userName = null,
+    Object? phoneNumber = null,
+    Object? email = null,
+    Object? password = null,
+    Object? city = null,
+    Object? government = null,
+    Object? personalPhoto = null,
+    Object? personWithCard = null,
+    Object? idCardFrontPhoto = null,
+    Object? idCardBackPhoto = null,
+  }) {
+    return _then(_value.copyWith(
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String,
+      userName: null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as int,
+      government: null == government
+          ? _value.government
+          : government // ignore: cast_nullable_to_non_nullable
+              as int,
+      personalPhoto: null == personalPhoto
+          ? _value.personalPhoto
+          : personalPhoto // ignore: cast_nullable_to_non_nullable
+              as File,
+      personWithCard: null == personWithCard
+          ? _value.personWithCard
+          : personWithCard // ignore: cast_nullable_to_non_nullable
+              as File,
+      idCardFrontPhoto: null == idCardFrontPhoto
+          ? _value.idCardFrontPhoto
+          : idCardFrontPhoto // ignore: cast_nullable_to_non_nullable
+              as File,
+      idCardBackPhoto: null == idCardBackPhoto
+          ? _value.idCardBackPhoto
+          : idCardBackPhoto // ignore: cast_nullable_to_non_nullable
+              as File,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RegisterClientObjectImplCopyWith<$Res>
+    implements $RegisterClientObjectCopyWith<$Res> {
+  factory _$$RegisterClientObjectImplCopyWith(_$RegisterClientObjectImpl value,
+          $Res Function(_$RegisterClientObjectImpl) then) =
+      __$$RegisterClientObjectImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String location,
+      String userName,
+      String phoneNumber,
+      String email,
+      String password,
+      int city,
+      int government,
+      File personalPhoto,
+      File personWithCard,
+      File idCardFrontPhoto,
+      File idCardBackPhoto});
+}
+
+/// @nodoc
+class __$$RegisterClientObjectImplCopyWithImpl<$Res>
+    extends _$RegisterClientObjectCopyWithImpl<$Res, _$RegisterClientObjectImpl>
+    implements _$$RegisterClientObjectImplCopyWith<$Res> {
+  __$$RegisterClientObjectImplCopyWithImpl(_$RegisterClientObjectImpl _value,
+      $Res Function(_$RegisterClientObjectImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of RegisterClientObject
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? location = null,
+    Object? userName = null,
+    Object? phoneNumber = null,
+    Object? email = null,
+    Object? password = null,
+    Object? city = null,
+    Object? government = null,
+    Object? personalPhoto = null,
+    Object? personWithCard = null,
+    Object? idCardFrontPhoto = null,
+    Object? idCardBackPhoto = null,
+  }) {
+    return _then(_$RegisterClientObjectImpl(
+      null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == government
+          ? _value.government
+          : government // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == personalPhoto
+          ? _value.personalPhoto
+          : personalPhoto // ignore: cast_nullable_to_non_nullable
+              as File,
+      null == personWithCard
+          ? _value.personWithCard
+          : personWithCard // ignore: cast_nullable_to_non_nullable
+              as File,
+      null == idCardFrontPhoto
+          ? _value.idCardFrontPhoto
+          : idCardFrontPhoto // ignore: cast_nullable_to_non_nullable
+              as File,
+      null == idCardBackPhoto
+          ? _value.idCardBackPhoto
+          : idCardBackPhoto // ignore: cast_nullable_to_non_nullable
+              as File,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RegisterClientObjectImpl implements _RegisterClientObject {
+  _$RegisterClientObjectImpl(
+      this.location,
+      this.userName,
+      this.phoneNumber,
+      this.email,
+      this.password,
+      this.city,
+      this.government,
+      this.personalPhoto,
+      this.personWithCard,
+      this.idCardFrontPhoto,
+      this.idCardBackPhoto);
+
+  @override
+  final String location;
+  @override
+  final String userName;
+  @override
+  final String phoneNumber;
+  @override
+  final String email;
+  @override
+  final String password;
+  @override
+  final int city;
+  @override
+  final int government;
+  @override
+  final File personalPhoto;
+  @override
+  final File personWithCard;
+  @override
+  final File idCardFrontPhoto;
+  @override
+  final File idCardBackPhoto;
+
+  @override
+  String toString() {
+    return 'RegisterClientObject(location: $location, userName: $userName, phoneNumber: $phoneNumber, email: $email, password: $password, city: $city, government: $government, personalPhoto: $personalPhoto, personWithCard: $personWithCard, idCardFrontPhoto: $idCardFrontPhoto, idCardBackPhoto: $idCardBackPhoto)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RegisterClientObjectImpl &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.government, government) ||
+                other.government == government) &&
+            (identical(other.personalPhoto, personalPhoto) ||
+                other.personalPhoto == personalPhoto) &&
+            (identical(other.personWithCard, personWithCard) ||
+                other.personWithCard == personWithCard) &&
+            (identical(other.idCardFrontPhoto, idCardFrontPhoto) ||
+                other.idCardFrontPhoto == idCardFrontPhoto) &&
+            (identical(other.idCardBackPhoto, idCardBackPhoto) ||
+                other.idCardBackPhoto == idCardBackPhoto));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      location,
+      userName,
+      phoneNumber,
+      email,
+      password,
+      city,
+      government,
+      personalPhoto,
+      personWithCard,
+      idCardFrontPhoto,
+      idCardBackPhoto);
+
+  /// Create a copy of RegisterClientObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RegisterClientObjectImplCopyWith<_$RegisterClientObjectImpl>
+      get copyWith =>
+          __$$RegisterClientObjectImplCopyWithImpl<_$RegisterClientObjectImpl>(
+              this, _$identity);
+}
+
+abstract class _RegisterClientObject implements RegisterClientObject {
+  factory _RegisterClientObject(
+      final String location,
+      final String userName,
+      final String phoneNumber,
+      final String email,
+      final String password,
+      final int city,
+      final int government,
+      final File personalPhoto,
+      final File personWithCard,
+      final File idCardFrontPhoto,
+      final File idCardBackPhoto) = _$RegisterClientObjectImpl;
+
+  @override
+  String get location;
+  @override
+  String get userName;
+  @override
+  String get phoneNumber;
+  @override
+  String get email;
+  @override
+  String get password;
+  @override
+  int get city;
+  @override
+  int get government;
+  @override
+  File get personalPhoto;
+  @override
+  File get personWithCard;
+  @override
+  File get idCardFrontPhoto;
+  @override
+  File get idCardBackPhoto;
+
+  /// Create a copy of RegisterClientObject
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RegisterClientObjectImplCopyWith<_$RegisterClientObjectImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ChangePasswordObject {
   String get passwordOne => throw _privateConstructorUsedError;
   String get passwordTwo => throw _privateConstructorUsedError;

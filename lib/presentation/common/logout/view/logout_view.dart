@@ -29,11 +29,10 @@ class _LogoutViewState extends State<LogoutView> {
     _viewModel.isUserLoggedOutSuccessfullyStreamController.stream
         .listen((isLoggedOut) {
       if (isLoggedOut) {
-       _appPrefs.logout();
-       SchedulerBinding.instance.addPostFrameCallback((_) {
-            Navigator.of(context)
-                .pushReplacementNamed(Routes.loginRoute);
-          });
+        _appPrefs.logout();
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          Navigator.of(context).pushReplacementNamed(Routes.loginRoute);
+        });
       }
     });
   }

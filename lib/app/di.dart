@@ -13,11 +13,13 @@ import 'package:flutter_advanced_course/domain/usecase/forgot_password_use_case.
 import 'package:flutter_advanced_course/domain/usecase/government_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/login_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/logout_use_case.dart';
+import 'package:flutter_advanced_course/domain/usecase/register_client_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/register_service_provider_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/report_use_case.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/change_password/view_model/change_password_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/forgot_password/view_model/forgot_password_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/login/view_model/login_view_model.dart';
+import 'package:flutter_advanced_course/presentation/common/auth/register/client/view_model/register_client_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/register/service_provider/view_model/register_provider_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/delete_account/view_model/delete_account_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/logout/view_model/logout_view_model.dart';
@@ -59,6 +61,11 @@ Future<void> initAppModule() async {
   // repository
   instance.registerLazySingleton<Repository>(
       () => RepositoryImpl(instance(), instance()));
+
+  // image picker
+  if (!instance.isRegistered<ImagePicker>()) {
+    instance.registerFactory<ImagePicker>(() => ImagePicker());
+  }
 }
 
 // login module is a module where we put all DI related to login
@@ -101,9 +108,18 @@ initRegisterProviderModule() {
     // login view model
     instance.registerFactory<RegisterProviderViewModel>(
         () => RegisterProviderViewModel(instance(), instance(), instance()));
+  }
+}
 
-    // image picker
-    instance.registerFactory<ImagePicker>(() => ImagePicker());
+// register client module is a module where we put all DI related to RegisterClientViewModel
+initRegisterClientModule() {
+  if (!GetIt.I.isRegistered<RegisterClientUseCase>()) {
+    // login use case
+    instance.registerFactory<RegisterClientUseCase>(
+        () => RegisterClientUseCase(instance()));
+    // login view model
+    instance.registerFactory<RegisterClientViewModel>(
+        () => RegisterClientViewModel(instance(), instance(), instance()));
   }
 }
 
@@ -135,11 +151,10 @@ initDeleteAccountModule() {
 initLogoutModule() {
   if (!GetIt.I.isRegistered<LogoutUseCase>()) {
     // forgot password  use case
-    instance.registerFactory<LogoutUseCase>(
-        () => LogoutUseCase(instance()));
+    instance.registerFactory<LogoutUseCase>(() => LogoutUseCase(instance()));
     // forgot password view model
-    instance.registerFactory<LogoutViewModel>(
-        () => LogoutViewModel(instance()));
+    instance
+        .registerFactory<LogoutViewModel>(() => LogoutViewModel(instance()));
   }
 }
 

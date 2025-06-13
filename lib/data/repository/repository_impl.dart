@@ -311,4 +311,41 @@ class RepositoryImpl implements Repository {
       return Left(DataSource.noInternetConnection.getFailure());
     }
   }
+  
+  @override
+  Future<Either<Failure, AuthenticationClient>> registerClient(ClientRegisterRequest clientRegisterRequest) async{
+    if (await _networkInfo.isConnected) {
+      // it is connected to internet, it is save to call API
+
+      try {
+        final response = await _remoteDataSource.registerClient(
+          clientRegisterRequest,
+        );
+
+        if (response.status == ApiInternalStatus.success) {
+          // success --> return data --> either right
+          return right(
+            response.toDomain(),
+          );
+        } else {
+          // failure --> business error --> either left
+          return left(
+            Failure(
+              ApiInternalStatus.failure,
+              response.message ?? ResponseMessage.defaultError,
+            ),
+          );
+        }
+      } catch (error) {
+        return left(
+          ErrorHandler.handle(error).failure,
+        );
+      }
+    } else {
+      // return internet connection error --> either left
+      return left(
+        DataSource.noInternetConnection.getFailure(),
+      );
+    }
+  }
 }

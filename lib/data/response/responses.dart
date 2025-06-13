@@ -131,6 +131,71 @@ class AuthenticationServiceProviderResponse extends BaseResponse {
       _$AuthenticationServiceProviderResponseToJson(this);
 }
 
+
+// register client
+@JsonSerializable()
+class ClientRegisterResponse {
+  @JsonKey(name: "location")
+  String? location;
+  @JsonKey(name: "id")
+  String? id;
+  @JsonKey(name: "userName")
+  String? userName;
+  @JsonKey(name: "userNameId")
+  String? userNameId;
+  @JsonKey(name: "phoneNumber")
+  String? phoneNumber;
+  @JsonKey(name: "email")
+  String? email;
+  @JsonKey(name: "personalPhoto")
+  String? personalPhoto;
+  @JsonKey(name: "idCardFrontPhoto")
+  String? idCardFrontPhoto;
+  @JsonKey(name: "idCardBackPhoto")
+  String? idCardBackPhoto;
+  @JsonKey(name: "city")
+  String? city;
+  @JsonKey(name: "government")
+  String? government;
+  ClientRegisterResponse(
+    this.location,
+    this.id,
+    this.userName,
+    this.userNameId,
+    this.phoneNumber,
+    this.email,
+    this.personalPhoto,
+    this.idCardBackPhoto,
+    this.idCardFrontPhoto,
+    this.city,
+    this.government,
+  );
+
+  // from json
+  factory ClientRegisterResponse.fromJson(Map<String, dynamic> json) =>
+      _$ClientRegisterResponseFromJson(json);
+  // to json
+  Map<String, dynamic> toJson() =>
+      _$ClientRegisterResponseToJson(this);
+}
+
+@JsonSerializable()
+class AuthenticationClientResponse extends BaseResponse {
+  @JsonKey(name: "data")
+  ClientRegisterResponse? data;
+  AuthenticationClientResponse(
+    this.data,
+  );
+
+  // from json
+  factory AuthenticationClientResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$AuthenticationClientResponseFromJson(json);
+  // to json
+  Map<String, dynamic> toJson() =>
+      _$AuthenticationClientResponseToJson(this);
+}
+
 // forget password
 @JsonSerializable()
 class ForgotPasswordResponse extends BaseResponse {

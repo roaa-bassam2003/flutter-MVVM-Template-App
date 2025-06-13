@@ -56,6 +56,36 @@ extension AuthenticationServiceProviderResponseMapper
   }
 }
 
+
+// Register Service Provider Response Mapper
+extension ClientRegisterResponseMapper
+    on ClientRegisterResponse? {
+  RegisterClient toDomain() {
+    return RegisterClient(
+      location: this?.location.orEmpty() ?? Constants.empty,
+      id: this?.id.orEmpty() ?? Constants.empty,
+      userNameId: this?.userNameId.orEmpty() ?? Constants.empty,
+      userName: this?.userName.orEmpty() ?? Constants.empty,
+      phoneNumber: this?.phoneNumber.orEmpty() ?? Constants.empty,
+      email: this?.email.orEmpty() ?? Constants.empty,
+      personalPhoto: this?.personalPhoto.orEmpty() ?? Constants.empty,
+      idCardFrontPhoto: this?.idCardFrontPhoto.orEmpty() ?? Constants.empty,
+      idCardBackPhoto: this?.idCardBackPhoto.orEmpty() ?? Constants.empty,
+      city: this?.city.orEmpty() ?? Constants.empty,
+      government: this?.government.orEmpty() ?? Constants.empty,
+    );
+  }
+}
+
+extension AuthenticationClientResponseMapper
+    on AuthenticationClientResponse? {
+  AuthenticationClient toDomain() {
+    return AuthenticationClient(
+      this?.data.toDomain(),
+    );
+  }
+}
+
 // forget password
 extension ForgotPasswordResponseMapper on ForgotPasswordResponse? {
   String toDomain() {
