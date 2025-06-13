@@ -112,18 +112,29 @@ class _RegisterUserViewState extends State<RegisterUserView> {
       ),
       body: StreamBuilder<FlowState>(
         stream: _viewModel.outputState,
+        // builder: (context, snapshot) {
+        //   if (snapshot.hasData && snapshot.data is ErrorState) {
+        //     SchedulerBinding.instance.addPostFrameCallback((_) {
+        //       if (mounted) {
+        //         ScaffoldMessenger.of(context).showSnackBar(
+        //           SnackBar(
+        //               content: Text((snapshot.data as ErrorState).message)),
+        //         );
+        //       }
+        //     });
+        //   }
+        //   return _getContentWidget();
+        // },
         builder: (context, snapshot) {
-          if (snapshot.hasData && snapshot.data is ErrorState) {
-            SchedulerBinding.instance.addPostFrameCallback((_) {
-              if (mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                      content: Text((snapshot.data as ErrorState).message)),
-                );
-              }
-            });
-          }
-          return _getContentWidget();
+          // Use the custom popup system instead of snackbar
+          return snapshot.data?.getScreenWidget(context, _getContentWidget(),
+                  () {
+                // Retry function - retry the registration process
+                if (_formKey.currentState?.validate() ?? false) {
+                  _viewModel.registerClient();
+                }
+              }) ??
+              _getContentWidget();
         },
       ),
     );

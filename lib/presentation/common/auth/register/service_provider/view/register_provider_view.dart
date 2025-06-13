@@ -140,26 +140,21 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
       body: StreamBuilder<FlowState>(
         stream: _viewModel.outputState,
         builder: (context, snapshot) {
-          // return snapshot.data?.getScreenWidget(
-          //       context,
-          //       _getContentWidget(),
-          //       () {
-          //         _viewModel.registerProvider();
-          //       },
-          //     ) ??
-          //     _getContentWidget();
           if (snapshot.hasData && snapshot.data is ErrorState) {
             SchedulerBinding.instance.addPostFrameCallback((_) {
               if (mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                      content: Text((snapshot.data as ErrorState).message)),
+                    content: Text((snapshot.data as ErrorState).message),
+                    backgroundColor: ColorManager.error,
+                  ),
                 );
               }
             });
           }
           return _getContentWidget();
         },
+        
       ),
     );
   }
@@ -291,7 +286,7 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
               //Certification
               _buildImagePickerContainer(
                 AppStrings.certification,
-                _viewModel.outIdCardBackPhoto,
+                _viewModel.outCertification,
                 () => _showPicker(context, "setCertification"),
               ),
 
@@ -569,14 +564,19 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
       } else {
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-              content: Text("No file selected or wrong picker type")),
+          SnackBar(
+            content: const Text("No file selected or wrong picker type"),
+            backgroundColor: ColorManager.error,
+          ),
         );
       }
     } catch (e) {
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("erro selecting file: $e")),
+        SnackBar(
+          content: Text("erro selecting file: $e"),
+          backgroundColor: ColorManager.error,
+        ),
       );
     }
   }
