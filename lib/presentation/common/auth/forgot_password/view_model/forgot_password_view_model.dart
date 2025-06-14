@@ -71,9 +71,10 @@ class ForgotPasswordViewModel extends BaseViewModel
           .map((isAllInputValid) => _isAllInputValid());
 
   bool _isEmailValid(String userName) {
+    String userNameWithOutSpace = userName.replaceAll(' ', '');
     String emailRegex = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
     RegExp regExp = RegExp(emailRegex);
-    return regExp.hasMatch(userName) && userName.isNotEmpty;
+    return regExp.hasMatch(userNameWithOutSpace) && userNameWithOutSpace.isNotEmpty;
   }
 
   _isAllInputValid() {

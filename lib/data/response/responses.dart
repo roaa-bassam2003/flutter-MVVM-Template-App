@@ -131,7 +131,6 @@ class AuthenticationServiceProviderResponse extends BaseResponse {
       _$AuthenticationServiceProviderResponseToJson(this);
 }
 
-
 // register client
 @JsonSerializable()
 class ClientRegisterResponse {
@@ -175,8 +174,7 @@ class ClientRegisterResponse {
   factory ClientRegisterResponse.fromJson(Map<String, dynamic> json) =>
       _$ClientRegisterResponseFromJson(json);
   // to json
-  Map<String, dynamic> toJson() =>
-      _$ClientRegisterResponseToJson(this);
+  Map<String, dynamic> toJson() => _$ClientRegisterResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -188,12 +186,10 @@ class AuthenticationClientResponse extends BaseResponse {
   );
 
   // from json
-  factory AuthenticationClientResponse.fromJson(
-          Map<String, dynamic> json) =>
+  factory AuthenticationClientResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthenticationClientResponseFromJson(json);
   // to json
-  Map<String, dynamic> toJson() =>
-      _$AuthenticationClientResponseToJson(this);
+  Map<String, dynamic> toJson() => _$AuthenticationClientResponseToJson(this);
 }
 
 // forget password
@@ -331,8 +327,7 @@ class City {
     this.users,
   );
 
-  factory City.fromJson(Map<String, dynamic> json) =>
-      _$CityFromJson(json);
+  factory City.fromJson(Map<String, dynamic> json) => _$CityFromJson(json);
 
   Map<String, dynamic> toJson() => _$CityToJson(this);
 }

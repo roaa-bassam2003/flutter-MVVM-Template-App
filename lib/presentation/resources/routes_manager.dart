@@ -125,15 +125,11 @@ class RouteGenerator {
         );
       case Routes.registerUserRoute:
         initRegisterClientModule();
-        initCityModule();
-        initGovernmentModule();
         return MaterialPageRoute(
           builder: (_) => const RegisterUserView(),
         );
       case Routes.registerProviderRoute:
         initRegisterProviderModule();
-        initCityModule();
-        initGovernmentModule();
         return MaterialPageRoute(
           builder: (_) => const RegisterProviderView(),
           settings: settings,

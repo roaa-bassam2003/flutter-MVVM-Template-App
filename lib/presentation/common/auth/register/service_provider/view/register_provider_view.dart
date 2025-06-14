@@ -44,7 +44,6 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
   final TextEditingController _passwordEditingController =
       TextEditingController();
 
-  // نقل المتغيرات إلى مستوى الكلاس
   String? selectedGovernorate;
   String? selectedCity;
   bool _navigationInProgress = false;
@@ -103,18 +102,13 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
 
   @override
   Widget build(BuildContext context) {
-    // final rawArguments = ModalRoute.of(context)?.settings.arguments;
-
-    // take args with null safety
     final arguments = ModalRoute.of(context)?.settings.arguments;
     final Map<String, dynamic> args = arguments != null
         ? arguments as Map<String, dynamic>
         : <String, dynamic>{};
 
-    // serviceType as int with null safety - try both possible keys
     final int? serviceType = args['serviceType'] ?? args['service_type'];
 
-    // the service type list
     final List<String> serviceTypes = [
       'Babysitter',
       'Petsitter',
@@ -122,12 +116,12 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
       'HouseKeeper',
     ];
 
-    // name of selected service with better debugging
     String selectedServiceName;
     if (serviceType != null &&
         serviceType >= 0 &&
         serviceType < serviceTypes.length) {
       selectedServiceName = serviceTypes[serviceType];
+      _viewModel.setType(serviceType);
     } else {
       selectedServiceName = 'Service Provider';
     }
@@ -154,24 +148,11 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
           }
           return _getContentWidget();
         },
-        
       ),
     );
   }
 
   Widget _getContentWidget() {
-    List<String> cities = [];
-    if (selectedGovernorate != null) {
-      try {
-        final governorateData = governoratesWithCities.firstWhere(
-          (item) => item['governorate'] == selectedGovernorate,
-        );
-        cities = List<String>.from(governorateData['cities']);
-      } catch (e) {
-        cities = [];
-      }
-    }
-
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppPadding.p20,
@@ -181,7 +162,6 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
           key: _formKey,
           child: Column(
             children: [
-              //Logo
               Center(
                 child: Image.asset(
                   ImageAssets.splashLogo,
@@ -189,10 +169,7 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
                   height: 200,
                 ),
               ),
-
               const SizedBox(height: 16),
-
-              //name
               StreamBuilder<String?>(
                 stream: _viewModel.outIsErrorUserName,
                 builder: (context, snapshot) {
@@ -204,9 +181,7 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
                       errorText: snapshot.data);
                 },
               ),
-              //Space
               const SizedBox(height: 8),
-              // Mobile Number
               StreamBuilder<String?>(
                 stream: _viewModel.outIsErrorPhoneNumber,
                 builder: (context, snapshot) {
@@ -218,9 +193,7 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
                       errorText: snapshot.data);
                 },
               ),
-              //Space
               const SizedBox(height: 8),
-              //Email
               StreamBuilder<String?>(
                 stream: _viewModel.outIsErrorEmail,
                 builder: (context, snapshot) {
@@ -232,9 +205,7 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
                       errorText: snapshot.data);
                 },
               ),
-              //Space
               const SizedBox(height: 8),
-              // Password
               StreamBuilder<String?>(
                 stream: _viewModel.outIsErrorPassword,
                 builder: (context, snapshot) {
@@ -246,59 +217,41 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
                       errorText: snapshot.data);
                 },
               ),
-              //Space
               const SizedBox(height: 8),
-              //Profile Picture
               _buildImagePickerContainer(
                 AppStrings.profilePicture,
                 _viewModel.outPersonalPhoto,
                 () => _showPicker(context, "setPersonalPhoto"),
               ),
-
-              //Space
               const SizedBox(height: 8),
-
-              // person with card
               _buildImagePickerContainer(
                 AppStrings.personWithCardPicture,
                 _viewModel.outPersonWithCard,
                 () => _showPicker(context, "setPersonWithCard"),
               ),
-
               const SizedBox(height: 8),
-              //Front ID Picture
               _buildImagePickerContainer(
                 AppStrings.frontIdPicture,
                 _viewModel.outIdCardFrontPhoto,
                 () => _showPicker(context, "setIdCardFrontPhoto"),
               ),
-              //Space
               const SizedBox(height: 8),
-              //Back ID Picture
               _buildImagePickerContainer(
                 AppStrings.backIdPicture,
                 _viewModel.outIdCardBackPhoto,
                 () => _showPicker(context, "setIdCardBackPhoto"),
               ),
-              //Space
               const SizedBox(height: 8),
-
-              //Certification
               _buildImagePickerContainer(
                 AppStrings.certification,
                 _viewModel.outCertification,
                 () => _showPicker(context, "setCertification"),
               ),
-
-              //Space
               const SizedBox(height: 8),
-              //Governorate
-              // static for country
               const CustomStaticField(
                 label: "Egypt",
               ),
               const SizedBox(height: 10),
-              // Dropdown للمحافظة
               CustomDropdownButton(
                 textColor: ColorManager.grey,
                 backgroundColor: ColorManager.white,
@@ -311,39 +264,119 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
                 onChanged: (value) {
                   setState(() {
                     selectedGovernorate = value;
-                    selectedCity = null;
+                    selectedCity = null; // Reset city when governorate changes
                   });
                   if (value != null) {
-                    _viewModel.setCurrentGovernId(value);
+                    try {
+                      final governIndex = governoratesWithCities.indexWhere(
+                          (element) => element['governorate'] == value);
+                      if (governIndex != -1) {
+                        _viewModel.setCurrentGovernId(governIndex.toString());
+                      } else {
+                        if (mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content:
+                                  const Text("Invalid governorate selected"),
+                              backgroundColor: ColorManager.error,
+                            ),
+                          );
+                        }
+                      }
+                    } catch (e) {
+                      debugPrint('Error setting governorate: $e');
+                      if (mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Error setting governorate: $e"),
+                            backgroundColor: ColorManager.error,
+                          ),
+                        );
+                      }
+                    }
                   }
                 },
               ),
-              //Space
               const SizedBox(height: 8),
-              //city
-              // Dropdown للمدينة
               CustomDropdownButton(
                 textColor: ColorManager.grey,
                 backgroundColor: ColorManager.white,
                 borderColor: ColorManager.lightGrey,
                 hint: AppStrings.city,
-                items: cities,
+                items: _getCitiesForSelectedGovernorate(),
                 selectedValue: selectedCity,
                 onChanged: selectedGovernorate != null
                     ? (value) {
                         setState(() {
                           selectedCity = value;
                         });
-                        if (value != null && cities.isNotEmpty) {
-                          final cityIndex = cities.indexOf(value) + 1;
-                          _viewModel.setCityId(cityIndex.toString());
+                        if (value != null) {
+                          try {
+                            // Find the selected governorate
+                            Map<String, dynamic>? selectedGov;
+                            for (var item in governoratesWithCities) {
+                              if (item['governorate'] == selectedGovernorate) {
+                                selectedGov = item;
+                                break;
+                              }
+                            }
+
+                            if (selectedGov != null) {
+                              final cities =
+                                  selectedGov['cities'] as List<dynamic>;
+                              Map<String, dynamic>? cityObj;
+
+                              // Find the selected city
+                              for (var c in cities) {
+                                if (c is Map<String, dynamic> &&
+                                    c['name'] == value) {
+                                  cityObj = c;
+                                  break;
+                                }
+                              }
+
+                              if (cityObj != null) {
+                                final cityId = cityObj['id'] as int;
+                                debugPrint('Selected city ID: $cityId');
+                                _viewModel.setCityID(cityId);
+                              } else {
+                                if (mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content:
+                                          const Text("Invalid city selected"),
+                                      backgroundColor: ColorManager.error,
+                                    ),
+                                  );
+                                }
+                              }
+                            } else {
+                              if (mounted) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: const Text(
+                                        "Invalid governorate selected"),
+                                    backgroundColor: ColorManager.error,
+                                  ),
+                                );
+                              }
+                            }
+                          } catch (e) {
+                            debugPrint('Error setting city: $e');
+                            if (mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text("Error setting city: $e"),
+                                  backgroundColor: ColorManager.error,
+                                ),
+                              );
+                            }
+                          }
                         }
                       }
                     : null,
               ),
-              //Space
               const SizedBox(height: 8),
-              //Price Per Hour
               StreamBuilder<String?>(
                 stream: _viewModel.outIsErrorHourPrice,
                 builder: (context, snapshot) {
@@ -355,9 +388,7 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
                       errorText: snapshot.data);
                 },
               ),
-              //Space
               const SizedBox(height: 18),
-              // button Register
               StreamBuilder<bool>(
                 stream: _viewModel.outAreAllInputsValid,
                 builder: (context, snapshot) {
@@ -370,9 +401,7 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
                   );
                 },
               ),
-              //space
               const SizedBox(height: 5),
-              //Already have an account? Login
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -392,6 +421,41 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
         ),
       ),
     );
+  }
+
+  List<String> _getCitiesForSelectedGovernorate() {
+    if (selectedGovernorate == null) return [];
+
+    try {
+      Map<String, dynamic>? governorateData;
+      for (var item in governoratesWithCities) {
+        if (item['governorate'] == selectedGovernorate) {
+          governorateData = item;
+          break;
+        }
+      }
+
+      if (governorateData != null) {
+        final cities = governorateData['cities'] as List<dynamic>;
+        return cities
+            .where((city) => city is Map<String, dynamic>)
+            .map<String>((city) => city['name'] as String)
+            .toList();
+      }
+
+      return [];
+    } catch (e) {
+      debugPrint('Error getting cities: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Error getting cities: $e"),
+            backgroundColor: ColorManager.error,
+          ),
+        );
+      }
+      return [];
+    }
   }
 
   Widget _buildImagePickerContainer(
@@ -514,6 +578,14 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
       }
     } catch (e) {
       debugPrint('Error picking image from gallery: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Error picking image: $e"),
+            backgroundColor: ColorManager.error,
+          ),
+        );
+      }
     }
   }
 
@@ -526,6 +598,14 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
       }
     } catch (e) {
       debugPrint('Error picking image from camera: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Error picking image: $e"),
+            backgroundColor: ColorManager.error,
+          ),
+        );
+      }
     }
   }
 
@@ -548,7 +628,7 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
     }
   }
 
-  _fileFromDevice(String typePicker) async {
+  Future<void> _fileFromDevice(String typePicker) async {
     try {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
@@ -562,22 +642,24 @@ class _RegisterProviderViewState extends State<RegisterProviderView> {
         File selectedFile = File(result.files.single.path!);
         _viewModel.setCertification(selectedFile);
       } else {
-        // ignore: use_build_context_synchronously
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: const Text("No file selected or wrong picker type"),
+              backgroundColor: ColorManager.error,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: const Text("No file selected or wrong picker type"),
+            content: Text("Error selecting file: $e"),
             backgroundColor: ColorManager.error,
           ),
         );
       }
-    } catch (e) {
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("erro selecting file: $e"),
-          backgroundColor: ColorManager.error,
-        ),
-      );
     }
   }
 }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/app/app.dart';
 import 'package:flutter_advanced_course/app/di.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // final prefs = await SharedPreferences.getInstance();
+  // await prefs.clear();
   await initAppModule();
   runApp(MyApp());
 }

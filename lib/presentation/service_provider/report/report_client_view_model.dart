@@ -85,7 +85,8 @@ class ReportClientViewModel extends BaseViewModel
   }
 
   bool _isSupportMessageValid(String supportMessage) {
-    return supportMessage.isNotEmpty;
+    String supportMessageWithOutSpace = supportMessage.replaceAll(' ', '');
+    return supportMessageWithOutSpace.isNotEmpty && supportMessageWithOutSpace.length >=10;
   }
 
   _isAllInputValid() {

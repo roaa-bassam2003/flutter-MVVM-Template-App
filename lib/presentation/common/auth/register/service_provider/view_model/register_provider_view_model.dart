@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter_advanced_course/app/functions.dart';
-import 'package:flutter_advanced_course/domain/usecase/city_use_case.dart';
-import 'package:flutter_advanced_course/domain/usecase/government_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/register_service_provider_use_case.dart';
 import 'package:flutter_advanced_course/presentation/base/base_view_model.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
@@ -17,9 +15,6 @@ class RegisterProviderViewModel extends BaseViewModel
   final StreamController _userNameStreamController =
       StreamController<String>.broadcast();
 
-  final StreamController _governIdStreamController =
-      StreamController<String>.broadcast();
-
   final StreamController _emailStreamController =
       StreamController<String>.broadcast();
 
@@ -31,9 +26,6 @@ class RegisterProviderViewModel extends BaseViewModel
 
   final StreamController _phoneNumberStreamController =
       StreamController<String>.broadcast();
-
-//   final StreamController _typeStreamController =
-//       StreamController<String>.broadcast();
 
   final StreamController _idCardBackPhotoStreamController =
       StreamController<File>.broadcast();
@@ -65,7 +57,7 @@ class RegisterProviderViewModel extends BaseViewModel
     "", // phoneNumber
     "", // email
     "", // password
-    1, // city
+    0, // city
     File(''), // personalPhoto
     File(''), // personWithCard
     File(''), // idCardFrontPhoto
@@ -74,13 +66,10 @@ class RegisterProviderViewModel extends BaseViewModel
   );
 
   final RegisterServiceProviderUseCase _registerServiceProviderUseCase;
-  final GovernmentUseCase _governmentUseCase;
-  final CityUseCase _cityUseCase;
-  RegisterProviderViewModel(this._registerServiceProviderUseCase,
-      this._cityUseCase, this._governmentUseCase);
+  RegisterProviderViewModel(this._registerServiceProviderUseCase);
 
   var currentGovernId = 1;
-  List<String> governmentList = [];
+  var currentCityId = 1;
 
   // inputs
   @override
@@ -96,7 +85,6 @@ class RegisterProviderViewModel extends BaseViewModel
     _idCardFrontPhotoStreamController.close();
     _personWithCardStreamController.close();
     _personalPhotoStreamController.close();
-    _governIdStreamController.close();
     _emailStreamController.close();
     _passwordStreamController.close();
     _phoneNumberStreamController.close();
@@ -108,9 +96,6 @@ class RegisterProviderViewModel extends BaseViewModel
 
   @override
   Sink get inputCertification => _certificationStreamController.sink;
-
-  @override
-  Sink get inputGovernId => _governIdStreamController.sink;
 
   @override
   Sink get inputEmail => _emailStreamController.sink;
@@ -143,38 +128,23 @@ class RegisterProviderViewModel extends BaseViewModel
   Sink get inputAllInputsValid => _areAllInputsValidStreamController.sink;
 
   @override
-  getCity() async {
-    inputState.add(LoadingState(
-      stateRendererType: StateRendererType.popUpLoadingState,
-    ));
-    (await _cityUseCase.execute(currentGovernId)).fold((failure) {
-      inputState.add(ErrorState(
-        StateRendererType.popUpErrorState,
-        failure.message,
-      ));
-    }, (data) {
-      inputState.add(ContentState());
-      // navigate to main screen
-      //   isUserLoggedInSuccessfullyStreamController.add(true);
-    });
+  getGovernmentID() {
+    return currentGovernId;
   }
 
   @override
-  getGovernment() async {
-    inputState.add(LoadingState(
-      stateRendererType: StateRendererType.popUpLoadingState,
-    ));
-    (await _governmentUseCase.execute(null)).fold((failure) {
-      inputState.add(ErrorState(
-        StateRendererType.popUpErrorState,
-        failure.message,
-      ));
-    }, (data) {
-      inputState.add(ContentState());
-      governmentList = data.governments!.map((gov) => gov.name).toList();
-      // navigate to main screen
-      //   isUserLoggedInSuccessfullyStreamController.add(true);
-    });
+  setCurrentGovernId(String? value) {
+    currentGovernId = int.tryParse(value ?? '0') ?? 0;
+    currentGovernId = currentGovernId + 1;
+    print("governID: $value $currentGovernId");
+    // validate();
+  }
+
+  @override
+  setCityID(int? value) {
+    registerProviderObject = registerProviderObject.copyWith(city: value!);
+    print("city $value ");
+    validate();
   }
 
   @override
@@ -207,25 +177,6 @@ class RegisterProviderViewModel extends BaseViewModel
       // navigate to waiting screen
       isUserRegisterProviderSuccessfullyStreamController.add(true);
     });
-  }
-
-  @override
-  setCurrentGovernId(String? value) {
-    currentGovernId = governmentList.indexOf(value!) + 1;
-    validate();
-  }
-
-  @override
-  List<String> getGovernmentList() {
-    return governmentList;
-  }
-
-  @override
-  setCityId(String? cityId) {
-    final parsedCityId = int.tryParse(cityId!) ?? 0;
-    registerProviderObject =
-        registerProviderObject.copyWith(city: parsedCityId);
-    validate();
   }
 
   @override
@@ -360,10 +311,10 @@ class RegisterProviderViewModel extends BaseViewModel
   }
 
   @override
-  setType(String type) {
-    final parsedType = int.tryParse(type) ?? 0;
+  setType(int type) {
     // update registerProviderObject
-    registerProviderObject = registerProviderObject.copyWith(type: parsedType);
+    registerProviderObject = registerProviderObject.copyWith(type: type);
+    // print(type);
     validate();
   }
 
@@ -401,10 +352,6 @@ class RegisterProviderViewModel extends BaseViewModel
   @override
   Stream<File> get outIdCardFrontPhoto =>
       _idCardFrontPhotoStreamController.stream.map((file) => file);
-
-  @override
-  Stream<bool> get outIsGovernIdValid =>
-      _governIdStreamController.stream.map((governId) => governId.isNotEmpty);
 
   @override
   Stream<bool> get outIsEmailValid => _emailStreamController.stream.map(
@@ -483,6 +430,8 @@ class RegisterProviderViewModel extends BaseViewModel
         registerProviderObject.personWithCard.path.isNotEmpty &&
         registerProviderObject.idCardBackPhoto.path.isNotEmpty &&
         registerProviderObject.idCardFrontPhoto.path.isNotEmpty &&
+        registerProviderObject.city != 0 &&
+        currentGovernId > 0 &&
         isCertificationValid;
   }
 
@@ -493,12 +442,10 @@ class RegisterProviderViewModel extends BaseViewModel
 
 abstract class RegisterProviderViewModelInputs {
   Sink get inputUserName;
-  Sink get inputGovernId;
   Sink get inputEmail;
   Sink get inputHourPrice;
   Sink get inputPassword;
   Sink get inputPhoneNumber;
-//   Sink get inputType;
   Sink get inputIdCardBackPhoto;
   Sink get inputIdCardFrontPhoto;
   Sink get inputPersonalPhoto;
@@ -508,14 +455,13 @@ abstract class RegisterProviderViewModelInputs {
   Sink get inputAllInputsValid;
 
   setUserName(String userName);
-  setCityId(String? cityId);
   setEmail(String email);
   setHourePrice(String hourePrice);
   setPassword(String password);
   setPhoneNumber(String phoneNumber);
 
 // type from the service type args
-  setType(String type);
+  setType(int type);
 
 //   files
   setIdCardBackPhoto(File idCardBackPhoto);
@@ -525,18 +471,14 @@ abstract class RegisterProviderViewModelInputs {
   setCertification(File? certification); // optional
 
   registerProvider();
-  getCity();
-  getGovernment();
+  setCityID(int? value);
+  getGovernmentID();
   setCurrentGovernId(String? value);
-  getGovernmentList();
 }
 
 abstract class RegisterProviderViewModelOutputs {
   Stream<bool> get outIsUserNameValid;
   Stream<String?> get outIsErrorUserName;
-
-  Stream<bool> get outIsGovernIdValid;
-//   Stream<String?> get outIsErrorCityId;
 
   Stream<bool> get outIsEmailValid;
   Stream<String?> get outIsErrorEmail;
@@ -549,9 +491,6 @@ abstract class RegisterProviderViewModelOutputs {
 
   Stream<bool> get outIsPhoneNumberValid;
   Stream<String?> get outIsErrorPhoneNumber;
-
-//   Stream<bool> get outIsTypeValid;
-//   Stream<String?> get outIsErrorType;
 
   Stream<File> get outIdCardBackPhoto;
   Stream<File> get outIdCardFrontPhoto;

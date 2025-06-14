@@ -56,10 +56,8 @@ extension AuthenticationServiceProviderResponseMapper
   }
 }
 
-
 // Register Service Provider Response Mapper
-extension ClientRegisterResponseMapper
-    on ClientRegisterResponse? {
+extension ClientRegisterResponseMapper on ClientRegisterResponse? {
   RegisterClient toDomain() {
     return RegisterClient(
       location: this?.location.orEmpty() ?? Constants.empty,
@@ -77,8 +75,7 @@ extension ClientRegisterResponseMapper
   }
 }
 
-extension AuthenticationClientResponseMapper
-    on AuthenticationClientResponse? {
+extension AuthenticationClientResponseMapper on AuthenticationClientResponse? {
   AuthenticationClient toDomain() {
     return AuthenticationClient(
       this?.data.toDomain(),
@@ -110,14 +107,14 @@ extension DeleteAccountResponseMapper on DeleteAccountResponse? {
 // report
 extension ReportResponseMapper on ReportResponse? {
   String toDomain() {
-    return this?.data?.orEmpty() ?? Constants.empty;
+    return this?.message?.orEmpty() ?? Constants.empty;
   }
 }
 
 // logout
 extension LogoutResponseMapper on LogoutResponse? {
   String toDomain() {
-    return this?.data?.orEmpty() ?? Constants.empty;
+    return this?.message?.orEmpty() ?? Constants.empty;
   }
 }
 

@@ -107,7 +107,7 @@ initRegisterProviderModule() {
         () => RegisterServiceProviderUseCase(instance()));
     // login view model
     instance.registerFactory<RegisterProviderViewModel>(
-        () => RegisterProviderViewModel(instance(), instance(), instance()));
+        () => RegisterProviderViewModel(instance()));
   }
 }
 
@@ -119,7 +119,7 @@ initRegisterClientModule() {
         () => RegisterClientUseCase(instance()));
     // login view model
     instance.registerFactory<RegisterClientViewModel>(
-        () => RegisterClientViewModel(instance(), instance(), instance()));
+        () => RegisterClientViewModel(instance()));
   }
 }
 

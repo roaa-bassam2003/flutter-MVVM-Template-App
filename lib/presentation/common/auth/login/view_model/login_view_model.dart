@@ -77,16 +77,13 @@ class LoginViewModel extends BaseViewModel
         failure.message,
       ));
     }, (data) {
-      // inputState.add(ContentState());
-      // userType = data.user!.userType.first;
-      // isUserLoggedInSuccessfullyStreamController.add(true);
       if (data.user != null && data.user!.userType.isNotEmpty) {
         userType = data.user!.userType.first;
         isUserLoggedInSuccessfullyStreamController.add(true);
       } else {
         inputState.add(ErrorState(
           StateRendererType.popUpErrorState,
-          "نوع المستخدم غير معروف أو غير موجود.",
+          "user name is not avaliable!!",
         ));
       }
     });
@@ -108,10 +105,12 @@ class LoginViewModel extends BaseViewModel
 
   // functions
   bool _isPasswordValid(String password) {
-    return password.isNotEmpty;
+    String passwordWithOutSpace = password.replaceAll(' ', '');
+    return passwordWithOutSpace.isNotEmpty;
   }
 
   bool _isUserNameValid(String userName) {
+    // String userNameWithOutSpace = userName.replaceAll(' ', '');
     String emailRegex = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
     RegExp regExp = RegExp(emailRegex);
     return regExp.hasMatch(userName) && userName.isNotEmpty;

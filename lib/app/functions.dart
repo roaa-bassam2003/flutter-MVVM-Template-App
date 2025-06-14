@@ -6,15 +6,17 @@ bool isUserNameValid(String userName) {
 }
 
 bool emailValid(String email) {
-  String newMail = email.replaceAll(' ', '');
+  // String newMail = email.replaceAll(' ', '');
   String emailRegex = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
   RegExp regExp = RegExp(emailRegex);
-  return regExp.hasMatch(newMail) && newMail.isNotEmpty && newMail.length >= 6;
+  return regExp.hasMatch(email) && email.isNotEmpty && email.length >= 6;
 }
 
 bool isPhoneNumberValid(String phoneNumber) {
+  String phoneNumberWithOutSpace = phoneNumber.replaceAll(' ', '');
   final regex = RegExp(r'^01[0-2,5]{1}[0-9]{8}$');
-  return phoneNumber.isNotEmpty && regex.hasMatch(phoneNumber);
+  return phoneNumberWithOutSpace.isNotEmpty &&
+      regex.hasMatch(phoneNumberWithOutSpace);
 }
 
 bool isHourPriceValid(double hourPrice) {
@@ -22,19 +24,20 @@ bool isHourPriceValid(double hourPrice) {
 }
 
 String? validatePassword(String password) {
-  if (!RegExp(r'[A-Z]').hasMatch(password)) {
+  String passwordWithOutSpace = password.replaceAll(' ', '');
+  if (!RegExp(r'[A-Z]').hasMatch(passwordWithOutSpace)) {
     return AppStrings.passwordUpperCaseValid;
   }
-  if (!RegExp(r'[a-z]').hasMatch(password)) {
+  if (!RegExp(r'[a-z]').hasMatch(passwordWithOutSpace)) {
     return AppStrings.passwordLowerCaseValid;
   }
-  if (!RegExp(r'[0-9]').hasMatch(password)) {
+  if (!RegExp(r'[0-9]').hasMatch(passwordWithOutSpace)) {
     return AppStrings.passwordNumberValid;
   }
-  if (!password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+  if (!passwordWithOutSpace.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
     return AppStrings.passwordSpecialCharValid;
   }
-  if (password.length < 6) {
+  if (passwordWithOutSpace.length < 6) {
     return AppStrings.passwordLenghtValid;
   }
   return null; // Password is valid
