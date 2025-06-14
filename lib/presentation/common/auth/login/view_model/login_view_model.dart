@@ -24,6 +24,7 @@ class LoginViewModel extends BaseViewModel
   LoginViewModel(this._loginUseCase);
 
   var userType = "";
+  String token = "";
 
   // inputs
   @override
@@ -79,6 +80,7 @@ class LoginViewModel extends BaseViewModel
     }, (data) {
       if (data.user != null && data.user!.userType.isNotEmpty) {
         userType = data.user!.userType.first;
+        token = data.user!.token;
         isUserLoggedInSuccessfullyStreamController.add(true);
       } else {
         inputState.add(ErrorState(
@@ -125,6 +127,11 @@ class LoginViewModel extends BaseViewModel
   getUserType() {
     return userType;
   }
+
+  @override
+  getToken() {
+    return token;
+  }
 }
 
 abstract class LoginViewModelInputs {
@@ -133,6 +140,7 @@ abstract class LoginViewModelInputs {
   login();
 
   getUserType();
+  getToken();
   Sink get inputUserName;
   Sink get inputPassword;
   Sink get inputAreAllInputsValid;

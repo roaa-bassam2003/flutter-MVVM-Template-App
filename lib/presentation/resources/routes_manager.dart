@@ -12,7 +12,7 @@ import 'package:flutter_advanced_course/presentation/common/edit_profile/edit_pr
 import 'package:flutter_advanced_course/presentation/common/logout/view/logout_view.dart';
 import 'package:flutter_advanced_course/presentation/common/onboarding/view/onboarding_view.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/register/client/view/register_user_view.dart';
-import 'package:flutter_advanced_course/presentation/common/reset_passward/reset_password.dart';
+import 'package:flutter_advanced_course/presentation/common/reset_passward/view/reset_password_view.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/day_specification/day_specification.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/edit_profile/edit_profile_view.dart';
@@ -109,6 +109,7 @@ class RouteGenerator {
     switch (settings.name) {
       // test reset pass
       case Routes.resetPasswordRoute:
+        initResetPasswordModule();
         return MaterialPageRoute(
           builder: (_) => const ResetPasswordView(),
         );

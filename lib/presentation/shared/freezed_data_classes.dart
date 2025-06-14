@@ -29,7 +29,6 @@ class RegisterProviderObject with _$RegisterProviderObject {
   ) = _RegisterProviderObject;
 }
 
-
 // register client
 @freezed
 class RegisterClientObject with _$RegisterClientObject {
@@ -51,8 +50,21 @@ class RegisterClientObject with _$RegisterClientObject {
 // change password
 @freezed
 class ChangePasswordObject with _$ChangePasswordObject {
-  factory ChangePasswordObject(String passwordOne, String passwordTwo) =
-      _ChangePasswordObject;
+  factory ChangePasswordObject(
+    String passwordOne,
+    String passwordTwo,
+  ) = _ChangePasswordObject;
+}
+
+// reset password
+@freezed
+class ResetPasswordObject with _$ResetPasswordObject {
+  factory ResetPasswordObject(
+    String email,
+    String token,
+    String newPassword,
+    String confirmPassword,
+  ) = _ResetPasswordObject;
 }
 
 // report

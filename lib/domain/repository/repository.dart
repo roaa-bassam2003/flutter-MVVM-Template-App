@@ -12,6 +12,7 @@ abstract class Repository {
   Future<Either<Failure, AuthenticationServiceProvider>> registerServiceProvider(ServiceProviderRegisterRequest serviceProviderRegisterRequest);
   Future<Either<Failure, AuthenticationClient>> registerClient(ClientRegisterRequest clientRegisterRequest);
   Future<Either<Failure, String>> forgotPassword(String email);
+  Future<Either<Failure, String>> resetPassword(ResetPasswordRequest resetPasswordRequest);
   Future<Either<Failure, String>> deleteAccount();
   Future<Either<Failure, String>> logout();
   Future<Either<Failure, String>> changePassword(

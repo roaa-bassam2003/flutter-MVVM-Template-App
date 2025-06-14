@@ -26,6 +26,21 @@ class ChangePasswordRequest {
   );
 }
 
+// reset Password
+class ResetPasswordRequest {
+  String email;
+  String token;
+  String newPassword;
+  String confirmPassword;
+
+  ResetPasswordRequest(
+    this.email,
+    this.token,
+    this.newPassword,
+    this.confirmPassword,
+  );
+}
+
 // report
 class ReportRequest {
   String userName;

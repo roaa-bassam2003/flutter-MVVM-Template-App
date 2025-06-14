@@ -103,6 +103,7 @@ class AppStrings {
   static const appBarDeleteAccountTitle = "Delete My Account";
   static const appBarEditProfileTitle = "Edit My Profile";
   static const appBarChangePasswordTitle = "Change Password";
+  static const appBarResetPasswordTitle = "Reset Password";
   static const appBarAboutAppTitle = "About Magic Parents";
 
   static const addressDetailsLabel = """Which city are you looking 
@@ -149,6 +150,9 @@ class AppStrings {
   static const String changePassword = "Change Password";
   static const String oldPassword = "Old Password";
   static const String currentPassword = "Current Password";
+  static const String newPassword = "New Password";
+  static const String confirmedPassword = "Confirmed Password";
+  static const String reset = "Reset";
   static const String change = "Change";
   static const String preview = "Preview";
 

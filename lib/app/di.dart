@@ -16,6 +16,7 @@ import 'package:flutter_advanced_course/domain/usecase/logout_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/register_client_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/register_service_provider_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/report_use_case.dart';
+import 'package:flutter_advanced_course/domain/usecase/reset_password_use_case.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/change_password/view_model/change_password_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/forgot_password/view_model/forgot_password_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/login/view_model/login_view_model.dart';
@@ -23,6 +24,7 @@ import 'package:flutter_advanced_course/presentation/common/auth/register/client
 import 'package:flutter_advanced_course/presentation/common/auth/register/service_provider/view_model/register_provider_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/delete_account/view_model/delete_account_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/logout/view_model/logout_view_model.dart';
+import 'package:flutter_advanced_course/presentation/common/reset_passward/view_model/reset_password_view_model.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/report/report_client_view_model.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -167,6 +169,18 @@ initChangePasswordModule() {
     // change password view model
     instance.registerFactory<ChangePasswordViewModel>(
         () => ChangePasswordViewModel(instance()));
+  }
+}
+
+// change password module is a module where we put all DI related to change password
+initResetPasswordModule() {
+  if (!GetIt.I.isRegistered<ResetPasswordUseCase>()) {
+    // change password use case
+    instance.registerFactory<ResetPasswordUseCase>(
+        () => ResetPasswordUseCase(instance()));
+    // change password view model
+    instance.registerFactory<ResetPasswordViewModel>(
+        () => ResetPasswordViewModel(instance()));
   }
 }
 

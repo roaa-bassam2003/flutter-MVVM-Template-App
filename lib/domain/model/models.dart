@@ -122,7 +122,6 @@ class AuthenticationServiceProvider {
   );
 }
 
-
 // Register client
 class RegisterClient {
   final String location;
@@ -160,7 +159,6 @@ class AuthenticationClient {
   );
 }
 
-
 // governments
 class GovernmentList {
   int id;
@@ -181,7 +179,6 @@ class Governments {
     this.governments,
   );
 }
-
 
 // governments-cities
 class CityList {
@@ -207,7 +204,6 @@ class Cities {
     this.governmentsCities,
   );
 }
-
 
 // ------------------Service Provider------------
 
@@ -245,5 +241,17 @@ class Provider {
     required this.rating,
     required this.price,
     required this.imagePath,
+  });
+}
+
+
+// forget password
+class ForgetPassword {
+  final String message;
+  final String token;
+
+  ForgetPassword({
+    required this.message,
+    required this.token,
   });
 }

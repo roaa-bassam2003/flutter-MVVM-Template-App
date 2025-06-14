@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_course/app/app_prefs.dart';
 import 'package:flutter_advanced_course/app/di.dart';
 import 'package:flutter_advanced_course/presentation/common/auth/forgot_password/view_model/forgot_password_view_model.dart';
+import 'package:flutter_advanced_course/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/shared/state_renderer/state_renderer_impl.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_app_bar.dart';
@@ -9,6 +11,7 @@ import 'package:flutter_advanced_course/presentation/widgets/custom_text_form_fi
 import 'package:flutter_advanced_course/presentation/resources/assets_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/values_manager.dart';
+import 'package:flutter/scheduler.dart';
 
 class ForgotPasswordView extends StatefulWidget {
   const ForgotPasswordView({super.key});
@@ -23,11 +26,25 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
       TextEditingController();
   final ForgotPasswordViewModel _viewModel =
       instance<ForgotPasswordViewModel>();
+  final AppPrefs _appPrefs = instance<AppPrefs>();
 
   bind() {
     _viewModel.start();
     _emailTextEditingController.addListener(
         () => _viewModel.setEmail(_emailTextEditingController.text));
+
+    _viewModel.isUserForgetPasswordSuccessfullyStreamController.stream
+        .listen((isLoggedIn) async{
+      if (isLoggedIn) {
+        String? token = _viewModel.getToken();
+        _appPrefs.setLoginToken(token!);
+        String? email = _viewModel.getEmail();
+        _appPrefs.setEmail(email!);
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          Navigator.of(context).pushReplacementNamed(Routes.resetPasswordRoute);
+        });
+      }
+    });
   }
 
   @override

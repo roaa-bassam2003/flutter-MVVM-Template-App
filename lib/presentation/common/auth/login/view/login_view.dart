@@ -43,6 +43,8 @@ class _LoginViewState extends State<LoginView> {
         // save in app Prefs
         _appPrefs.setIsUserLoggedIn();
         _appPrefs.logoutDeleteAccount();
+        String? token = _viewModel.getToken();
+        _appPrefs.setLoginToken(token!);
         _appPrefs.setUserName(userName);
         if (userName == "ServiceProvider") {
           SchedulerBinding.instance.addPostFrameCallback((_) {

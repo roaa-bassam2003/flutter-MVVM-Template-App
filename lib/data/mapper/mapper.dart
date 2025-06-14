@@ -86,6 +86,13 @@ extension AuthenticationClientResponseMapper on AuthenticationClientResponse? {
 // forget password
 extension ForgotPasswordResponseMapper on ForgotPasswordResponse? {
   String toDomain() {
+    return this?.token?.orEmpty() ?? Constants.empty;
+  }
+}
+
+// reset password
+extension ResetPasswordResponseMapper on ResetPasswordResponse? {
+  String toDomain() {
     return this?.message?.orEmpty() ?? Constants.empty;
   }
 }

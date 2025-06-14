@@ -8,6 +8,8 @@ const String prefskeyOnBoardingScreenView = "prefskeyOnBoardingScreenView";
 const String prefskeyIsUserLoggedIn = "prefskeyIsUserLoggedIn";
 const String prefsKeyLastButtonPressTime = "prefsKeyLastButtonPressTime";
 const String prefsKeyUserName = "prefsKeyUserName";
+const String prefsKeyToken = "prefsKeyToken";
+const String prefsKeyEmail = "prefsKeyEmail";
 const String prefsKeyDayHours = "prefsKeyDayHours"; // New key for day hours
 
 class AppPrefs {
@@ -48,6 +50,29 @@ class AppPrefs {
     return _sharedPreferences.getBool(prefskeyIsUserLoggedIn) ?? false;
   }
 
+  // token
+  // set
+  Future<void> setLoginToken(String token) async {
+    await _sharedPreferences.setString(prefsKeyToken, token);
+  }
+
+  // get
+  Future<String?> getLoginToken() async {
+    return _sharedPreferences.getString(prefsKeyToken);
+  }
+
+  // email in forget password
+  // set
+  Future<void> setEmail(String email) async {
+    await _sharedPreferences.setString(prefsKeyEmail, email);
+  }
+
+  // get
+  Future<String?> getEmail() async {
+    return _sharedPreferences.getString(prefsKeyEmail);
+  }
+
+  // logout
   Future<void> logout() async {
     _sharedPreferences.remove(prefskeyIsUserLoggedIn);
   }

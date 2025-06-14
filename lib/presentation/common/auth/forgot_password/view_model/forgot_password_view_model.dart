@@ -12,11 +12,15 @@ class ForgotPasswordViewModel extends BaseViewModel
   final StreamController _isAllInputValidStreamController =
       StreamController<void>.broadcast();
 
+  final StreamController isUserForgetPasswordSuccessfullyStreamController =
+      StreamController<bool>();
+
   final ForgotPasswordUseCase _forgotPasswordUseCase;
 
   ForgotPasswordViewModel(this._forgotPasswordUseCase);
 
   var email = "";
+  String token = "";
 
   // input
   @override
@@ -30,6 +34,7 @@ class ForgotPasswordViewModel extends BaseViewModel
     super.dispose();
     _emailStreamController.close();
     _isAllInputValidStreamController.close();
+    isUserForgetPasswordSuccessfullyStreamController.close();
   }
 
   @override
@@ -41,10 +46,20 @@ class ForgotPasswordViewModel extends BaseViewModel
         StateRendererType.popUpErrorState,
         failure.message,
       ));
-    }, (supportMessage) {
-      inputState.add(SuccessState(
-        supportMessage,
-      ));
+    }, (data) {
+      // inputState.add(SuccessState(
+      //   supportMessage,
+      // ));
+
+      if (data.isNotEmpty) {
+        token = data;
+        isUserForgetPasswordSuccessfullyStreamController.add(true);
+      } else {
+        inputState.add(ErrorState(
+          StateRendererType.popUpErrorState,
+          "email is not avaliable!",
+        ));
+      }
     });
   }
 
@@ -74,7 +89,8 @@ class ForgotPasswordViewModel extends BaseViewModel
     String userNameWithOutSpace = userName.replaceAll(' ', '');
     String emailRegex = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
     RegExp regExp = RegExp(emailRegex);
-    return regExp.hasMatch(userNameWithOutSpace) && userNameWithOutSpace.isNotEmpty;
+    return regExp.hasMatch(userNameWithOutSpace) &&
+        userNameWithOutSpace.isNotEmpty;
   }
 
   _isAllInputValid() {
@@ -84,12 +100,26 @@ class ForgotPasswordViewModel extends BaseViewModel
   _validate() {
     inputIsAllInputValid.add(null);
   }
+
+  @override
+  getToken() {
+    return token;
+  }
+
+  @override
+  getEmail() {
+    return email;
+  }
 }
 
 abstract class ForgotPasswordViewModelInput {
   forgotPassword();
 
   setEmail(String email);
+
+  getEmail();
+
+  getToken();
 
   Sink get inputEmail;
 

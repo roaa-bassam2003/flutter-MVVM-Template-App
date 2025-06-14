@@ -1048,6 +1048,193 @@ abstract class _ChangePasswordObject implements ChangePasswordObject {
 }
 
 /// @nodoc
+mixin _$ResetPasswordObject {
+  String get email => throw _privateConstructorUsedError;
+  String get token => throw _privateConstructorUsedError;
+  String get newPassword => throw _privateConstructorUsedError;
+  String get confirmPassword => throw _privateConstructorUsedError;
+
+  /// Create a copy of ResetPasswordObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ResetPasswordObjectCopyWith<ResetPasswordObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ResetPasswordObjectCopyWith<$Res> {
+  factory $ResetPasswordObjectCopyWith(
+          ResetPasswordObject value, $Res Function(ResetPasswordObject) then) =
+      _$ResetPasswordObjectCopyWithImpl<$Res, ResetPasswordObject>;
+  @useResult
+  $Res call(
+      {String email, String token, String newPassword, String confirmPassword});
+}
+
+/// @nodoc
+class _$ResetPasswordObjectCopyWithImpl<$Res, $Val extends ResetPasswordObject>
+    implements $ResetPasswordObjectCopyWith<$Res> {
+  _$ResetPasswordObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ResetPasswordObject
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? token = null,
+    Object? newPassword = null,
+    Object? confirmPassword = null,
+  }) {
+    return _then(_value.copyWith(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      newPassword: null == newPassword
+          ? _value.newPassword
+          : newPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirmPassword: null == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ResetPasswordObjectImplCopyWith<$Res>
+    implements $ResetPasswordObjectCopyWith<$Res> {
+  factory _$$ResetPasswordObjectImplCopyWith(_$ResetPasswordObjectImpl value,
+          $Res Function(_$ResetPasswordObjectImpl) then) =
+      __$$ResetPasswordObjectImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String email, String token, String newPassword, String confirmPassword});
+}
+
+/// @nodoc
+class __$$ResetPasswordObjectImplCopyWithImpl<$Res>
+    extends _$ResetPasswordObjectCopyWithImpl<$Res, _$ResetPasswordObjectImpl>
+    implements _$$ResetPasswordObjectImplCopyWith<$Res> {
+  __$$ResetPasswordObjectImplCopyWithImpl(_$ResetPasswordObjectImpl _value,
+      $Res Function(_$ResetPasswordObjectImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ResetPasswordObject
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? token = null,
+    Object? newPassword = null,
+    Object? confirmPassword = null,
+  }) {
+    return _then(_$ResetPasswordObjectImpl(
+      null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == newPassword
+          ? _value.newPassword
+          : newPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ResetPasswordObjectImpl implements _ResetPasswordObject {
+  _$ResetPasswordObjectImpl(
+      this.email, this.token, this.newPassword, this.confirmPassword);
+
+  @override
+  final String email;
+  @override
+  final String token;
+  @override
+  final String newPassword;
+  @override
+  final String confirmPassword;
+
+  @override
+  String toString() {
+    return 'ResetPasswordObject(email: $email, token: $token, newPassword: $newPassword, confirmPassword: $confirmPassword)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ResetPasswordObjectImpl &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.newPassword, newPassword) ||
+                other.newPassword == newPassword) &&
+            (identical(other.confirmPassword, confirmPassword) ||
+                other.confirmPassword == confirmPassword));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, email, token, newPassword, confirmPassword);
+
+  /// Create a copy of ResetPasswordObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ResetPasswordObjectImplCopyWith<_$ResetPasswordObjectImpl> get copyWith =>
+      __$$ResetPasswordObjectImplCopyWithImpl<_$ResetPasswordObjectImpl>(
+          this, _$identity);
+}
+
+abstract class _ResetPasswordObject implements ResetPasswordObject {
+  factory _ResetPasswordObject(
+      final String email,
+      final String token,
+      final String newPassword,
+      final String confirmPassword) = _$ResetPasswordObjectImpl;
+
+  @override
+  String get email;
+  @override
+  String get token;
+  @override
+  String get newPassword;
+  @override
+  String get confirmPassword;
+
+  /// Create a copy of ResetPasswordObject
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ResetPasswordObjectImplCopyWith<_$ResetPasswordObjectImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ReportObject {
   String get userName => throw _privateConstructorUsedError;
   String get reportMessage => throw _privateConstructorUsedError;

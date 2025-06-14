@@ -34,6 +34,15 @@ abstract class AppServiceClient {
     @Field("email") String email,
   );
 
+  // http methods as interface for reset password
+  @POST("/api/Account/reset-password")
+  Future<ResetPasswordResponse> resetPassword(
+    @Field("email") String email,
+    @Field("token") String token,
+    @Field("newPassword") String passwordOne,
+    @Field("confirmPassword") String passwordTwo,
+  );
+
   // http methods as interface for change password
   @POST("/api/Account/change-password")
   Future<ChangePasswordResponse> changePassword(

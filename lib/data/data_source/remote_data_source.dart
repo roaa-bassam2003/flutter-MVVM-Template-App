@@ -10,6 +10,8 @@ abstract class RemoteDataSource {
   Future<LogoutResponse> logout();
   Future<ChangePasswordResponse> changePassword(
       ChangePasswordRequest changePasswordRequest);
+  Future<ResetPasswordResponse> resetPassword(
+      ResetPasswordRequest resetPasswordRequest);
   Future<ReportResponse> report(ReportRequest reportRequest);
   Future<CityResponse> cities(int id);
   Future<GovernmentResponse> government();
@@ -28,7 +30,9 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<AuthenticationResponse> login(LoginRequest loginRequest) async {
     return await _appServiceClient.login(
-        loginRequest.email, loginRequest.password);
+      loginRequest.email,
+      loginRequest.password,
+    );
   }
 
   @override
@@ -40,13 +44,17 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<ChangePasswordResponse> changePassword(
       ChangePasswordRequest changePasswordRequest) async {
     return await _appServiceClient.changePassword(
-        changePasswordRequest.passwordOne, changePasswordRequest.passwordTwo);
+      changePasswordRequest.passwordOne,
+      changePasswordRequest.passwordTwo,
+    );
   }
 
   @override
   Future<ReportResponse> report(ReportRequest reportRequest) async {
     return await _appServiceClient.report(
-        reportRequest.userName, reportRequest.reportMessage);
+      reportRequest.userName,
+      reportRequest.reportMessage,
+    );
   }
 
   @override
@@ -65,21 +73,33 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<GovernmentResponse> government() async {
     return await _appServiceClient.government();
   }
-  
+
   @override
   Future<DeleteAccountResponse> deleteAccount() async {
-   return await _appServiceClient.deleteAccount();
+    return await _appServiceClient.deleteAccount();
   }
-  
+
   @override
-  Future<LogoutResponse> logout() async{
+  Future<LogoutResponse> logout() async {
     return await _appServiceClient.logout();
   }
-  
+
   @override
-  Future<AuthenticationClientResponse> registerClient(ClientRegisterRequest clientRegisterRequest) async{
+  Future<AuthenticationClientResponse> registerClient(
+      ClientRegisterRequest clientRegisterRequest) async {
     final formData = await clientRegisterRequest.toFormData();
     return await _appServiceClient.registerClient(formData);
+  }
+
+  @override
+  Future<ResetPasswordResponse> resetPassword(
+      ResetPasswordRequest resetPasswordRequest) async {
+    return await _appServiceClient.resetPassword(
+      resetPasswordRequest.email,
+      resetPasswordRequest.token,
+      resetPasswordRequest.newPassword,
+      resetPasswordRequest.confirmPassword,
+    );
   }
 }
 // ------------------Client----------------------

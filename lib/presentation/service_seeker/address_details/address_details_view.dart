@@ -37,7 +37,6 @@ class _AddressDetailsViewState extends State<AddressDetailsView> {
     super.dispose();
   }
 
-  // التحقق من اكتمال البيانات
   bool get isFormComplete {
     return selectedGovernorate != null &&
         selectedCity != null &&
@@ -73,7 +72,9 @@ class _AddressDetailsViewState extends State<AddressDetailsView> {
     if (selectedGovernorate != null) {
       final governorateData = governoratesWithCities
           .firstWhere((item) => item['governorate'] == selectedGovernorate);
-      cities = List<String>.from(governorateData['cities']);
+      cities = (governorateData['cities'] as List<dynamic>)
+          .map((city) => (city as Map<String, dynamic>)['name'] as String)
+          .toList();
     }
 
     return Scaffold(
@@ -92,12 +93,10 @@ class _AddressDetailsViewState extends State<AddressDetailsView> {
               ),
             ),
             const SizedBox(height: 10),
-            // static for country
             const CustomStaticField(
               label: "Egypt",
             ),
             const SizedBox(height: 10),
-            // Dropdown للمحافظة
             CustomDropdownButton(
               textColor: ColorManager.grey,
               backgroundColor: ColorManager.white,
@@ -115,7 +114,6 @@ class _AddressDetailsViewState extends State<AddressDetailsView> {
               },
             ),
             const SizedBox(height: 10),
-            // Dropdown للمدينة
             CustomDropdownButton(
               textColor: ColorManager.grey,
               backgroundColor: ColorManager.white,
@@ -130,7 +128,6 @@ class _AddressDetailsViewState extends State<AddressDetailsView> {
               },
             ),
             const SizedBox(height: 10),
-            // Dropdown للأيام
             CustomDropdownButton(
               textColor: ColorManager.grey,
               backgroundColor: ColorManager.white,
@@ -152,7 +149,6 @@ class _AddressDetailsViewState extends State<AddressDetailsView> {
               controller: _addressController,
             ),
             const SizedBox(height: 20),
-            // زر الانتقال - باستخدام CustomButton
             CustomButton(
               onPressed: isFormComplete
                   ? () {

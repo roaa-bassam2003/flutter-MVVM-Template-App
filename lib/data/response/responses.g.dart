@@ -201,6 +201,27 @@ Map<String, dynamic> _$ForgotPasswordResponseToJson(
       'data': instance.data,
     };
 
+ResetPasswordResponse _$ResetPasswordResponseFromJson(
+        Map<String, dynamic> json) =>
+    ResetPasswordResponse(
+      json['data'] as String?,
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?
+      ..token = json['token'] as String?
+      ..errors =
+          (json['errors'] as List<dynamic>?)?.map((e) => e as String).toList();
+
+Map<String, dynamic> _$ResetPasswordResponseToJson(
+        ResetPasswordResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'token': instance.token,
+      'errors': instance.errors,
+      'data': instance.data,
+    };
+
 ChangePasswordResponse _$ChangePasswordResponseFromJson(
         Map<String, dynamic> json) =>
     ChangePasswordResponse(
