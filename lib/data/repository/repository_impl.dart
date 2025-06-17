@@ -158,9 +158,11 @@ class RepositoryImpl implements Repository {
       );
     }
   }
-  
+
   @override
-  Future<Either<Failure, AuthenticationServiceProvider>> registerServiceProvider(ServiceProviderRegisterRequest serviceProviderRegisterRequest) async {
+  Future<Either<Failure, AuthenticationServiceProvider>>
+      registerServiceProvider(
+          ServiceProviderRegisterRequest serviceProviderRegisterRequest) async {
     if (await _networkInfo.isConnected) {
       // it is connected to internet, it is save to call API
 
@@ -195,7 +197,7 @@ class RepositoryImpl implements Repository {
       );
     }
   }
-  
+
   @override
   Future<Either<Failure, Cities>> cities(int id) async {
     if (await _networkInfo.isConnected) {
@@ -224,9 +226,9 @@ class RepositoryImpl implements Repository {
       return Left(DataSource.noInternetConnection.getFailure());
     }
   }
-  
+
   @override
-  Future<Either<Failure, Governments>> government() async{
+  Future<Either<Failure, Governments>> government() async {
     if (await _networkInfo.isConnected) {
       try {
         // its safe to call API
@@ -253,9 +255,9 @@ class RepositoryImpl implements Repository {
       return Left(DataSource.noInternetConnection.getFailure());
     }
   }
-  
+
   @override
-  Future<Either<Failure, String>> deleteAccount() async{
+  Future<Either<Failure, String>> deleteAccount() async {
     if (await _networkInfo.isConnected) {
       try {
         // its safe to call API
@@ -282,9 +284,9 @@ class RepositoryImpl implements Repository {
       return Left(DataSource.noInternetConnection.getFailure());
     }
   }
-  
+
   @override
-  Future<Either<Failure, String>> logout() async{
+  Future<Either<Failure, String>> logout() async {
     if (await _networkInfo.isConnected) {
       try {
         // its safe to call API
@@ -311,9 +313,10 @@ class RepositoryImpl implements Repository {
       return Left(DataSource.noInternetConnection.getFailure());
     }
   }
-  
+
   @override
-  Future<Either<Failure, AuthenticationClient>> registerClient(ClientRegisterRequest clientRegisterRequest) async{
+  Future<Either<Failure, AuthenticationClient>> registerClient(
+      ClientRegisterRequest clientRegisterRequest) async {
     if (await _networkInfo.isConnected) {
       // it is connected to internet, it is save to call API
 
@@ -348,9 +351,10 @@ class RepositoryImpl implements Repository {
       );
     }
   }
-  
+
   @override
-  Future<Either<Failure, String>> resetPassword(ResetPasswordRequest resetPasswordRequest) async{
+  Future<Either<Failure, String>> resetPassword(
+      ResetPasswordRequest resetPasswordRequest) async {
     if (await _networkInfo.isConnected) {
       // it is connected to internet, it is save to call API
 
@@ -383,6 +387,210 @@ class RepositoryImpl implements Repository {
       return left(
         DataSource.noInternetConnection.getFailure(),
       );
+    }
+  }
+
+  // shared get list data response
+  @override
+  Future<Either<Failure, Booking>> bendingBookings() async {
+    if (await _networkInfo.isConnected) {
+      try {
+        // its safe to call API
+        final response = await _remoteDataSource.bendingBookings();
+
+        if (response.status == ApiInternalStatus.success) {
+          // success
+          // return right
+          return Right(response.toDomain());
+        } else {
+          // failure
+          // return left
+          return Left(Failure(
+            ApiInternalStatus.failure,
+            response.message ?? ResponseMessage.defaultError,
+          ));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      // return network connection error
+      // return left
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Booking>> cancelBookings() async {
+    if (await _networkInfo.isConnected) {
+      try {
+        // its safe to call API
+        final response = await _remoteDataSource.cancelBookings();
+
+        if (response.status == ApiInternalStatus.success) {
+          // success
+          // return right
+          return Right(response.toDomain());
+        } else {
+          // failure
+          // return left
+          return Left(Failure(
+            ApiInternalStatus.failure,
+            response.message ?? ResponseMessage.defaultError,
+          ));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      // return network connection error
+      // return left
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Booking>> completeBookings() async {
+    if (await _networkInfo.isConnected) {
+      try {
+        // its safe to call API
+        final response = await _remoteDataSource.completeBookings();
+
+        if (response.status == ApiInternalStatus.success) {
+          // success
+          // return right
+          return Right(response.toDomain());
+        } else {
+          // failure
+          // return left
+          return Left(Failure(
+            ApiInternalStatus.failure,
+            response.message ?? ResponseMessage.defaultError,
+          ));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      // return network connection error
+      // return left
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Booking>> confirmedBookings() async {
+    if (await _networkInfo.isConnected) {
+      try {
+        // its safe to call API
+        final response = await _remoteDataSource.confirmedBookings();
+
+        if (response.status == ApiInternalStatus.success) {
+          // success
+          // return right
+          return Right(response.toDomain());
+        } else {
+          // failure
+          // return left
+          return Left(Failure(
+            ApiInternalStatus.failure,
+            response.message ?? ResponseMessage.defaultError,
+          ));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      // return network connection error
+      // return left
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Booking>> paidBookings() async {
+    if (await _networkInfo.isConnected) {
+      try {
+        // its safe to call API
+        final response = await _remoteDataSource.paidBookings();
+
+        if (response.status == ApiInternalStatus.success) {
+          // success
+          // return right
+          return Right(response.toDomain());
+        } else {
+          // failure
+          // return left
+          return Left(Failure(
+            ApiInternalStatus.failure,
+            response.message ?? ResponseMessage.defaultError,
+          ));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      // return network connection error
+      // return left
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> putCancelBookings(int bookingId) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        // its safe to call API
+        final response = await _remoteDataSource.putCancelBookings(bookingId);
+
+        if (response.status == ApiInternalStatus.success) {
+          // success
+          // return right
+          return Right(response.toDomain());
+        } else {
+          // failure
+          // return left
+          return Left(Failure(
+            ApiInternalStatus.failure,
+            response.message ?? ResponseMessage.defaultError,
+          ));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      // return network connection error
+      // return left
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Booking>> rejectedBookings() async {
+    if (await _networkInfo.isConnected) {
+      try {
+        // its safe to call API
+        final response = await _remoteDataSource.rejectedBookings();
+
+        if (response.status == ApiInternalStatus.success) {
+          // success
+          // return right
+          return Right(response.toDomain());
+        } else {
+          // failure
+          // return left
+          return Left(Failure(
+            ApiInternalStatus.failure,
+            response.message ?? ResponseMessage.defaultError,
+          ));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      // return network connection error
+      // return left
+      return Left(DataSource.noInternetConnection.getFailure());
     }
   }
 }

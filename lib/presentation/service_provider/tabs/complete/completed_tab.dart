@@ -14,18 +14,7 @@ class _CompletedTabState extends State<CompletedTab> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       // physics: const NeverScrollableScrollPhysics(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: List.generate(
-          6,
-          (index) => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _card(),
-            ],
-          ),
-        ),
-      ),
+      child: _card(),
     );
   }
 
@@ -35,9 +24,9 @@ class _CompletedTabState extends State<CompletedTab> {
         Navigator.pushNamed(context, ProviderRoutes.completedDetails);
       },
       child: const CustomCardUpdateWithNoBtns(
-        name: 'Karim Ahmed',
-        location: 'Egypt, North Sini, Arish, See Street',
-        timeSlots: ['7 am - 8 am', '8 am - 9 am'],
+        name: 'Fathy Kader',
+        location: 'Egypt, North Sini, Arish, El balad',
+        timeSlots: ['10 am - 11 am'],
         day: "Saturday",
       ),
     );

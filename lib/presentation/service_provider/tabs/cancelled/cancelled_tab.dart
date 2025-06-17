@@ -14,18 +14,7 @@ class _CancelledTabState extends State<CancelledTab> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       // physics: const NeverScrollableScrollPhysics(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: List.generate(
-          6,
-          (index) => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _card(),
-            ],
-          ),
-        ),
-      ),
+      child: _card(),
     );
   }
 
@@ -35,9 +24,9 @@ class _CancelledTabState extends State<CancelledTab> {
         Navigator.pushNamed(context, ProviderRoutes.cancelledDetails);
       },
       child: const CustomCardUpdateWithNoBtns(
-        name: 'Karim Ahmed',
-        location: 'Egypt, North Sini, Arish, See Street',
-        timeSlots: ['7 am - 8 am', '8 am - 9 am'],
+        name: 'Mohamed Ahmed',
+        location: 'Egypt, North Sini, Arish, Elmassaed',
+        timeSlots: ['8 am - 9 am'],
         day: "Saturday",
       ),
     );

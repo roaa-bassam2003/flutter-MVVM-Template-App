@@ -327,6 +327,7 @@ class RouteGenerator {
         );
 
       case ProviderRoutes.mainRoute:
+        initCompleteBookModule();
         return MaterialPageRoute(
           builder: (_) => const MainView(),
         );

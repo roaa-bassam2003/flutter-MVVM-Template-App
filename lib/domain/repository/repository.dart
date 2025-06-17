@@ -8,18 +8,59 @@ import 'package:flutter_advanced_course/domain/model/models.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class Repository {
-  Future<Either<Failure, Authentication>> login(LoginRequest loginRequest);
-  Future<Either<Failure, AuthenticationServiceProvider>> registerServiceProvider(ServiceProviderRegisterRequest serviceProviderRegisterRequest);
-  Future<Either<Failure, AuthenticationClient>> registerClient(ClientRegisterRequest clientRegisterRequest);
-  Future<Either<Failure, String>> forgotPassword(String email);
-  Future<Either<Failure, String>> resetPassword(ResetPasswordRequest resetPasswordRequest);
+  Future<Either<Failure, Authentication>> login(
+    LoginRequest loginRequest,
+  );
+
+  Future<Either<Failure, AuthenticationServiceProvider>>
+      registerServiceProvider(
+    ServiceProviderRegisterRequest serviceProviderRegisterRequest,
+  );
+
+  Future<Either<Failure, AuthenticationClient>> registerClient(
+    ClientRegisterRequest clientRegisterRequest,
+  );
+  Future<Either<Failure, String>> forgotPassword(
+    String email,
+  );
+  Future<Either<Failure, String>> resetPassword(
+    ResetPasswordRequest resetPasswordRequest,
+  );
+
   Future<Either<Failure, String>> deleteAccount();
+
   Future<Either<Failure, String>> logout();
+
   Future<Either<Failure, String>> changePassword(
-      ChangePasswordRequest changePasswordRequest);
-  Future<Either<Failure, String>> report(ReportRequest reportRequest);
+    ChangePasswordRequest changePasswordRequest,
+  );
+
+  Future<Either<Failure, String>> report(
+    ReportRequest reportRequest,
+  );
   Future<Either<Failure, Governments>> government();
-  Future<Either<Failure, Cities>> cities(int id);
+
+  Future<Either<Failure, Cities>> cities(
+    int id,
+  );
+
+  // shared get list data response
+  // bending bookings
+  Future<Either<Failure, Booking>> bendingBookings();
+  // confiremed bookings
+  Future<Either<Failure, Booking>> confirmedBookings();
+  // paid bookings
+  Future<Either<Failure, Booking>> paidBookings();
+  // cancel bookings
+  Future<Either<Failure, Booking>> cancelBookings();
+  // complete bookings
+  Future<Either<Failure, Booking>> completeBookings();
+  // rejected bookings
+  Future<Either<Failure, Booking>> rejectedBookings();
+  // put cancel bookings data
+  Future<Either<Failure, String>> putCancelBookings(
+    int bookingId,
+  );
 }
 // ------------------Client----------------------
 // ------------------Service Provider------------

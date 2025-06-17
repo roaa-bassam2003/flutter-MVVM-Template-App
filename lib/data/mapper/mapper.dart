@@ -165,3 +165,86 @@ extension CityResponseMapper on CityResponse? {
     );
   }
 }
+
+
+
+// shared get list data response
+
+extension GetListUserResponseMapper on GetListUserResponse? {
+  GetListUser toDomain() {
+    return GetListUser(
+      this?.bookingID.orZero() ?? Constants.zero,
+      this?.clientId.orEmpty() ?? Constants.empty,
+      this?.serviceProviderID.orEmpty() ?? Constants.empty,
+      this?.day.orEmpty() ?? Constants.empty,
+      this?.hours.orEmpty() ?? Constants.empty,
+      this?.totalPrice.orZero() ?? Constants.zero,
+      this?.status.orZero() ?? Constants.zero,
+      this?.location.orEmpty() ?? Constants.empty,
+      this?.clientName.orEmpty() ?? Constants.empty,
+      this?.serviceProviderName.orEmpty() ?? Constants.empty,
+      this?.serviceType.orZero() ?? Constants.zero,
+    );
+  }
+}
+
+// bending bookings
+extension BendingBookingsResponseMapper on BendingBookingsResponse? {
+  Booking toDomain() {
+    return Booking(
+      this?.data?.map((e) => e.toDomain()).toList() ?? [],
+    );
+  }
+}
+
+// confiremed bookings
+extension ConfirmedBookingsResponseMapper on ConfirmedBookingsResponse? {
+  Booking toDomain() {
+    return Booking(
+      this?.data?.map((e) => e.toDomain()).toList() ?? [],
+    );
+  }
+}
+
+// paid bookings
+extension PaidBookingsResponseMapper on PaidBookingsResponse? {
+  Booking toDomain() {
+    return Booking(
+      this?.data?.map((e) => e.toDomain()).toList() ?? [],
+    );
+  }
+}
+
+// cancel bookings
+extension CancelBookingsResponseMapper on CancelBookingsResponse? {
+  Booking toDomain() {
+    return Booking(
+      this?.data?.map((e) => e.toDomain()).toList() ?? [],
+    );
+  }
+}
+
+// complete bookings
+extension CompleteBookingsResponseMapper on CompleteBookingsResponse? {
+  Booking toDomain() {
+    return Booking(
+      this?.data?.map((e) => e.toDomain()).toList() ?? [],
+    );
+  }
+}
+
+// rejected bookings
+extension RejectedBookingsResponseMapper on RejectedBookingsResponse? {
+  Booking toDomain() {
+    return Booking(
+      this?.data?.map((e) => e.toDomain()).toList() ?? [],
+    );
+  }
+}
+
+// put cancel bookings data
+extension PutCancelBookingsResponseMapper on PutCancelBookingsResponse? {
+  String toDomain() {
+    return this?.message?.orEmpty() ?? Constants.empty;
+  }
+}

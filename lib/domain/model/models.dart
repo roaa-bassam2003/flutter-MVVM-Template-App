@@ -21,6 +21,50 @@ class SliderViewObject {
   );
 }
 
+
+// shared get list data response
+class GetListUser {
+  int bookingID;
+  String clientId;
+  String serviceProviderID;
+  String day;
+  String hours;
+  int totalPrice;
+  int status;
+  String location;
+  String clientName;
+  String serviceProviderName;
+  int serviceType;
+
+  GetListUser(
+    this.bookingID,
+    this.clientId,
+    this.serviceProviderID,
+    this.day,
+    this.hours,
+    this.totalPrice,
+    this.status,
+    this.location,
+    this.clientName,
+    this.serviceProviderName,
+    this.serviceType,
+  );
+}
+
+class Booking {
+  List<GetListUser>? data;
+
+  Booking(
+    this.data,
+  );
+}
+
+class BookingViewModel {
+   Booking data;
+
+  BookingViewModel(this.data);
+}
+
 // Example in Dart-like syntax
 class NotificationModel {
   final String title;

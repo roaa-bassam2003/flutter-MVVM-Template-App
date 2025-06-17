@@ -4,21 +4,41 @@ import 'package:flutter_advanced_course/data/network/requests.dart';
 import 'package:flutter_advanced_course/data/response/responses.dart';
 
 abstract class RemoteDataSource {
-  Future<AuthenticationResponse> login(LoginRequest loginRequest);
-  Future<ForgotPasswordResponse> forgotPassword(String email);
+  Future<AuthenticationResponse> login(
+    LoginRequest loginRequest,
+  );
+  Future<ForgotPasswordResponse> forgotPassword(
+    String email,
+  );
   Future<DeleteAccountResponse> deleteAccount();
   Future<LogoutResponse> logout();
   Future<ChangePasswordResponse> changePassword(
-      ChangePasswordRequest changePasswordRequest);
+    ChangePasswordRequest changePasswordRequest,
+  );
   Future<ResetPasswordResponse> resetPassword(
-      ResetPasswordRequest resetPasswordRequest);
-  Future<ReportResponse> report(ReportRequest reportRequest);
-  Future<CityResponse> cities(int id);
+    ResetPasswordRequest resetPasswordRequest,
+  );
+  Future<ReportResponse> report(
+    ReportRequest reportRequest,
+  );
+  Future<CityResponse> cities(
+    int id,
+  );
   Future<GovernmentResponse> government();
   Future<AuthenticationServiceProviderResponse> registerServiceProvider(
-      ServiceProviderRegisterRequest serviceProviderRegisterRequest);
+    ServiceProviderRegisterRequest serviceProviderRegisterRequest,
+  );
   Future<AuthenticationClientResponse> registerClient(
-      ClientRegisterRequest clientRegisterRequest);
+    ClientRegisterRequest clientRegisterRequest,
+  );
+
+  Future<BendingBookingsResponse> bendingBookings();
+  Future<CancelBookingsResponse> cancelBookings();
+  Future<CompleteBookingsResponse> completeBookings();
+  Future<ConfirmedBookingsResponse> confirmedBookings();
+  Future<PaidBookingsResponse> paidBookings();
+  Future<PutCancelBookingsResponse> putCancelBookings(int bookingId);
+  Future<RejectedBookingsResponse> rejectedBookings();
 }
 
 // --------------Common----------------
@@ -100,6 +120,41 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       resetPasswordRequest.newPassword,
       resetPasswordRequest.confirmPassword,
     );
+  }
+  
+  @override
+  Future<BendingBookingsResponse> bendingBookings() async{
+    return await _appServiceClient.pendingBookings();
+  }
+  
+  @override
+  Future<CancelBookingsResponse> cancelBookings() async{
+    return await _appServiceClient.cancelBookings();
+  }
+  
+  @override
+  Future<CompleteBookingsResponse> completeBookings() async{
+    return await _appServiceClient.completeBookings();
+  }
+  
+  @override
+  Future<ConfirmedBookingsResponse> confirmedBookings() async{
+    return await _appServiceClient.confirmedBookings();
+  }
+  
+  @override
+  Future<PaidBookingsResponse> paidBookings() async{
+    return await _appServiceClient.paidBookings();
+  }
+  
+  @override
+  Future<PutCancelBookingsResponse> putCancelBookings(int bookingId) async{
+    return await _appServiceClient.putCancelBookings(bookingId);
+  }
+  
+  @override
+  Future<RejectedBookingsResponse> rejectedBookings() async{
+    return await _appServiceClient.rejectedBookings();
   }
 }
 // ------------------Client----------------------

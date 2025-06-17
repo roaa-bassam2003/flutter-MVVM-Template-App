@@ -371,3 +371,221 @@ Map<String, dynamic> _$CityResponseToJson(CityResponse instance) =>
       'errors': instance.errors,
       'data': instance.data,
     };
+
+GetListUserResponse _$GetListUserResponseFromJson(Map<String, dynamic> json) =>
+    GetListUserResponse(
+      (json['bookingID'] as num?)?.toInt(),
+      json['clientId'] as String?,
+      json['serviceProviderID'] as String?,
+      json['day'] as String?,
+      json['hours'] as String?,
+      (json['totalPrice'] as num?)?.toInt(),
+      (json['status'] as num?)?.toInt(),
+      json['location'] as String?,
+      json['clientName'] as String?,
+      json['serviceProviderName'] as String?,
+      (json['serviceType'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$GetListUserResponseToJson(
+        GetListUserResponse instance) =>
+    <String, dynamic>{
+      'bookingID': instance.bookingID,
+      'clientId': instance.clientId,
+      'serviceProviderID': instance.serviceProviderID,
+      'day': instance.day,
+      'hours': instance.hours,
+      'totalPrice': instance.totalPrice,
+      'status': instance.status,
+      'location': instance.location,
+      'clientName': instance.clientName,
+      'serviceProviderName': instance.serviceProviderName,
+      'serviceType': instance.serviceType,
+    };
+
+BendingBookingsResponse _$BendingBookingsResponseFromJson(
+        Map<String, dynamic> json) =>
+    BendingBookingsResponse(
+      (json['data'] as List<dynamic>?)
+          ?.map((e) => GetListUserResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?
+      ..token = json['token'] as String?
+      ..errors =
+          (json['errors'] as List<dynamic>?)?.map((e) => e as String).toList();
+
+Map<String, dynamic> _$BendingBookingsResponseToJson(
+        BendingBookingsResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'token': instance.token,
+      'errors': instance.errors,
+      'data': instance.data,
+    };
+
+ConfirmedBookingsResponse _$ConfirmedBookingsResponseFromJson(
+        Map<String, dynamic> json) =>
+    ConfirmedBookingsResponse(
+      (json['data'] as List<dynamic>?)
+          ?.map((e) => GetListUserResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?
+      ..token = json['token'] as String?
+      ..errors =
+          (json['errors'] as List<dynamic>?)?.map((e) => e as String).toList();
+
+Map<String, dynamic> _$ConfirmedBookingsResponseToJson(
+        ConfirmedBookingsResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'token': instance.token,
+      'errors': instance.errors,
+      'data': instance.data,
+    };
+
+PaidBookingsResponse _$PaidBookingsResponseFromJson(
+        Map<String, dynamic> json) =>
+    PaidBookingsResponse(
+      (json['data'] as List<dynamic>?)
+          ?.map((e) => GetListUserResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?
+      ..token = json['token'] as String?
+      ..errors =
+          (json['errors'] as List<dynamic>?)?.map((e) => e as String).toList();
+
+Map<String, dynamic> _$PaidBookingsResponseToJson(
+        PaidBookingsResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'token': instance.token,
+      'errors': instance.errors,
+      'data': instance.data,
+    };
+
+CancelBookingsResponse _$CancelBookingsResponseFromJson(
+        Map<String, dynamic> json) =>
+    CancelBookingsResponse(
+      (json['data'] as List<dynamic>?)
+          ?.map((e) => GetListUserResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?
+      ..token = json['token'] as String?
+      ..errors =
+          (json['errors'] as List<dynamic>?)?.map((e) => e as String).toList();
+
+Map<String, dynamic> _$CancelBookingsResponseToJson(
+        CancelBookingsResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'token': instance.token,
+      'errors': instance.errors,
+      'data': instance.data,
+    };
+
+CompleteBookingsResponse _$CompleteBookingsResponseFromJson(
+        Map<String, dynamic> json) =>
+    CompleteBookingsResponse(
+      (json['data'] as List<dynamic>?)
+          ?.map((e) => GetListUserResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?
+      ..token = json['token'] as String?
+      ..errors =
+          (json['errors'] as List<dynamic>?)?.map((e) => e as String).toList();
+
+Map<String, dynamic> _$CompleteBookingsResponseToJson(
+        CompleteBookingsResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'token': instance.token,
+      'errors': instance.errors,
+      'data': instance.data,
+    };
+
+RejectedBookingsResponse _$RejectedBookingsResponseFromJson(
+        Map<String, dynamic> json) =>
+    RejectedBookingsResponse(
+      (json['data'] as List<dynamic>?)
+          ?.map((e) => GetListUserResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?
+      ..token = json['token'] as String?
+      ..errors =
+          (json['errors'] as List<dynamic>?)?.map((e) => e as String).toList();
+
+Map<String, dynamic> _$RejectedBookingsResponseToJson(
+        RejectedBookingsResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'token': instance.token,
+      'errors': instance.errors,
+      'data': instance.data,
+    };
+
+PutCancelBookingsDataResponse _$PutCancelBookingsDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    PutCancelBookingsDataResponse(
+      (json['bookingId'] as num?)?.toInt(),
+      (json['newStatus'] as num?)?.toInt(),
+      json['cancelledBy'] as String?,
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?
+      ..token = json['token'] as String?
+      ..errors =
+          (json['errors'] as List<dynamic>?)?.map((e) => e as String).toList();
+
+Map<String, dynamic> _$PutCancelBookingsDataResponseToJson(
+        PutCancelBookingsDataResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'token': instance.token,
+      'errors': instance.errors,
+      'bookingId': instance.bookingId,
+      'newStatus': instance.newStatus,
+      'cancelledBy': instance.cancelledBy,
+    };
+
+PutCancelBookingsResponse _$PutCancelBookingsResponseFromJson(
+        Map<String, dynamic> json) =>
+    PutCancelBookingsResponse(
+      json['data'] == null
+          ? null
+          : PutCancelBookingsDataResponse.fromJson(
+              json['data'] as Map<String, dynamic>),
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?
+      ..token = json['token'] as String?
+      ..errors =
+          (json['errors'] as List<dynamic>?)?.map((e) => e as String).toList();
+
+Map<String, dynamic> _$PutCancelBookingsResponseToJson(
+        PutCancelBookingsResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'token': instance.token,
+      'errors': instance.errors,
+      'data': instance.data,
+    };

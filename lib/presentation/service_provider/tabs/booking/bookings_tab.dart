@@ -3,47 +3,36 @@ import 'package:flutter_advanced_course/presentation/resources/routes_manager.da
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced_course/presentation/widgets/custom_card_updated.dart';
 
-class RequestsTab extends StatefulWidget {
-  const RequestsTab({super.key});
+class BookingsTab extends StatefulWidget {
+  const BookingsTab({super.key});
 
   @override
-  State<RequestsTab> createState() => _RequestsTabState();
+  State<BookingsTab> createState() => _BookingsTabState();
 }
 
-class _RequestsTabState extends State<RequestsTab> {
+class _BookingsTabState extends State<BookingsTab> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       // physics: const NeverScrollableScrollPhysics(),
-      child: Column(
-        children: List.generate(
-          6,
-          (index) => Column(
-            children: [
-              _card(),
-            ],
-          ),
-        ),
-      ),
+      child: _card(),
     );
   }
 
   Widget _card() {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, ProviderRoutes.requestDetails);
+        Navigator.pushNamed(context, ProviderRoutes.completedDetails);
       },
       child: Column(
         children: [
           CustomCardUpdated(
             name: 'Karim Ahmed',
             location: 'Egypt, North Sini, Arish, See Street',
-            timeSlots: const ['7 am - 8 am', '8 am - 9 am'],
+            timeSlots: const ['8 am - 9 am'],
             day: "Saturday",
-            btnName1: AppStrings.notApprove,
+            btnName1: AppStrings.completed,
             onPressed1: () {},
-            btnName2: AppStrings.approve,
-            onPressed2: () {},
           ),
         ],
       ),

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_course/presentation/resources/color_manager.dart';
 import 'package:flutter_advanced_course/presentation/resources/strings_manager.dart';
-import 'package:flutter_advanced_course/presentation/service_provider/tabs/Bookings_tab.dart';
-import 'package:flutter_advanced_course/presentation/service_provider/tabs/cancelled_tab.dart';
-import 'package:flutter_advanced_course/presentation/service_provider/tabs/completed_tab.dart';
-import 'package:flutter_advanced_course/presentation/service_provider/tabs/requests_tab.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/tabs/booking/bookings_tab.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/tabs/cancelled/cancelled_tab.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/tabs/complete/completed_tab.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/tabs/paid/paid_tab.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/tabs/rejected/rejected_tab.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/tabs/request/requests_tab.dart';
+
+// lib\presentation\service_provider\tabs\booking\bookings_tab.dart
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 6,
       child: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
                 SliverAppBar(
@@ -44,6 +48,8 @@ class _HomePageState extends State<HomePage> {
                 CancelledTab(),
                 CompletedTab(),
                 RequestsTab(),
+                PaidTab(),
+                RejectedTab(),
               ])),
     );
   }
@@ -54,15 +60,17 @@ class _HomePageState extends State<HomePage> {
         labelColor: ColorManager.white,
         indicatorColor: ColorManager.primary,
         indicatorWeight: 3,
-        // isScrollable: true,
-        // padding: const EdgeInsets.only(left: 0, right: 24),
-        // labelPadding: const EdgeInsets.only(left: 0, right: 20),
-        // physics: const ClampingScrollPhysics(),
+        isScrollable: true,
+        padding: const EdgeInsets.only(left: 12, right: 12),
+        labelPadding: const EdgeInsets.only(left: 20, right: 20),
+        physics: const ClampingScrollPhysics(),
         tabs: [
           _tabItem(label: AppStrings.bookings),
           _tabItem(label: AppStrings.cancelled),
           _tabItem(label: AppStrings.completed),
           _tabItem(label: AppStrings.requests),
+          _tabItem(label: 'Paid'),
+          _tabItem(label: 'Rejected'),
         ]);
   }
 

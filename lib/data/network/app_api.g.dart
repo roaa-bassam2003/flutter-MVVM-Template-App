@@ -417,6 +417,237 @@ class _AppServiceClient implements AppServiceClient {
     return _value;
   }
 
+  @override
+  Future<BendingBookingsResponse> pendingBookings() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<BendingBookingsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/User/GetPendingBookings',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BendingBookingsResponse _value;
+    try {
+      _value = BendingBookingsResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ConfirmedBookingsResponse> confirmedBookings() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ConfirmedBookingsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/User/GetConfirmedBookings',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ConfirmedBookingsResponse _value;
+    try {
+      _value = ConfirmedBookingsResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<PaidBookingsResponse> paidBookings() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<PaidBookingsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/User/GetPaidBookings',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late PaidBookingsResponse _value;
+    try {
+      _value = PaidBookingsResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<CancelBookingsResponse> cancelBookings() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<CancelBookingsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/User/GetCancelledBookings',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late CancelBookingsResponse _value;
+    try {
+      _value = CancelBookingsResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<CompleteBookingsResponse> completeBookings() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<CompleteBookingsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/User/GetCompletedBookings',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late CompleteBookingsResponse _value;
+    try {
+      _value = CompleteBookingsResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<RejectedBookingsResponse> rejectedBookings() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<RejectedBookingsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/User/GetRejectedBookings',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late RejectedBookingsResponse _value;
+    try {
+      _value = RejectedBookingsResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<PutCancelBookingsResponse> putCancelBookings(int bookingId) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'bookingId': bookingId};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<PutCancelBookingsResponse>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/User/cancelBookings',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late PutCancelBookingsResponse _value;
+    try {
+      _value = PutCancelBookingsResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

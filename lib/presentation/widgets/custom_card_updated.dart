@@ -36,7 +36,7 @@ class CustomCardUpdated extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppSize.s16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha:  0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: AppSize.s10,
             offset: const Offset(AppSize.s0, AppSize.s2),
           ),

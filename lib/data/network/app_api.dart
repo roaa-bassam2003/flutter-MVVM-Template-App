@@ -75,4 +75,36 @@ abstract class AppServiceClient {
   Future<CityResponse> city(
     @Path("id") int id,
   );
+
+  // shared get list data response
+
+  // http methods as interface for  pending bookings
+  @GET("/api/User/GetPendingBookings")
+  Future<BendingBookingsResponse> pendingBookings();
+
+  // http methods as interface for  confiremed bookings
+  @GET("/api/User/GetConfirmedBookings")
+  Future<ConfirmedBookingsResponse> confirmedBookings();
+
+  // http methods as interface for  paid bookings
+  @GET("/api/User/GetPaidBookings")
+  Future<PaidBookingsResponse> paidBookings();
+
+  // http methods as interface for  cancel bookings
+  @GET("/api/User/GetCancelledBookings")
+  Future<CancelBookingsResponse> cancelBookings();
+
+  // http methods as interface for  complete bookings
+  @GET("/api/User/GetCompletedBookings")
+  Future<CompleteBookingsResponse> completeBookings();
+
+  // http methods as interface for  rejected bookings
+  @GET("/api/User/GetRejectedBookings")
+  Future<RejectedBookingsResponse> rejectedBookings();
+
+  // http methods as interface for  put cancel bookings
+  @PUT("/api/User/cancelBookings")
+  Future<PutCancelBookingsResponse> putCancelBookings(
+    @Query("bookingId") int bookingId,
+  );
 }

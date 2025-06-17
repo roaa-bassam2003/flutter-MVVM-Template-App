@@ -360,3 +360,198 @@ class CityResponse extends BaseResponse {
 
   Map<String, dynamic> toJson() => _$CityResponseToJson(this);
 }
+
+
+
+
+
+
+
+// shared get list data response
+@JsonSerializable()
+class GetListUserResponse {
+  @JsonKey(name: "bookingID")
+  int? bookingID;
+  @JsonKey(name: "clientId")
+  String? clientId;
+  @JsonKey(name: "serviceProviderID")
+  String? serviceProviderID;
+  @JsonKey(name: "day")
+  String? day;
+  @JsonKey(name: "hours")
+  String? hours;
+  @JsonKey(name: "totalPrice")
+  int? totalPrice;
+  @JsonKey(name: "status")
+  int? status;
+  @JsonKey(name: "location")
+  String? location;
+  @JsonKey(name: "clientName")
+  String? clientName;
+  @JsonKey(name: "serviceProviderName")
+  String? serviceProviderName;
+  @JsonKey(name: "serviceType")
+  int? serviceType;
+  GetListUserResponse(
+    this.bookingID,
+    this.clientId,
+    this.serviceProviderID,
+    this.day,
+    this.hours,
+    this.totalPrice,
+    this.status,
+    this.location,
+    this.clientName,
+    this.serviceProviderName,
+    this.serviceType,
+  );
+
+  // from json
+  factory GetListUserResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetListUserResponseFromJson(json);
+  // to json
+  Map<String, dynamic> toJson() => _$GetListUserResponseToJson(this);
+}
+
+
+
+// get pending bookings
+@JsonSerializable()
+class BendingBookingsResponse extends BaseResponse {
+ @JsonKey(name: "data")
+  List<GetListUserResponse>? data;
+  BendingBookingsResponse(
+    this.data,
+  );
+
+  // from json
+  factory BendingBookingsResponse.fromJson(Map<String, dynamic> json) =>
+      _$BendingBookingsResponseFromJson(json);
+  // to json
+  Map<String, dynamic> toJson() => _$BendingBookingsResponseToJson(this);
+}
+
+
+// get confirmed bookings
+@JsonSerializable()
+class ConfirmedBookingsResponse extends BaseResponse {
+ @JsonKey(name: "data")
+  List<GetListUserResponse>? data;
+  ConfirmedBookingsResponse(
+    this.data,
+  );
+
+  // from json
+  factory ConfirmedBookingsResponse.fromJson(Map<String, dynamic> json) =>
+      _$ConfirmedBookingsResponseFromJson(json);
+  // to json
+  Map<String, dynamic> toJson() => _$ConfirmedBookingsResponseToJson(this);
+}
+
+
+// get paid bookings
+@JsonSerializable()
+class PaidBookingsResponse extends BaseResponse {
+ @JsonKey(name: "data")
+  List<GetListUserResponse>? data;
+  PaidBookingsResponse(
+    this.data,
+  );
+
+  // from json
+  factory PaidBookingsResponse.fromJson(Map<String, dynamic> json) =>
+      _$PaidBookingsResponseFromJson(json);
+  // to json
+  Map<String, dynamic> toJson() => _$PaidBookingsResponseToJson(this);
+}
+
+
+// get cancel bookings
+@JsonSerializable()
+class CancelBookingsResponse extends BaseResponse {
+ @JsonKey(name: "data")
+  List<GetListUserResponse>? data;
+  CancelBookingsResponse(
+    this.data,
+  );
+
+  // from json
+  factory CancelBookingsResponse.fromJson(Map<String, dynamic> json) =>
+      _$CancelBookingsResponseFromJson(json);
+  // to json
+  Map<String, dynamic> toJson() => _$CancelBookingsResponseToJson(this);
+}
+
+
+// get complete bookings
+@JsonSerializable()
+class CompleteBookingsResponse extends BaseResponse {
+ @JsonKey(name: "data")
+  List<GetListUserResponse>? data;
+  CompleteBookingsResponse(
+    this.data,
+  );
+
+  // from json
+  factory CompleteBookingsResponse.fromJson(Map<String, dynamic> json) =>
+      _$CompleteBookingsResponseFromJson(json);
+  // to json
+  Map<String, dynamic> toJson() => _$CompleteBookingsResponseToJson(this);
+}
+
+
+// get rejected bookings
+@JsonSerializable()
+class RejectedBookingsResponse extends BaseResponse {
+ @JsonKey(name: "data")
+  List<GetListUserResponse>? data;
+  RejectedBookingsResponse(
+    this.data,
+  );
+
+  // from json
+  factory RejectedBookingsResponse.fromJson(Map<String, dynamic> json) =>
+      _$RejectedBookingsResponseFromJson(json);
+  // to json
+  Map<String, dynamic> toJson() => _$RejectedBookingsResponseToJson(this);
+}
+
+
+// put cancel bookings data
+@JsonSerializable()
+class PutCancelBookingsDataResponse extends BaseResponse {
+ @JsonKey(name: "bookingId")
+  int? bookingId;
+  @JsonKey(name: "newStatus")
+  int? newStatus;
+  @JsonKey(name: "cancelledBy")
+  String? cancelledBy;
+  PutCancelBookingsDataResponse(
+    this.bookingId,
+    this.newStatus,
+    this.cancelledBy,
+  );
+
+  // from json
+  factory PutCancelBookingsDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$PutCancelBookingsDataResponseFromJson(json);
+  // to json
+  Map<String, dynamic> toJson() => _$PutCancelBookingsDataResponseToJson(this);
+}
+
+
+
+@JsonSerializable()
+class PutCancelBookingsResponse extends BaseResponse {
+ @JsonKey(name: "data")
+  PutCancelBookingsDataResponse? data;
+  PutCancelBookingsResponse(
+    this.data,
+  );
+
+  // from json
+  factory PutCancelBookingsResponse.fromJson(Map<String, dynamic> json) =>
+      _$PutCancelBookingsResponseFromJson(json);
+  // to json
+  Map<String, dynamic> toJson() => _$PutCancelBookingsResponseToJson(this);
+}

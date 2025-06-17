@@ -8,6 +8,7 @@ import 'package:flutter_advanced_course/data/repository/repository_impl.dart';
 import 'package:flutter_advanced_course/domain/repository/repository.dart';
 import 'package:flutter_advanced_course/domain/usecase/change_password_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/city_use_case.dart';
+import 'package:flutter_advanced_course/domain/usecase/complete_Bookings_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/delete_account_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/forgot_password_use_case.dart';
 import 'package:flutter_advanced_course/domain/usecase/government_use_case.dart';
@@ -26,6 +27,7 @@ import 'package:flutter_advanced_course/presentation/common/delete_account/view_
 import 'package:flutter_advanced_course/presentation/common/logout/view_model/logout_view_model.dart';
 import 'package:flutter_advanced_course/presentation/common/reset_passward/view_model/reset_password_view_model.dart';
 import 'package:flutter_advanced_course/presentation/service_provider/report/report_client_view_model.dart';
+import 'package:flutter_advanced_course/presentation/service_provider/tabs/booking/booking_tab_view_model.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -88,6 +90,16 @@ initGovernmentModule() {
         () => GovernmentUseCase(instance()));
     // login view model
     // instance.registerFactory<RegisterProviderViewModel>(() => RegisterProviderViewModel(instance()));
+  }
+}
+
+// book module is a module where we put all DI related to booking tap
+initCompleteBookModule() {
+  if (!GetIt.I.isRegistered<CompleteBookingsUseCase>()) {
+    // login use case
+    instance.registerFactory<CompleteBookingsUseCase>(() => CompleteBookingsUseCase(instance()));
+    // login view model
+    instance.registerFactory<BookingTabViewModel>(() => BookingTabViewModel(instance()));
   }
 }
 
